@@ -1,4 +1,4 @@
-const calcHash = require('../../src/lib/hash');
+const calcHash = require('./hash');
 const fs = require('fs');
 
 describe('hash', () => {

@@ -1,6 +1,6 @@
 const path = require('path');
 
-const paths = require('../../src/lib/paths');
+const paths = require('./paths');
 
 describe('paths', () => {
     it('should ignore some urls', () => {

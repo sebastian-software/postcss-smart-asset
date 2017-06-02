@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const getFile = require('../../src/lib/get-file');
+const getFile = require('./get-file');
 
 describe('get-file', () => {
     const fileContent = fs.readFileSync('test/fixtures/pixel.gif');

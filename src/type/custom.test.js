@@ -1,3 +1,5 @@
+import { processedCss, compareFixtures } from "../../test/setup"
+
 describe('custom', () => {
     const opts = {
         url(asset, dir, options, decl, warn, result) {

@@ -1,7 +1,7 @@
-const postcss = require('postcss');
-const fs = require('fs');
+import postcss from 'postcss'
+import fs from 'fs'
 
-function compareFixtures(name, msg, opts, postcssOpts, plugin) {
+export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
     it(msg, () => {
         opts = opts || {};
         const pcss = postcss();
@@ -21,11 +21,11 @@ function compareFixtures(name, msg, opts, postcssOpts, plugin) {
     });
 }
 
-function read(name) {
+export function read(name) {
     return fs.readFileSync(`test/${name}.css`, 'utf8').trim();
 }
 
-function processedCss(fixtures, urlOpts, postcssOpts) {
+export function processedCss(fixtures, urlOpts, postcssOpts) {
     return postcss()
     .use(url(urlOpts))
     .process(read(fixtures), postcssOpts)

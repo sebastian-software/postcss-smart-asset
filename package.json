@@ -34,9 +34,7 @@
     "postcss-import": "^10.0.0"
   },
   "scripts": {
-    "lint": "eslint --fix .",
-    "tests": "mocha",
-    "test": "npm run lint && npm run tests",
+    "test": "mocha",
     "release": "npmpub"
   }
 }

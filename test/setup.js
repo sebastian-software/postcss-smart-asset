@@ -1,14 +1,5 @@
-const chai = require('chai');
 const postcss = require('postcss');
-const url = require('../src');
 const fs = require('fs');
-
-global.assert = chai.assert;
-global.compareFixtures = compareFixtures;
-global.read = read;
-global.processedCss = processedCss;
-global.postcss = postcss;
-global.postcssUrl = url;
 
 function compareFixtures(name, msg, opts, postcssOpts, plugin) {
     it(msg, () => {

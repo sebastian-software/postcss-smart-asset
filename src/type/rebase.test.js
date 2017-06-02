@@ -1,3 +1,5 @@
+import { processedCss, compareFixtures } from "../../test/setup"
+
 describe('rebase', () => {
     const opts = {};
 

@@ -1,5 +1,6 @@
 import postcss from 'postcss'
 import fs from 'fs'
+import url from "../src"
 
 export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
     it(msg, () => {
@@ -17,7 +18,7 @@ export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
         // handy thing: checkout actual in the *.actual.css file
         fs.writeFile(`test/fixtures/${name}.actual.css`, actual);
 
-        assert.equal(actual, expected);
+        expect(actual).toBe(expected);
     });
 }
 

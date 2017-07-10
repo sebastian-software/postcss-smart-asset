@@ -1,7 +1,7 @@
 import path from "path"
 import postcss from "postcss"
 import postcssUrl from "../"
-import { processedCss, compareFixtures, read } from "../../test/setup"
+import { processedCss, compareFixtures, readAsync } from "../../test/setup"
 
 describe("inline", () => {
   const opts = { url: "inline" }
@@ -46,13 +46,14 @@ describe("inline", () => {
   })
 
   test("should inline url of imported files", () => {
-    return postcss()
-      .use(require("postcss-import")())
-      .use(postcssUrl(opts))
-      .process(read("inline-imported"), { from: "test/fixtures/here" })
-      .then((result) => {
-        expect(result.css.match(/;base64/)).toBeTruthy()
-      })
+    return readAsync("inline-imported").then((value) =>
+      postcss()
+        .use(require("postcss-import")())
+        .use(postcssUrl(opts))
+        .process(value, { from: "test/fixtures/here" })
+    ).then((result) => {
+      expect(result.css.match(/;base64/)).toBeTruthy()
+    })
   })
 
   test("should inline files matching the minimatch pattern", () => {

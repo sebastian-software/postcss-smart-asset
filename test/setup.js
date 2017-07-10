@@ -2,10 +2,6 @@ import postcss from "postcss"
 import fs from "fs"
 import url from "../src"
 
-export function read(name) {
-  return fs.readFileSync(`test/fixtures/${name}.css`, "utf8").trim()
-}
-
 export function readAsync(name) {
   return new Promise((resolve, reject) => {
     fs.readFile(`test/fixtures/${name}.css`, "utf8", (error, data) => {

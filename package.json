@@ -25,7 +25,7 @@
     "minimatch": "^3.0.4",
     "mkdirp": "^0.5.1",
     "postcss": "^6.0.6",
-    "prepublish": "^0.20.1",
+    "prepublish": "^1.0.2",
     "xxhashjs": "^0.2.1"
   },
   "devDependencies": {

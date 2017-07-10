@@ -1,6 +1,6 @@
 {
-  "name": "postcss-url",
-  "version": "6.1.0",
+  "name": "postcss-smart-asset",
+  "version": "0.1.0",
   "description": "PostCSS plugin to rebase or inline on url().",
   "keywords": [
     "css",
@@ -12,10 +12,10 @@
     "base64",
     "assets"
   ],
-  "author": "Maxime Thirouin",
+  "author": "Sebastian Werner",
   "license": "MIT",
   "repository": "https://github.com/postcss/postcss-url.git",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "files": [
     "src"
   ],

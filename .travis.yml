@@ -4,9 +4,13 @@ node_js:
   - 6
   - 8
 
-before_install:
-- npm install -g npm@5
-- npm --version
-
 matrix:
   fast_finish: true
+
+before_install:
+- npm install -g npm@latest
+- npm --version
+
+cache:
+  directories:
+  - $HOME/.npm

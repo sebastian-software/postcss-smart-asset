@@ -8,7 +8,7 @@
 ## Installation
 
 ```console
-$ npm install postcss-url
+$ npm install postcss-smart-asset
 ```
 
 ## Basic example - rebase
@@ -155,7 +155,7 @@ Checkout [tests](test) for examples.
 #### `url`
 ##### `rebase` - _(default)_
 Allow you to fix `url()` according to postcss `to` and/or `from` options (rebase to `to` first if available, otherwise `from` or `process.cwd()`).
-##### `inline` 
+##### `inline`
 Allow you to inline assets using base64 encoding. Can use postcss `from` option to find ressources.
 ##### `copy`
 Allow you to copy and rebase assets according to postcss `to`, `assetsPath` and `from` options (`assetsPath` is relative to the option `to`).

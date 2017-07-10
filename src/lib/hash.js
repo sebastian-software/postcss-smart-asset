@@ -1,7 +1,7 @@
 'use strict';
 
-const crypto = require('crypto');
-const xxh = require('xxhashjs');
+import crypto from 'crypto';
+import xxh from 'xxhashjs';
 const HEXBASE = 16;
 
 const defaultHashOptions = {
@@ -38,7 +38,7 @@ const getHash = (content, options) => {
     }
 };
 
-module.exports = function(content, options) {
+export default function(content, options) {
     options = options || defaultHashOptions;
 
     let hash = getHash(content, options);

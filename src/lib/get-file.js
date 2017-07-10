@@ -1,9 +1,8 @@
 'use strict';
 
-const fs = require('fs');
-const mime = require('mime');
-
-const getPathByBasePath = require('./paths').getPathByBasePath;
+import fs from 'fs';
+import mime from 'mime';
+import {getPathByBasePath} from './paths';
 
 /**
  *
@@ -32,7 +31,7 @@ const getFile = (asset, options, dir, warn) => {
     };
 };
 
-module.exports = getFile;
+export default getFile;
 
 /**
  * @typedef {Object} PostcssUrl~File

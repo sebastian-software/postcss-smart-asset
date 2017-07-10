@@ -1,7 +1,7 @@
 'use strict';
 
-const path = require('path');
-const url = require('url');
+import path from 'path';
+import url from 'url';
 
 /**
  * Normalazing result url, before replace decl value
@@ -9,7 +9,7 @@ const url = require('url');
  * @param {String} assetUrl
  * @returns {String}
  */
-const normalize = (assetUrl) => {
+export const normalize = (assetUrl) => {
     assetUrl = path.normalize(assetUrl);
 
     return path.sep === '\\' ? assetUrl.replace(/\\/g, '\/') : assetUrl;
@@ -19,7 +19,7 @@ const normalize = (assetUrl) => {
  * @param {String} assetUrl
  * @returns {Boolean}
  */
-const isUrlWithoutPathname = (assetUrl) => {
+export const isUrlWithoutPathname = (assetUrl) => {
     return assetUrl[0] === '#'
         || assetUrl.indexOf('%23') === 0
         || assetUrl.indexOf('data:') === 0
@@ -33,7 +33,7 @@ const isUrlWithoutPathname = (assetUrl) => {
  * @param {PostcssUrl~Options} options
  * @returns {Boolean}
  */
-const isUrlShouldBeIgnored = (assetUrl, options) => {
+export const isUrlShouldBeIgnored = (assetUrl, options) => {
     return isUrlWithoutPathname(assetUrl) || (assetUrl[0] === '/' && !options.basePath);
 };
 
@@ -43,7 +43,7 @@ const isUrlShouldBeIgnored = (assetUrl, options) => {
  * @param {String} relative - current relative asset path
  * @returns {String}
  */
-const getAssetsPath = (baseDir, assetsPath, relative) =>
+export const getAssetsPath = (baseDir, assetsPath, relative) =>
     path.resolve(baseDir, assetsPath || '', relative || '');
 
 /**
@@ -52,7 +52,7 @@ const getAssetsPath = (baseDir, assetsPath, relative) =>
  * @param {Dir} dir
  * @returns {String}
  */
-const getTargetDir = (dir) =>
+export const getTargetDir = (dir) =>
     dir.from !== dir.to ? dir.to : process.cwd();
 
 /**
@@ -61,7 +61,7 @@ const getTargetDir = (dir) =>
  * @param {Decl} decl
  * @returns {String}
  */
-const getPathDeclFile = (decl) =>
+export const getPathDeclFile = (decl) =>
     decl.source && decl.source.input && decl.source.input.file;
 
 /**
@@ -70,7 +70,7 @@ const getPathDeclFile = (decl) =>
  * @param {Decl} decl
  * @returns {String}
  */
-const getDirDeclFile = (decl) => {
+export const getDirDeclFile = (decl) => {
     const filename = getPathDeclFile(decl);
 
     return filename ? path.dirname(filename) : process.cwd();
@@ -84,7 +84,7 @@ const getDirDeclFile = (decl) => {
  * @param {String} relPath - relative asset path
  * @returns {String[]}
  */
-const getPathByBasePath = (basePath, dirFrom, relPath) => {
+export const getPathByBasePath = (basePath, dirFrom, relPath) => {
     if (relPath[0] === '/') {
         relPath = `.${relPath}`;
     }
@@ -104,7 +104,7 @@ const getPathByBasePath = (basePath, dirFrom, relPath) => {
  * @param {Decl} decl
  * @returns {PostcssUrl~Asset}
  */
-const prepareAsset = (assetUrl, dir, decl) => {
+export const prepareAsset = (assetUrl, dir, decl) => {
     const parsedUrl = url.parse(assetUrl);
     const pathname = !isUrlWithoutPathname(assetUrl) ? parsedUrl.pathname : null;
     const absolutePath = pathname
@@ -120,17 +120,6 @@ const prepareAsset = (assetUrl, dir, decl) => {
         search: (parsedUrl.search || ''),
         hash: (parsedUrl.hash || '')
     };
-};
-
-module.exports = {
-    normalize,
-    prepareAsset,
-    getAssetsPath,
-    getDirDeclFile,
-    getPathDeclFile,
-    getTargetDir,
-    getPathByBasePath,
-    isUrlShouldBeIgnored
 };
 
 /**

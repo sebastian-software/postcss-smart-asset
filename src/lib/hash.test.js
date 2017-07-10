@@ -1,5 +1,5 @@
-const calcHash = require('./hash');
-const fs = require('fs');
+import calcHash from './hash';
+import fs from 'fs';
 
 describe('hash', () => {
     const fileContent = fs.readFileSync('test/fixtures/pixel.gif');

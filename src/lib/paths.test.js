@@ -1,11 +1,18 @@
-const path = require('path');
-
-const paths = require('./paths');
+import path from 'path';
+import {
+  isUrlShouldBeIgnored,
+  getAssetsPath,
+  getTargetDir,
+  getDirDeclFile,
+  getPathByBasePath,
+  prepareAsset,
+  normalize
+} from './paths';
 
 describe('paths', () => {
     test('should ignore some urls', () => {
-        const isUrlShouldBeIgnored = (url) =>
-            paths.isUrlShouldBeIgnored(url, {});
+        const isUrlShouldBeIgnoredWrapper = (url) =>
+            isUrlShouldBeIgnored(url, {});
 
         expect([
             '#hash',
@@ -13,11 +20,11 @@ describe('paths', () => {
             '/absoluteUrl',
             'data:someDataInlined',
             'https://somecdnpath.com/asset.png'
-        ].every(isUrlShouldBeIgnored)).toBeTruthy();
+        ].every(isUrlShouldBeIgnoredWrapper)).toBeTruthy();
     });
 
     test('should\'t ignore absolute urls if have basePath', () => {
-        expect(paths.isUrlShouldBeIgnored('/absoluteUrl', {
+        expect(isUrlShouldBeIgnored('/absoluteUrl', {
             basePath: ['/path']
         })).toBeFalsy();
     });
@@ -27,7 +34,7 @@ describe('paths', () => {
 
         test('should calc assets path', () => {
             expect(
-                paths.getAssetsPath(baseDir, 'images', 'imported')
+                getAssetsPath(baseDir, 'images', 'imported')
             ).toBe(
                 path.resolve('/user/project/images/imported')
             );
@@ -35,7 +42,7 @@ describe('paths', () => {
 
         test('should calc assets path with absolute assetsPath param', () => {
             expect(
-                paths.getAssetsPath(baseDir, '/user/assets/', 'imported')
+                getAssetsPath(baseDir, '/user/assets/', 'imported')
             ).toBe(
                 path.resolve('/user/assets/imported')
             );
@@ -43,7 +50,7 @@ describe('paths', () => {
 
         test('should calc assets path without assetsPath param', () => {
             expect(
-                paths.getAssetsPath(baseDir, null, 'imported')
+                getAssetsPath(baseDir, null, 'imported')
             ).toBe(
                 path.resolve('/user/project/imported')
             );
@@ -57,12 +64,12 @@ describe('paths', () => {
         };
 
         expect(
-            paths.getTargetDir(dir)
+            getTargetDir(dir)
         ).toBe(
             dir.to
         );
         expect(
-            paths.getTargetDir({ from: '/project', to: '/project' })
+            getTargetDir({ from: '/project', to: '/project' })
         ).toBe(
             process.cwd()
         );
@@ -73,8 +80,8 @@ describe('paths', () => {
             source: { input: { file: '/project/styles/style.css' } }
         };
 
-        expect(paths.getDirDeclFile(decl)).toBe('/project/styles');
-        expect(paths.getDirDeclFile({})).toBe(process.cwd());
+        expect(getDirDeclFile(decl)).toBe('/project/styles');
+        expect(getDirDeclFile({})).toBe(process.cwd());
     });
 
     describe('calc path by basePath', () => {
@@ -83,7 +90,7 @@ describe('paths', () => {
 
         test('absolute basePath', () => {
             expect(
-                paths.getPathByBasePath(basePath, dirFrom, './img/image.png')
+                getPathByBasePath(basePath, dirFrom, './img/image.png')
             ).toEqual(
                 [path.resolve('/project/node_modules/img/image.png')]
             );
@@ -91,7 +98,7 @@ describe('paths', () => {
 
         test('relative basePath', () => {
             expect(
-                paths.getPathByBasePath('../base-path', dirFrom, './img/image.png')
+                getPathByBasePath('../base-path', dirFrom, './img/image.png')
             ).toEqual(
                 [path.resolve('/project/base-path/img/image.png')]
             );
@@ -99,7 +106,7 @@ describe('paths', () => {
 
         test('absolute assetUrl', () => {
             expect(
-                paths.getPathByBasePath(basePath, dirFrom, '/img/image.png')
+                getPathByBasePath(basePath, dirFrom, '/img/image.png')
             ).toEqual(
                 [path.resolve('/project/node_modules/img/image.png')]
             );
@@ -107,7 +114,7 @@ describe('paths', () => {
 
         test('multiple basePath', () => {
             expect(
-                paths.getPathByBasePath(
+                getPathByBasePath(
                     [basePath, '/some_base_path'],
                     dirFrom,
                     '/img/image.png'
@@ -128,10 +135,10 @@ describe('paths', () => {
             file: '/project/css/imported'
         };
 
-        const asset = paths.prepareAsset(assetUrl, dirs);
+        const asset = prepareAsset(assetUrl, dirs);
 
         // normalizing path for windows
-        asset.relativePath = paths.normalize(asset.relativePath);
+        asset.relativePath = normalize(asset.relativePath);
 
         expect(asset).toEqual({
             url: './sprite/some-image.png?test=1#23',
@@ -154,10 +161,10 @@ describe('paths', () => {
         };
 
         const checkCustomAsset = (assetUrl) => {
-            const asset = paths.prepareAsset(assetUrl, dirs, decl);
+            const asset = prepareAsset(assetUrl, dirs, decl);
 
             expect(asset.absolutePath).toEqual('/project/styles/style.css');
-            expect(paths.normalize(asset.relativePath)).toEqual('../styles/style.css');
+            expect(normalize(asset.relativePath)).toEqual('../styles/style.css');
         };
 
         ['#hash', '%23ecodedhash', 'data:'].forEach(checkCustomAsset);

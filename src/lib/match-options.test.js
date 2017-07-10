@@ -1,6 +1,5 @@
-const path = require('path');
-
-const matchOptions = require('./match-options');
+import path from 'path';
+import matchOptions from './match-options';
 
 describe('match options', () => {
     test('should match options from array', () => {

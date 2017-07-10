@@ -8,6 +8,6 @@
  *
  * @returns {String|Undefined}
  */
-module.exports = function getCustomProcessor(asset, dir, options) {
+export default function getCustomProcessor(asset, dir, options) {
     return options.url.apply(null, arguments);
 };

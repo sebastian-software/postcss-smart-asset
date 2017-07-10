@@ -1,7 +1,7 @@
 'use strict';
 
-const path = require('path');
-const normalize = require('../lib/paths').normalize;
+import path from 'path';
+import {normalize} from '../lib/paths';
 
 /**
  * Fix url() according to source (`from`) or destination (`to`)
@@ -12,7 +12,7 @@ const normalize = require('../lib/paths').normalize;
  *
  * @returns {String|Undefined}
  */
-module.exports = function(asset, dir) {
+export default function(asset, dir) {
     const rebasedUrl = normalize(
         path.relative(dir.to, asset.absolutePath)
     );

@@ -1,11 +1,8 @@
 'use strict';
 
-const minimatch = require('minimatch');
-const path = require('path');
-
-const paths = require('./paths');
-
-const isUrlShouldBeIgnored = paths.isUrlShouldBeIgnored;
+import minimatch from 'minimatch';
+import path from 'path';
+import { isUrlShouldBeIgnored } from './paths';
 
 /**
  * Returns whether the given asset matches the given pattern
@@ -89,4 +86,4 @@ const matchOptions = (asset, options) => {
     if (matchOption(asset, options)) return options;
 };
 
-module.exports = matchOptions;
+export default matchOptions;

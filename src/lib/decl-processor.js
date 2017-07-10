@@ -1,11 +1,20 @@
 'use strict';
 
-const matchOptions = require('./match-options');
-const paths = require('./paths');
+import matchOptions from './match-options';
+import { getPathDeclFile, getDirDeclFile, prepareAsset } from './paths';
 
-const getPathDeclFile = paths.getPathDeclFile;
-const getDirDeclFile = paths.getDirDeclFile;
-const prepareAsset = paths.prepareAsset;
+import copyType from "../type/copy"
+import customType from "../type/custom"
+import inlineType from "../type/inline"
+import rebaseType from "../type/rebase"
+
+const typeMap = {
+  copy: copyType,
+  custom: customType,
+  inline: inlineType,
+  rebase: rebaseType
+}
+
 
 /**
  * @typedef UrlRegExp
@@ -44,7 +53,7 @@ function getUrlProcessor(optionUrl) {
         throw new Error(`Unknown mode for postcss-url: ${mode}`);
     }
 
-    return require(`../type/${mode}`);
+    return typeMap[mode];
 }
 
 /**
@@ -80,7 +89,7 @@ const getPattern = (decl) =>
  * @param {Decl} decl
  * @returns {String|undefined}
  */
-const replaceUrl = (url, dir, options, result, decl) => {
+export const replaceUrl = (url, dir, options, result, decl) => {
     const asset = prepareAsset(url, dir, decl);
 
     const matchedOptions = matchOptions(asset, options);
@@ -110,7 +119,7 @@ const replaceUrl = (url, dir, options, result, decl) => {
  * @param {Decl} decl
  * @returns {PostcssUrl~DeclProcessor}
  */
-const declProcessor = (from, to, options, result, decl) => {
+export const declProcessor = (from, to, options, result, decl) => {
     const dir = { from, to, file: getDirDeclFile(decl) };
     const pattern = getPattern(decl);
 
@@ -122,11 +131,6 @@ const declProcessor = (from, to, options, result, decl) => {
 
             return newUrl ? `${before}${newUrl}${after}` : matched;
         });
-};
-
-module.exports = {
-    replaceUrl,
-    declProcessor
 };
 
 /**

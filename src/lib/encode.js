@@ -7,7 +7,7 @@
  * @param {String} [encodeType=base64|encodeURI|encodeURIComponent]
  * @returns {string}
  */
-module.exports = (file, encodeType) => {
+export default (file, encodeType) => {
     const inlineDecl = `data:${file.mimeType}`;
 
     if (encodeType === 'base64') {

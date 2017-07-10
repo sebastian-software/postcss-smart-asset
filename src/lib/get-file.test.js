@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const getFile = require('./get-file');
+import fs from 'fs';
+import path from 'path';
+import getFile from './get-file';
 
 describe('get-file', () => {
     const fileContent = fs.readFileSync('test/fixtures/pixel.gif');

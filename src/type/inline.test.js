@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 import postcss from "postcss";
 import postcssUrl from "../"
 import { processedCss, compareFixtures, read } from "../../test/setup"

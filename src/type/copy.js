@@ -1,16 +1,11 @@
 'use strict';
 
-const path = require('path');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-
-const calcHash = require('../lib/hash');
-const paths = require('../lib/paths');
-const getFile = require('../lib/get-file');
-
-const getTargetDir = paths.getTargetDir;
-const getAssetsPath = paths.getAssetsPath;
-const normalize = paths.normalize;
+import path from 'path';
+import fs from 'fs';
+import mkdirp from 'mkdirp';
+import calcHash from '../lib/hash';
+import {getTargetDir,getAssetsPath,normalize} from '../lib/paths';
+import getFile from '../lib/get-file';
 
 const getHashName = (file, options) =>
     calcHash(file.contents, options) + path.extname(file.path);
@@ -33,7 +28,7 @@ const getHashName = (file, options) =>
  *
  * @returns {String|Undefined}
  */
-module.exports = function processCopy(asset, dir, options, decl, warn, result, addDependency) {
+export default function processCopy(asset, dir, options, decl, warn, result, addDependency) {
     if (!options.assetsPath && dir.from === dir.to) {
         warn('Option `to` of postcss is required, ignoring');
 

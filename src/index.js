@@ -1,15 +1,14 @@
 'use strict';
 
-const path = require('path');
-const postcss = require('postcss');
-
-const declProcessor = require('./lib/decl-processor').declProcessor;
+import path from 'path';
+import postcss from 'postcss';
+import {declProcessor} from './lib/decl-processor';
 
 /**
  *
  * @type {Plugin}
  */
-module.exports = postcss.plugin('postcss-url', (options) => {
+export default postcss.plugin('postcss-url', (options) => {
     options = options || {};
 
     return function(styles, result) {

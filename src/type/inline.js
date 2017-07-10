@@ -1,11 +1,9 @@
 'use strict';
 
-const fs = require('fs');
-
-const processCopy = require('./copy');
-
-const encodeFile = require('../lib/encode');
-const getFile = require('../lib/get-file');
+import fs from 'fs';
+import processCopy from './copy';
+import encodeFile from '../lib/encode';
+import getFile from '../lib/get-file';
 
 /**
  * @param {String} originUrl
@@ -40,7 +38,7 @@ function processFallback(originUrl, dir, options) {
  *
  * @returns {String|Undefined}
  */
-module.exports = function(asset, dir, options, decl, warn, result, addDependency) {
+export default function(asset, dir, options, decl, warn, result, addDependency) {
     const file = getFile(asset, options, dir, warn);
 
     if (!file) return;

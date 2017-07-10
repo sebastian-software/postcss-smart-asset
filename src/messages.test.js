@@ -1,6 +1,6 @@
-const path = require('path');
-const postcss = require('postcss')
-const postcssUrl = require(".")
+import path from 'path';
+import postcss from 'postcss';
+import postcssUrl from ".";
 import { read } from "../test/setup"
 
 describe('misc', () => {

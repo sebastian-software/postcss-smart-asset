@@ -1,4 +1,3 @@
-import path from "path"
 import postcss from "postcss"
 import postcssUrl from "."
 import { readAsync } from "../test/setup"

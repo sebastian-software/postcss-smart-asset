@@ -20,6 +20,11 @@
   "files": [
     "src"
   ],
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.css": "stylelint"
+  },
   "dependencies": {
     "babel-preset-edge": "^0.9.6",
     "mime": "^1.3.6",

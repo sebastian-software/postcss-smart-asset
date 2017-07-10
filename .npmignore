@@ -3,6 +3,8 @@ node_modules
 dist
 build
 src
+coverage
+test
 
 .babelrc
 .editorconfig
@@ -10,6 +12,7 @@ src
 .eslintignore
 .eslintrc.yml
 .gitignore
+.gitattributes
 .npmignore
 .travis.yml
 .flowconfig
@@ -18,4 +21,3 @@ appveyor.yml
 gulpfile.babel.js
 package-lock.json
 rollup.config.js
-yarn.lock

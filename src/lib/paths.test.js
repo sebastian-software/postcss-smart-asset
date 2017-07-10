@@ -135,6 +135,7 @@ describe('paths', () => {
 
         expect(asset).toEqual({
             url: './sprite/some-image.png?test=1#23',
+            originUrl: './sprite/some-image.png?test=1#23',
             pathname: './sprite/some-image.png',
             absolutePath: path.resolve('/project/css/imported/sprite/some-image.png'),
             relativePath: 'imported/sprite/some-image.png',

@@ -115,6 +115,9 @@ after:
 
 ### Muiltiple options
 
+process first matched option by default.
+```multi: true``` in `custom` will processing with other options
+
 ```js
 const options = [
     { filter: '**/assets/copy/*.png', url: 'copy', assetsPath: 'img', useHash: true },
@@ -135,6 +138,7 @@ Checkout [tests](test) for examples.
 * `inline`
   * `basePath` - path or array of paths to search assets (relative to `from`, or absolute)
   * `encodeType` - `base64`, `encodeURI`, `encodeURIComponent`
+  * `includeUriFragment` - include the fragment identifer at the end of the URI
   * `maxSize` - file size in kbytes
   * `fallback` - `copy` or custom function for files > `maxSize`
   * `ignoreFragmentWarning` - do not warn when an SVG URL with a fragment is inlined
@@ -144,6 +148,7 @@ Checkout [tests](test) for examples.
     * `useHash` - use filehash(xxhash) for naming
     * `hashOptions` - options for hash function
 * `custom {Function}`
+    * `multi` - processing with other options
 
 ### Options list
 
@@ -196,6 +201,12 @@ A regular expression e.g. `/\.svg$/`, a [minimatch string](https://github.com/is
 
 The url fallback method to use if max size is exceeded or url contains a hash.
 Custom transform functions are supported.
+
+#### `includeUriFragment`
+_(default: `false`)_
+
+Specifies whether the URL's fragment identifer value, if present, will be added
+to the inlined data URI.
 
 #### `basePath`
 

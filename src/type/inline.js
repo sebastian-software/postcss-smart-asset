@@ -1,9 +1,7 @@
-'use strict';
-
-import fs from 'fs';
-import processCopy from './copy';
-import encodeFile from '../lib/encode';
-import getFile from '../lib/get-file';
+import fs from "fs"
+import processCopy from "./copy"
+import encodeFile from "../lib/encode"
+import getFile from "../lib/get-file"
 
 /**
  * @param {String} originUrl
@@ -13,15 +11,15 @@ import getFile from '../lib/get-file';
  * @returns {String|Undefined}
  */
 function processFallback(originUrl, dir, options) {
-    if (typeof options.fallback === 'function') {
-        return options.fallback.apply(null, arguments);
-    }
-    switch (options.fallback) {
-        case 'copy':
-            return processCopy(...arguments);
-        default:
-            return;
-    }
+  if (typeof options.fallback === "function") {
+    return options.fallback.apply(null, arguments)
+  }
+  switch (options.fallback) {
+    case "copy":
+      return processCopy(...arguments)
+    default:
+      return
+  }
 }
 
 /**
@@ -39,39 +37,41 @@ function processFallback(originUrl, dir, options) {
  * @returns {String|Undefined}
  */
 export default function(asset, dir, options, decl, warn, result, addDependency) {
-    const file = getFile(asset, options, dir, warn);
+  const file = getFile(asset, options, dir, warn)
 
-    if (!file) return;
+  if (!file) return
 
-    if (!file.mimeType) {
-        warn(`Unable to find asset mime-type for ${file.path}`);
+  if (!file.mimeType) {
+    warn(`Unable to find asset mime-type for ${file.path}`)
 
-        return;
+    return
+  }
+
+  const maxSize = (options.maxSize || 0) * 1024
+
+  if (maxSize) {
+    const stats = fs.statSync(file.path)
+
+    if (stats.size >= maxSize) {
+      return processFallback.apply(this, arguments)
     }
+  }
 
-    const maxSize = (options.maxSize || 0) * 1024;
+  const isSvg = file.mimeType === "image/svg+xml"
+  const defaultEncodeType = isSvg ? "encodeUriComponent" : "base64"
+  const encodeType = options.encodeType || defaultEncodeType
 
-    if (maxSize) {
-        const stats = fs.statSync(file.path);
+  // Warn for svg with hashes/fragments
+  if (isSvg && asset.hash && !options.ignoreFragmentWarning) {
+    // eslint-disable-next-line max-len
+    warn(
+      `Image type is svg and link contains #. Postcss-url cant handle svg fragments. SVG file fully inlined. ${file.path}`
+    )
+  }
 
-        if (stats.size >= maxSize) {
-            return processFallback.apply(this, arguments);
-        }
-    }
+  addDependency(file.path)
 
-    const isSvg = file.mimeType === 'image/svg+xml';
-    const defaultEncodeType = isSvg ? 'encodeUriComponent' : 'base64';
-    const encodeType = options.encodeType || defaultEncodeType;
+  const encodedStr = encodeFile(file, encodeType)
 
-    // Warn for svg with hashes/fragments
-    if (isSvg && asset.hash && !options.ignoreFragmentWarning) {
-        // eslint-disable-next-line max-len
-        warn(`Image type is svg and link contains #. Postcss-url cant handle svg fragments. SVG file fully inlined. ${file.path}`);
-    }
-
-    addDependency(file.path);
-
-    const encodedStr = encodeFile(file, encodeType);
-
-    return (options.includeUriFragment && asset.hash) ? encodedStr + asset.hash : encodedStr;
-};
+  return options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
+}

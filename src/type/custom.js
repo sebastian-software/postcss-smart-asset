@@ -9,5 +9,5 @@
  * @returns {String|Undefined}
  */
 export default function getCustomProcessor(asset, dir, options) {
-    return options.url.apply(null, arguments);
-};
+  return options.url.apply(null, arguments)
+}

@@ -1,7 +1,5 @@
-'use strict';
-
-import path from 'path';
-import url from 'url';
+import path from "path"
+import url from "url"
 
 /**
  * Normalazing result url, before replace decl value
@@ -10,21 +8,23 @@ import url from 'url';
  * @returns {String}
  */
 export const normalize = (assetUrl) => {
-    assetUrl = path.normalize(assetUrl);
+  assetUrl = path.normalize(assetUrl)
 
-    return path.sep === '\\' ? assetUrl.replace(/\\/g, '\/') : assetUrl;
-};
+  return path.sep === "\\" ? assetUrl.replace(/\\/g, "/") : assetUrl
+}
 
 /**
  * @param {String} assetUrl
  * @returns {Boolean}
  */
 export const isUrlWithoutPathname = (assetUrl) => {
-    return assetUrl[0] === '#'
-        || assetUrl.indexOf('%23') === 0
-        || assetUrl.indexOf('data:') === 0
-        || /^[a-z]+:\/\//.test(assetUrl);
-};
+  return (
+    assetUrl[0] === "#" ||
+    assetUrl.indexOf("%23") === 0 ||
+    assetUrl.indexOf("data:") === 0 ||
+    (/^[a-z]+:\/\//).test(assetUrl)
+  )
+}
 
 /**
  * Check if url is absolute, hash or data-uri
@@ -34,8 +34,8 @@ export const isUrlWithoutPathname = (assetUrl) => {
  * @returns {Boolean}
  */
 export const isUrlShouldBeIgnored = (assetUrl, options) => {
-    return isUrlWithoutPathname(assetUrl) || (assetUrl[0] === '/' && !options.basePath);
-};
+  return isUrlWithoutPathname(assetUrl) || (assetUrl[0] === "/" && !options.basePath)
+}
 
 /**
  * @param {String} baseDir - absolute target path
@@ -44,7 +44,7 @@ export const isUrlShouldBeIgnored = (assetUrl, options) => {
  * @returns {String}
  */
 export const getAssetsPath = (baseDir, assetsPath, relative) =>
-    path.resolve(baseDir, assetsPath || '', relative || '');
+  path.resolve(baseDir, assetsPath || "", relative || "")
 
 /**
  * Target path, output base dir
@@ -52,8 +52,7 @@ export const getAssetsPath = (baseDir, assetsPath, relative) =>
  * @param {Dir} dir
  * @returns {String}
  */
-export const getTargetDir = (dir) =>
-    dir.from !== dir.to ? dir.to : process.cwd();
+export const getTargetDir = (dir) => (dir.from !== dir.to ? dir.to : process.cwd())
 
 /**
  * Stylesheet file path from decl
@@ -61,8 +60,7 @@ export const getTargetDir = (dir) =>
  * @param {Decl} decl
  * @returns {String}
  */
-export const getPathDeclFile = (decl) =>
-    decl.source && decl.source.input && decl.source.input.file;
+export const getPathDeclFile = (decl) => decl.source && decl.source.input && decl.source.input.file
 
 /**
  * Stylesheet file dir from decl
@@ -71,10 +69,10 @@ export const getPathDeclFile = (decl) =>
  * @returns {String}
  */
 export const getDirDeclFile = (decl) => {
-    const filename = getPathDeclFile(decl);
+  const filename = getPathDeclFile(decl)
 
-    return filename ? path.dirname(filename) : process.cwd();
-};
+  return filename ? path.dirname(filename) : process.cwd()
+}
 
 /**
  * Returns paths list, where we can find assets file
@@ -85,16 +83,14 @@ export const getDirDeclFile = (decl) => {
  * @returns {String[]}
  */
 export const getPathByBasePath = (basePath, dirFrom, relPath) => {
-    if (relPath[0] === '/') {
-        relPath = `.${relPath}`;
-    }
+  if (relPath[0] === "/") {
+    relPath = `.${relPath}`
+  }
 
-    basePath = !Array.isArray(basePath) ? [basePath] : basePath;
+  basePath = !Array.isArray(basePath) ? [ basePath ] : basePath
 
-    return basePath.map((pathItem) =>
-        getAssetsPath(dirFrom, pathItem, relPath)
-    );
-};
+  return basePath.map((pathItem) => getAssetsPath(dirFrom, pathItem, relPath))
+}
 
 /**
  * Preparing asset paths and data
@@ -105,22 +101,20 @@ export const getPathByBasePath = (basePath, dirFrom, relPath) => {
  * @returns {PostcssUrl~Asset}
  */
 export const prepareAsset = (assetUrl, dir, decl) => {
-    const parsedUrl = url.parse(assetUrl);
-    const pathname = !isUrlWithoutPathname(assetUrl) ? parsedUrl.pathname : null;
-    const absolutePath = pathname
-        ? path.resolve(path.join(dir.file, pathname))
-        : getPathDeclFile(decl);
+  const parsedUrl = url.parse(assetUrl)
+  const pathname = !isUrlWithoutPathname(assetUrl) ? parsedUrl.pathname : null
+  const absolutePath = pathname ? path.resolve(path.join(dir.file, pathname)) : getPathDeclFile(decl)
 
-    return {
-        url: assetUrl,
-        originUrl: assetUrl,
-        pathname,
-        absolutePath: absolutePath || dir.from,
-        relativePath: absolutePath ? path.relative(dir.from, absolutePath) : '.',
-        search: (parsedUrl.search || ''),
-        hash: (parsedUrl.hash || '')
-    };
-};
+  return {
+    url: assetUrl,
+    originUrl: assetUrl,
+    pathname,
+    absolutePath: absolutePath || dir.from,
+    relativePath: absolutePath ? path.relative(dir.from, absolutePath) : ".",
+    search: parsedUrl.search || "",
+    hash: parsedUrl.hash || ""
+  }
+}
 
 /**
  * @typedef {Object} PostcssUrl~Asset

@@ -1,8 +1,6 @@
-'use strict';
-
-import minimatch from 'minimatch';
-import path from 'path';
-import { isUrlShouldBeIgnored } from './paths';
+import minimatch from "minimatch"
+import path from "path"
+import { isUrlShouldBeIgnored } from "./paths"
 
 /**
  * Returns whether the given asset matches the given pattern
@@ -15,24 +13,24 @@ import { isUrlShouldBeIgnored } from './paths';
  * @returns {Boolean}
  */
 const matchesFilter = (asset, pattern) => {
-    const relativeToRoot = path.relative(process.cwd(), asset.absolutePath);
+  const relativeToRoot = path.relative(process.cwd(), asset.absolutePath)
 
-    if (typeof pattern === 'string') {
-        pattern = minimatch.filter(pattern);
+  if (typeof pattern === "string") {
+    pattern = minimatch.filter(pattern)
 
-        return pattern(relativeToRoot);
-    }
+    return pattern(relativeToRoot)
+  }
 
-    if (pattern instanceof RegExp) {
-        return pattern.test(relativeToRoot);
-    }
+  if (pattern instanceof RegExp) {
+    return pattern.test(relativeToRoot)
+  }
 
-    if (pattern instanceof Function) {
-        return pattern(asset);
-    }
+  if (pattern instanceof Function) {
+    return pattern(asset)
+  }
 
-    return true;
-};
+  return true
+}
 
 /**
  * Matching single option
@@ -42,15 +40,14 @@ const matchesFilter = (asset, pattern) => {
  * @returns {Boolean}
  */
 const matchOption = (asset, option) => {
-    const matched = matchesFilter(asset, option.filter);
+  const matched = matchesFilter(asset, option.filter)
 
-    if (!matched) return false;
+  if (!matched) return false
 
-    return typeof option.url === 'function' || !isUrlShouldBeIgnored(asset.url, option);
-};
+  return typeof option.url === "function" || !isUrlShouldBeIgnored(asset.url, option)
+}
 
-const isMultiOption = (option) =>
-    option.multi && typeof option.url === 'function';
+const isMultiOption = (option) => option.multi && typeof option.url === "function"
 
 /**
  * Matching options by asset
@@ -60,30 +57,26 @@ const isMultiOption = (option) =>
  * @returns {PostcssUrl~Options|undefined}
  */
 const matchOptions = (asset, options) => {
-    if (!options) return;
+  if (!options) return
 
-    if (Array.isArray(options)) {
-        const optionIndex = options.findIndex((option) => matchOption(asset, option));
+  if (Array.isArray(options)) {
+    const optionIndex = options.findIndex((option) => matchOption(asset, option))
 
-        if (optionIndex < 0) return;
+    if (optionIndex < 0) return
 
-        const matchedOption = options[optionIndex];
+    const matchedOption = options[optionIndex]
 
-        // if founded option is last
-        if (optionIndex === options.length - 1) return matchedOption;
+    // if founded option is last
+    if (optionIndex === options.length - 1) return matchedOption
 
-        const extendOptions = options
-            .slice(optionIndex + 1)
-            .filter((option) =>
-                (isMultiOption(matchedOption) || isMultiOption(option)) && matchOption(asset, option)
-            );
+    const extendOptions = options
+      .slice(optionIndex + 1)
+      .filter((option) => (isMultiOption(matchedOption) || isMultiOption(option)) && matchOption(asset, option))
 
-        return extendOptions.length
-            ? [matchedOption].concat(extendOptions)
-            : matchedOption;
-    }
+    return extendOptions.length ? [ matchedOption ].concat(extendOptions) : matchedOption
+  }
 
-    if (matchOption(asset, options)) return options;
-};
+  if (matchOption(asset, options)) return options
+}
 
-export default matchOptions;
+export default matchOptions

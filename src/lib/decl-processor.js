@@ -1,7 +1,5 @@
-'use strict';
-
-import matchOptions from './match-options';
-import { getPathDeclFile, getDirDeclFile, prepareAsset } from './paths';
+import matchOptions from "./match-options"
+import { getPathDeclFile, getDirDeclFile, prepareAsset } from "./paths"
 
 import copyType from "../type/copy"
 import customType from "../type/custom"
@@ -15,7 +13,6 @@ const typeMap = {
   rebase: rebaseType
 }
 
-
 /**
  * @typedef UrlRegExp
  * @name UrlRegExp
@@ -28,32 +25,31 @@ const typeMap = {
  * @type {UrlRegExp[]}
  */
 const URL_PATTERNS = [
-    /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/g,
-    /(AlphaImageLoader\(\s*src=['"]?)([^"')]+)(["'])/g
-];
+  /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/g,
+  /(AlphaImageLoader\(\s*src=['"]?)([^"')]+)(["'])/g
+]
 
 /**
  * Restricted modes
  *
  * @type {String[]}
  */
-const PROCESS_TYPES = ['rebase', 'inline', 'copy', 'custom'];
+const PROCESS_TYPES = [ "rebase", "inline", "copy", "custom" ]
 
-const getUrlProcessorType = (optionUrl) =>
-    typeof optionUrl === 'function' ? 'custom' : (optionUrl || 'rebase');
+const getUrlProcessorType = (optionUrl) => (typeof optionUrl === "function" ? "custom" : optionUrl || "rebase")
 
 /**
  * @param {String} optionUrl
  * @returns {PostcssUrl~UrlProcessor}
  */
 function getUrlProcessor(optionUrl) {
-    const mode = getUrlProcessorType(optionUrl);
+  const mode = getUrlProcessorType(optionUrl)
 
-    if (PROCESS_TYPES.indexOf(mode) === -1) {
-        throw new Error(`Unknown mode for postcss-url: ${mode}`);
-    }
+  if (PROCESS_TYPES.indexOf(mode) === -1) {
+    throw new Error(`Unknown mode for postcss-url: ${mode}`)
+  }
 
-    return typeMap[mode];
+  return typeMap[mode]
 }
 
 /**
@@ -63,23 +59,22 @@ function getUrlProcessor(optionUrl) {
  * @returns {Function}
  */
 const wrapUrlProcessor = (urlProcessor, result, decl) => {
-    const warn = (message) => decl.warn(result, message);
-    const addDependency = (file) => result.messages.push({
-        type: 'dependency',
-        file,
-        parent: getPathDeclFile(decl)
-    });
+  const warn = (message) => decl.warn(result, message)
+  const addDependency = (file) =>
+    result.messages.push({
+      type: "dependency",
+      file,
+      parent: getPathDeclFile(decl)
+    })
 
-    return (asset, dir, option) =>
-        urlProcessor(asset, dir, option, decl, warn, result, addDependency);
-};
+  return (asset, dir, option) => urlProcessor(asset, dir, option, decl, warn, result, addDependency)
+}
 
 /**
  * @param {Decl} decl
  * @returns {RegExp}
  */
-const getPattern = (decl) =>
-    URL_PATTERNS.find((pattern) => pattern.test(decl.value));
+const getPattern = (decl) => URL_PATTERNS.find((pattern) => pattern.test(decl.value))
 
 /**
  * @param {String} url
@@ -90,26 +85,26 @@ const getPattern = (decl) =>
  * @returns {String|undefined}
  */
 export const replaceUrl = (url, dir, options, result, decl) => {
-    const asset = prepareAsset(url, dir, decl);
+  const asset = prepareAsset(url, dir, decl)
 
-    const matchedOptions = matchOptions(asset, options);
+  const matchedOptions = matchOptions(asset, options)
 
-    if (!matchedOptions) return;
+  if (!matchedOptions) return
 
-    const process = (option) => {
-        const wrappedUrlProcessor = wrapUrlProcessor(getUrlProcessor(option.url), result, decl);
+  const process = (option) => {
+    const wrappedUrlProcessor = wrapUrlProcessor(getUrlProcessor(option.url), result, decl)
 
-        return wrappedUrlProcessor(asset, dir, option);
-    };
+    return wrappedUrlProcessor(asset, dir, option)
+  }
 
-    if (Array.isArray(matchedOptions)) {
-        matchedOptions.forEach((option) => asset.url = process(option));
-    } else {
-        asset.url = process(matchedOptions);
-    }
+  if (Array.isArray(matchedOptions)) {
+    matchedOptions.forEach((option) => (asset.url = process(option)))
+  } else {
+    asset.url = process(matchedOptions)
+  }
 
-    return asset.url;
-};
+  return asset.url
+}
 
 /**
  * @param {String} from
@@ -120,18 +115,17 @@ export const replaceUrl = (url, dir, options, result, decl) => {
  * @returns {PostcssUrl~DeclProcessor}
  */
 export const declProcessor = (from, to, options, result, decl) => {
-    const dir = { from, to, file: getDirDeclFile(decl) };
-    const pattern = getPattern(decl);
+  const dir = { from, to, file: getDirDeclFile(decl) }
+  const pattern = getPattern(decl)
 
-    if (!pattern) return;
+  if (!pattern) return
 
-    decl.value = decl.value
-        .replace(pattern, (matched, before, url, after) => {
-            const newUrl = replaceUrl(url, dir, options, result, decl);
+  decl.value = decl.value.replace(pattern, (matched, before, url, after) => {
+    const newUrl = replaceUrl(url, dir, options, result, decl)
 
-            return newUrl ? `${before}${newUrl}${after}` : matched;
-        });
-};
+    return newUrl ? `${before}${newUrl}${after}` : matched
+  })
+}
 
 /**
  * @typedef {Object} PostcssUrl~Options - postcss-url Options

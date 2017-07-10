@@ -1,53 +1,47 @@
-'use strict';
-
-import crypto from 'crypto';
-import xxh from 'xxhashjs';
-const HEXBASE = 16;
+import crypto from "crypto"
+import xxh from "xxhashjs"
+const HEXBASE = 16
 
 const defaultHashOptions = {
-    method: 'xxhash32',
-    shrink: 8
-};
+  method: "xxhash32",
+  shrink: 8
+}
 
 const getxxhash = (content, options) => {
-    const hashFunc = options.method === 'xxhash32' ? xxh.h32 : xxh.h64;
-    const seed = 0;
+  const hashFunc = options.method === "xxhash32" ? xxh.h32 : xxh.h64
+  const seed = 0
 
-    return hashFunc(seed)
-    .update(content)
-    .digest()
-    .toString(HEXBASE);
-};
+  return hashFunc(seed).update(content).digest().toString(HEXBASE)
+}
 
 const getHash = (content, options) => {
-    if (typeof options.method === 'function') {
-        return options.method(content);
-    }
+  if (typeof options.method === "function") {
+    return options.method(content)
+  }
 
-    if (options.method.indexOf('xxhash') === 0) {
-        return getxxhash(content, options);
-    }
+  if (options.method.indexOf("xxhash") === 0) {
+    return getxxhash(content, options)
+  }
 
-    try {
-        const hashFunc = crypto.createHash(options.method);
+  try {
+    const hashFunc = crypto.createHash(options.method)
 
-        return hashFunc.update(content)
-        .digest('hex');
-    } catch (e) {
-        return null;
-    }
-};
+    return hashFunc.update(content).digest("hex")
+  } catch (e) {
+    return null
+  }
+}
 
 export default function(content, options) {
-    options = options || defaultHashOptions;
+  options = options || defaultHashOptions
 
-    let hash = getHash(content, options);
+  let hash = getHash(content, options)
 
-    if (hash == null) {
-        // bad hash method; fallback to defaults
-        // TODO: warning/error reporting?
-        hash = getHash(content, defaultHashOptions);
-    }
+  if (hash == null) {
+    // bad hash method; fallback to defaults
+    // TODO: warning/error reporting?
+    hash = getHash(content, defaultHashOptions)
+  }
 
-    return options.shrink ? hash.substr(0, options.shrink) : hash;
-};
+  return options.shrink ? hash.substr(0, options.shrink) : hash
+}

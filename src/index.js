@@ -1,26 +1,22 @@
-'use strict';
-
-import path from 'path';
-import postcss from 'postcss';
-import {declProcessor} from './lib/decl-processor';
+import path from "path"
+import postcss from "postcss"
+import { declProcessor } from "./lib/decl-processor"
 
 /**
  *
  * @type {Plugin}
  */
-export default postcss.plugin('postcss-url', (options) => {
-    options = options || {};
+export default postcss.plugin("postcss-url", (options) => {
+  options = options || {}
 
-    return (styles, result) => {
-        const opts = result.opts;
-        const from = opts.from ? path.dirname(opts.from) : '.';
-        const to = opts.to ? path.dirname(opts.to) : from;
+  return (styles, result) => {
+    const opts = result.opts
+    const from = opts.from ? path.dirname(opts.from) : "."
+    const to = opts.to ? path.dirname(opts.to) : from
 
-        styles.walkDecls((decl) =>
-            declProcessor(from, to, options, result, decl)
-        );
-    };
-});
+    styles.walkDecls((decl) => declProcessor(from, to, options, result, decl))
+  }
+})
 
 /**
  * @callback PostcssUrl~UrlProcessor

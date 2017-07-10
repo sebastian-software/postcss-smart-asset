@@ -1,14 +1,11 @@
-'use strict';
+import path from "path"
+import fs from "fs"
+import mkdirp from "mkdirp"
+import calcHash from "../lib/hash"
+import { getTargetDir, getAssetsPath, normalize } from "../lib/paths"
+import getFile from "../lib/get-file"
 
-import path from 'path';
-import fs from 'fs';
-import mkdirp from 'mkdirp';
-import calcHash from '../lib/hash';
-import {getTargetDir,getAssetsPath,normalize} from '../lib/paths';
-import getFile from '../lib/get-file';
-
-const getHashName = (file, options) =>
-    calcHash(file.contents, options) + path.extname(file.path);
+const getHashName = (file, options) => calcHash(file.contents, options) + path.extname(file.path)
 
 /**
  * Copy images from readed from url() to an specific assets destination
@@ -29,34 +26,30 @@ const getHashName = (file, options) =>
  * @returns {String|Undefined}
  */
 export default function processCopy(asset, dir, options, decl, warn, result, addDependency) {
-    if (!options.assetsPath && dir.from === dir.to) {
-        warn('Option `to` of postcss is required, ignoring');
+  if (!options.assetsPath && dir.from === dir.to) {
+    warn("Option `to` of postcss is required, ignoring")
 
-        return;
-    }
+    return
+  }
 
-    const file = getFile(asset, options, dir, warn);
+  const file = getFile(asset, options, dir, warn)
 
-    if (!file) return;
+  if (!file) return
 
-    const assetRelativePath = options.useHash
-        ? getHashName(file, options.hashOptions)
-        : asset.relativePath;
+  const assetRelativePath = options.useHash ? getHashName(file, options.hashOptions) : asset.relativePath
 
-    const targetDir = getTargetDir(dir);
-    const newAssetBaseDir = getAssetsPath(targetDir, options.assetsPath);
-    const newAssetPath = path.join(newAssetBaseDir, assetRelativePath);
-    const newRelativeAssetPath = normalize(
-        path.relative(targetDir, newAssetPath)
-    );
+  const targetDir = getTargetDir(dir)
+  const newAssetBaseDir = getAssetsPath(targetDir, options.assetsPath)
+  const newAssetPath = path.join(newAssetBaseDir, assetRelativePath)
+  const newRelativeAssetPath = normalize(path.relative(targetDir, newAssetPath))
 
-    mkdirp.sync(path.dirname(newAssetPath));
+  mkdirp.sync(path.dirname(newAssetPath))
 
-    if (!fs.existsSync(newAssetPath)) {
-        fs.writeFileSync(newAssetPath, file.contents);
-    }
+  if (!fs.existsSync(newAssetPath)) {
+    fs.writeFileSync(newAssetPath, file.contents)
+  }
 
-    addDependency(file.path);
+  addDependency(file.path)
 
-    return `${newRelativeAssetPath}${asset.search}${asset.hash}`;
-};
+  return `${newRelativeAssetPath}${asset.search}${asset.hash}`
+}

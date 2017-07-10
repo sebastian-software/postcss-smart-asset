@@ -1,8 +1,6 @@
-'use strict';
-
-import fs from 'fs';
-import mime from 'mime';
-import {getPathByBasePath} from './paths';
+import fs from "fs"
+import mime from "mime"
+import { getPathByBasePath } from "./paths"
 
 /**
  *
@@ -13,25 +11,25 @@ import {getPathByBasePath} from './paths';
  * @returns {PostcssUrl~File}
  */
 const getFile = (asset, options, dir, warn) => {
-    const paths = options.basePath
-        ? getPathByBasePath(options.basePath, dir.from, asset.pathname)
-        : [asset.absolutePath];
-    const filePath = paths.find(fs.existsSync);
+  const paths = options.basePath ?
+    getPathByBasePath(options.basePath, dir.from, asset.pathname) :
+    [ asset.absolutePath ]
+  const filePath = paths.find(fs.existsSync)
 
-    if (!filePath) {
-        warn(`Can't read file '${paths.join()}', ignoring`);
+  if (!filePath) {
+    warn(`Can't read file '${paths.join()}', ignoring`)
 
-        return;
-    }
+    return
+  }
 
-    return {
-        path: filePath,
-        contents: fs.readFileSync(filePath),
-        mimeType: mime.lookup(filePath)
-    };
-};
+  return {
+    path: filePath,
+    contents: fs.readFileSync(filePath),
+    mimeType: mime.lookup(filePath)
+  }
+}
 
-export default getFile;
+export default getFile
 
 /**
  * @typedef {Object} PostcssUrl~File

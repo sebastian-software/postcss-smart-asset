@@ -47,7 +47,7 @@ describe('match options', () => {
         expect(matchOptions(asset, options).url).toEqual('copy');
     });
 
-    it('should match multiple options', () => {
+    test('should match multiple options', () => {
         const options = [
             { url: 'copy', filter: (asset) => asset.absolutePath.indexOf('asset') !== -1 },
             { url: 'inline', filter: '**/*.gif' },
@@ -61,11 +61,11 @@ describe('match options', () => {
 
         const matched = matchOptions(asset, options);
 
-        assert.equal(matched[1].url(), 'custom');
-        assert.equal(matched.length, 2);
+        expect(matched[1].url()).toBe('custom');
+        expect(matched.length).toBe(2);
     });
 
-    it('should match single option', () => {
+    test('should match single option', () => {
         const options = [
             { url: 'copy', filter: (asset) => asset.absolutePath.indexOf('asset') !== -1 },
             { url: 'inline', filter: '**/*.gif' },
@@ -77,6 +77,6 @@ describe('match options', () => {
             absolutePath: path.resolve(process.cwd(), 'some/path/to/asset.gif')
         };
 
-        assert.notOk(Array.isArray(matchOptions(asset, options)));
+        expect(Array.isArray(matchOptions(asset, options))).toBeFalsy();
     });
 });

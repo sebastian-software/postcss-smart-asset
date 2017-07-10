@@ -87,16 +87,16 @@ function testCopy(opts, postcssOpts) {
         copyXXHashParamsPixel8: new RegExp(`"${assetsPath}[a-z0-9]{8}\\.png\\?v=1\\.1\\#iefix"`)
     };
     const matchAll = (css, patternsKeys) =>
-        assert.ok(patternsKeys.every((pat) => css.match(patterns[pat])));
+        expect(patternsKeys.every((pat) => css.match(patterns[pat]))).toBeTruthy();
 
     describe('should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)', () => {
-        it('rebase the url', () => {
+        test('rebase the url', () => {
             const css = processedCss('fixtures/copy', opts, postcssOpts);
 
             matchAll(css, ['copyPixelPng', 'copyPixelGif']);
         });
 
-        it('rebase the url keeping parameters', () => {
+        test('rebase the url keeping parameters', () => {
             const css = processedCss('fixtures/copy-parameters', opts, postcssOpts);
 
             matchAll(css, [
@@ -106,7 +106,7 @@ function testCopy(opts, postcssOpts) {
             ]);
         });
 
-        it('rebase the url using a hash name', () => {
+        test('rebase the url using a hash name', () => {
             const css = processedCss(
                 'fixtures/copy-hash',
                 optsWithHash,
@@ -116,7 +116,7 @@ function testCopy(opts, postcssOpts) {
             matchAll(css, ['copyXXHashPixel8']);
         });
 
-        it('rebase the url using a hash name keeping parameters', () => {
+        test('rebase the url using a hash name keeping parameters', () => {
             const css = processedCss(
                 'fixtures/copy-hash-parameters',
                 optsWithHash,

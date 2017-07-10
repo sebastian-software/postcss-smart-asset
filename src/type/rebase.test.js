@@ -1,4 +1,5 @@
 import { processedCss, compareFixtures } from "../../test/setup"
+import importPlugin from "postcss-import"
 
 describe('rebase', () => {
     const opts = {};
@@ -48,7 +49,7 @@ describe('rebase', () => {
         'rebase-imported',
         'should rebase url of imported files',
         opts,
-        { from: 'test/fixtures/transform.css' }, require('postcss-import')
+        { from: 'test/fixtures/transform.css' }, importPlugin
     );
     compareFixtures(
         'alpha-image-loader',

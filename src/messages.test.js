@@ -17,19 +17,7 @@ describe("misc", () => {
       })
       .then((result) => {
         const dependencies = result.messages.filter((m) => m.type === "dependency")
-
-        expect(dependencies).toEqual([
-          {
-            type: "dependency",
-            file: path.resolve("test/fixtures/imported/pixel.png"),
-            parent: path.resolve("test/fixtures/copy.css")
-          },
-          {
-            type: "dependency",
-            file: path.resolve("test/fixtures/pixel.gif"),
-            parent: path.resolve("test/fixtures/copy.css")
-          }
-        ])
+        expect(dependencies).toMatchSnapshot()
       })
   })
 
@@ -46,19 +34,7 @@ describe("misc", () => {
       })
       .then((result) => {
         const dependencies = result.messages.filter((m) => m.type === "dependency")
-
-        expect(dependencies).toEqual([
-          {
-            type: "dependency",
-            file: path.resolve("test/fixtures/imported/pixel.png"),
-            parent: path.resolve("test/fixtures/copy.css")
-          },
-          {
-            type: "dependency",
-            file: path.resolve("test/fixtures/pixel.gif"),
-            parent: path.resolve("test/fixtures/copy.css")
-          }
-        ])
+        expect(dependencies).toMatchSnapshot()
       })
   })
 })

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`custom should transform url through custom callback 1`] = `
+"body {
+  background: url(\\"ONE\\"), url('TWO'), url(THREE), url(FOUR), url(/FIVE), url(#SIX);
+}"
+`;
+
+exports[`custom should transform url through custom callback with array options 1`] = `
+"body {
+  background: url(\\"ONE\\"), url('TWO'), url(THREE), url(FOUR), url(/FIVE), url(#SIX);
+}"
+`;
+
+exports[`custom should transform url through custom callback with multi option 1`] = `
+"body {
+  background: url(\\"ome_url.png\\");
+}"
+`;

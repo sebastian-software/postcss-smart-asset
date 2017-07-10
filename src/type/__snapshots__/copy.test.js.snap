@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`copy when inline fallback shouldn't copy assets if not info available 1`] = `
+"body {
+  background: url(\\"./one\\");
+}"
+`;
+
+exports[`copy with assetsPath shouldn't copy assets if not info available 1`] = `
+"body {
+  background: url(\\"./one\\");
+}"
+`;
+
+exports[`copy without assetsPath shouldn't copy assets if not info available 1`] = `
+"body {
+  background: url(\\"./one\\");
+}"
+`;

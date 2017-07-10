@@ -12,12 +12,7 @@ export function compareFixtures(name, message, opts = {}, postcssOpts, plugin) {
 
     pcss.use(url(opts))
     return pcss.process(read(`fixtures/${name}`), postcssOpts).then((result) => {
-      const expected = read(`fixtures/${name}.expected`)
-
-      // handy thing: checkout actual in the *.actual.css file
-      fs.writeFile(`test/fixtures/${name}.actual.css`, result.css)
-
-      expect(result.css).toBe(expected)
+      expect(result.css).toMatchSnapshot()
     })
   })
 }

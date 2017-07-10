@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rebase should rebase in filter 1`] = `
+"body {
+  -filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test/fixtures/isqua.gif',sizingMethod=scale);
+}"
+`;
+
+exports[`rebase should rebase url even if there is differentes types of quotes 1`] = `
+"body {
+  background: url(\\"test/fixtures/one\\"), url('test/fixtures/two'), url(test/fixtures/three), url(test/fixtures/four);
+}"
+`;
+
+exports[`rebase should rebase url of imported files 1`] = `
+".imported {
+    background: url(\\"imported/pixel.png\\"), url( \\"pixel.gif\\"  )
+}"
+`;
+
+exports[`rebase should rebase url that have query string or hash (or both) 1`] = `
+"body {
+  background: url('test/fixtures/svg#stuff');
+}
+
+@font-face {
+  src: url('test/fixtures/font?blah');
+  src: url('test/fixtures/font?blah#dontcare');
+}"
+`;
+
+exports[`rebase should rebase url to dirname(from) 1`] = `
+"body {
+  background: url(\\"one\\"), url(\\"two\\");
+  filter: url(\\"#one\\");
+}"
+`;
+
+exports[`rebase should rebase url to dirname(to) 1`] = `
+"body {
+  background: url(\\"test/fixtures/one\\"), url(\\"test/fixtures/two\\");
+}"
+`;
+
+exports[`rebase should rebase url to dirname(to) even if from given 1`] = `
+"body {
+  background: url(\\"test/fixtures/one\\"), url(\\"test/fixtures/two\\");
+}"
+`;
+
+exports[`rebase shouldn't rebase url if not info available 1`] = `
+"body {
+  background: url(\\"test\\"), url(\\"wot\\");
+}"
+`;

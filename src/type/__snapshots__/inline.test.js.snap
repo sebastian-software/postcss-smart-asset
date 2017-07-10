@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inline should inline url and include hash, if it has a hash in it and option is enabled 1`] = `
+"body {
+  clip-path: url(\\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2F%3E#el\\")
+}"
+`;
+
+exports[`inline should inline url and not include hash, if it has a hash in it 1`] = `
+"body {
+  clip-path: url(\\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2F%3E\\")
+}"
+`;
+
+exports[`inline shouldn't inline url if not info available 1`] = `
+"body {
+  background: url(\\"./one\\");
+}"
+`;

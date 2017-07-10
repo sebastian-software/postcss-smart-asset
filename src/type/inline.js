@@ -18,7 +18,7 @@ function processFallback(originUrl, dir, options) {
     }
     switch (options.fallback) {
         case 'copy':
-            return processCopy.apply(null, arguments);
+            return processCopy(...arguments);
         default:
             return;
     }

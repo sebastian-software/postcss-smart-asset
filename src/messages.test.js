@@ -1,7 +1,10 @@
 const path = require('path');
+const postcss = require('postcss')
+const postcssUrl = require(".")
+import { read } from "../test/setup"
 
 describe('misc', () => {
-    it('should add dependency messages with copy', () => {
+    test('should add dependency messages with copy', () => {
         return postcss()
       .use(postcssUrl({
           url: 'copy',
@@ -13,7 +16,7 @@ describe('misc', () => {
       .then((result) => {
           const dependencies = result.messages.filter((m) => m.type === 'dependency');
 
-          assert.deepEqual(dependencies, [
+          expect(dependencies).toEqual([
               {
                   type: 'dependency',
                   file: path.resolve('test/fixtures/imported/pixel.png'),
@@ -28,7 +31,7 @@ describe('misc', () => {
       });
     });
 
-    it('should add dependency messages with inline', () => {
+    test('should add dependency messages with inline', () => {
         return postcss()
       .use(postcssUrl({
           url: 'inline',
@@ -40,7 +43,7 @@ describe('misc', () => {
       .then((result) => {
           const dependencies = result.messages.filter((m) => m.type === 'dependency');
 
-          assert.deepEqual(dependencies, [
+          expect(dependencies).toEqual([
               {
                   type: 'dependency',
                   file: path.resolve('test/fixtures/imported/pixel.png'),

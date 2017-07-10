@@ -42,6 +42,9 @@
     "postcss-import": "^10.0.0"
   },
   "scripts": {
+    "release": "release-it --github.release --npm.publish --non-interactive",
+    "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
+    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "prepare": "prepublish"

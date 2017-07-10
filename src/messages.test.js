@@ -12,7 +12,7 @@ describe("misc", () => {
           assetsPath: "test/fixtures/build/assets"
         })
       )
-      .process(read("fixtures/copy"), {
+      .process(read("copy"), {
         from: "test/fixtures/copy.css"
       })
       .then((result) => {
@@ -41,7 +41,7 @@ describe("misc", () => {
           assetsPath: "test/fixtures/build/assets"
         })
       )
-      .process(read("fixtures/copy"), {
+      .process(read("copy"), {
         from: "test/fixtures/copy.css"
       })
       .then((result) => {

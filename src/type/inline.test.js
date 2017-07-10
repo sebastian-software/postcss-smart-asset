@@ -49,7 +49,7 @@ describe("inline", () => {
     return postcss()
       .use(require("postcss-import")())
       .use(postcssUrl(opts))
-      .process(read("fixtures/inline-imported"), { from: "test/fixtures/here" })
+      .process(read("inline-imported"), { from: "test/fixtures/here" })
       .then((result) => {
         expect(result.css.match(/;base64/)).toBeTruthy()
       })

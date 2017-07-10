@@ -1,15 +1,28 @@
-# postcss-url
+# Edge Builder<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
 
-[![Travis Build Status](https://img.shields.io/travis/postcss/postcss-url/master.svg?label=unix%20build)](https://travis-ci.org/postcss/postcss-url)
-[![AppVeyor Build Status](https://img.shields.io/appveyor/ci/MoOx/postcss-url/master.svg?label=windows%20build)](https://ci.appveyor.com/project/MoOx/postcss-url)
+[sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
+[sponsor]: https://www.sebastian-software.de
+[deps]: https://david-dm.org/sebastian-software/edge-builder
+[deps-img]: https://david-dm.org/sebastian-software/edge-builder.svg
+[npm]: https://www.npmjs.com/package/edge-builder
+[npm-downloads-img]: https://img.shields.io/npm/dm/edge-builder.svg
+[npm-version-img]: https://img.shields.io/npm/v/edge-builder.svg
+[travis-img]: https://img.shields.io/travis/sebastian-software/edge-builder/master.svg?branch=master&label=unix%20build
+[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/edge-builder/master.svg?label=windows%20build
+[travis]: https://travis-ci.org/sebastian-software/edge-builder
+[appveyor]: https://ci.appveyor.com/project/swernerx/edge-builder/branch/master
 
-> [PostCSS](https://github.com/postcss/postcss) plugin to rebase, inline or copy on url().
+[PostCSS](https://github.com/postcss/postcss) plugin to rebase, inline or copy on url().
+
+
 
 ## Installation
 
 ```console
 $ npm install postcss-smart-asset
 ```
+
+
 
 ## Basic example - rebase
 
@@ -48,6 +61,7 @@ after:
 
 
 ## Inline
+
 ```js
 // postcss-url options
 const options = {
@@ -62,13 +76,16 @@ postcss()
   })
 ```
 before:
+
 ```css
 .element {
     background: url('/images/sprite.png');
     filter: url('/images/circle.svg');
 }
 ```
+
 after:
+
 ```css
 .element {
     /* inlined png as base64 */
@@ -79,6 +96,7 @@ after:
 ```
 
 ## Copy
+
 ```js
 // postcss-url options
 const options = {
@@ -153,13 +171,21 @@ Checkout [tests](test) for examples.
 ### Options list
 
 #### `url`
+
 ##### `rebase` - _(default)_
+
 Allow you to fix `url()` according to postcss `to` and/or `from` options (rebase to `to` first if available, otherwise `from` or `process.cwd()`).
+
 ##### `inline`
+
 Allow you to inline assets using base64 encoding. Can use postcss `from` option to find ressources.
+
 ##### `copy`
+
 Allow you to copy and rebase assets according to postcss `to`, `assetsPath` and `from` options (`assetsPath` is relative to the option `to`).
+
 ##### `url: {Function}`
+
 Custom transform function. Takes following arguments:
 * `asset`
   * `url` - original url
@@ -181,11 +207,13 @@ And should return the transformed url.
 You can use this option to adjust urls for CDN.
 
 #### `maxSize`
+
 _(default: `14`)_
 
 Specify the maximum file size to inline (in kbytes)
 
 #### `ignoreFragmentWarning`
+
 _(default: `false`)_
 
 Do not warn when an SVG URL with a fragment is inlined.
@@ -203,6 +231,7 @@ The url fallback method to use if max size is exceeded or url contains a hash.
 Custom transform functions are supported.
 
 #### `includeUriFragment`
+
 _(default: `false`)_
 
 Specifies whether the URL's fragment identifer value, if present, will be added
@@ -232,25 +261,21 @@ If set to `true` the copy method is going to rename the path of the files by a h
 _(default: `xxhash32`)_
 
 Hash method `xxhash32|xxhash64` or custom function (accept file buffer)
+
 ##### `shrink`
 
 _(default: `8`)_
 
 Result hash shrink count
 
----
 
-## Contributing
 
-Work on a branch, install dev-dependencies, respect coding style & run tests before submitting a bug fix or a feature.
+## License
 
-```console
-$ git clone https://github.com/postcss/postcss-url.git
-$ git checkout -b patch-1
-$ npm install
-$ npm test
-```
+[Apache License Version 2.0, January 2004](license)
 
-## [Changelog](CHANGELOG.md)
+## Copyright
 
-## [License](LICENSE)
+<img src="https://raw.githubusercontent.com/sebastian-software/readable-code/master/assets/sebastiansoftware.png" alt="Sebastian Software GmbH Logo" width="250" height="200"/>
+
+Copyright 2017<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)

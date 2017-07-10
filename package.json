@@ -15,7 +15,8 @@
   "author": "Sebastian Werner",
   "license": "MIT",
   "repository": "https://github.com/postcss/postcss-url.git",
-  "main": "lib/index.js",
+  "main": "lib/index.commonjs.js",
+  "module": "lib/index.esmodules.js",
   "files": [
     "src"
   ],

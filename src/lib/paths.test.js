@@ -3,7 +3,7 @@ const path = require('path');
 const paths = require('./paths');
 
 describe('paths', () => {
-    it('should ignore some urls', () => {
+    test('should ignore some urls', () => {
         const isUrlShouldBeIgnored = (url) =>
             paths.isUrlShouldBeIgnored(url, {});
 
@@ -16,7 +16,7 @@ describe('paths', () => {
         ].every(isUrlShouldBeIgnored));
     });
 
-    it('should\'t ignore absolute urls if have basePath', () => {
+    test('should\'t ignore absolute urls if have basePath', () => {
         assert.notOk(paths.isUrlShouldBeIgnored('/absoluteUrl', {
             basePath: ['/path']
         }));
@@ -25,21 +25,21 @@ describe('paths', () => {
     describe('assets paths', () => {
         const baseDir = path.resolve('/user/project');
 
-        it('should calc assets path', () => {
+        test('should calc assets path', () => {
             assert.equal(
                 paths.getAssetsPath(baseDir, 'images', 'imported'),
                 path.resolve('/user/project/images/imported')
             );
         });
 
-        it('should calc assets path with absolute assetsPath param', () => {
+        test('should calc assets path with absolute assetsPath param', () => {
             assert.equal(
                 paths.getAssetsPath(baseDir, '/user/assets/', 'imported'),
                 path.resolve('/user/assets/imported')
             );
         });
 
-        it('should calc assets path without assetsPath param', () => {
+        test('should calc assets path without assetsPath param', () => {
             assert.equal(
                 paths.getAssetsPath(baseDir, null, 'imported'),
                 path.resolve('/user/project/imported')
@@ -47,7 +47,7 @@ describe('paths', () => {
         });
     });
 
-    it('should return assets output base dir', () => {
+    test('should return assets output base dir', () => {
         const dir = {
             from: '/user/project/css',
             to: '/user/project/build'
@@ -63,7 +63,7 @@ describe('paths', () => {
         );
     });
 
-    it('should return decl file dir', () => {
+    test('should return decl file dir', () => {
         const decl = {
             source: { input: { file: '/project/styles/style.css' } }
         };
@@ -76,28 +76,28 @@ describe('paths', () => {
         const basePath = path.resolve('/project/node_modules');
         const dirFrom = path.resolve('/project/styles');
 
-        it('absolute basePath', () => {
+        test('absolute basePath', () => {
             assert.deepEqual(
                 paths.getPathByBasePath(basePath, dirFrom, './img/image.png'),
                 [path.resolve('/project/node_modules/img/image.png')]
             );
         });
 
-        it('relative basePath', () => {
+        test('relative basePath', () => {
             assert.deepEqual(
                 paths.getPathByBasePath('../base-path', dirFrom, './img/image.png'),
                 [path.resolve('/project/base-path/img/image.png')]
             );
         });
 
-        it('absolute assetUrl', () => {
+        test('absolute assetUrl', () => {
             assert.deepEqual(
                 paths.getPathByBasePath(basePath, dirFrom, '/img/image.png'),
                 [path.resolve('/project/node_modules/img/image.png')]
             );
         });
 
-        it('multiple basePath', () => {
+        test('multiple basePath', () => {
             assert.deepEqual(
                 paths.getPathByBasePath(
                     [basePath, '/some_base_path'],
@@ -112,7 +112,7 @@ describe('paths', () => {
         });
     });
 
-    it('should prepare asset data from url and dirs', () => {
+    test('should prepare asset data from url and dirs', () => {
         const assetUrl = './sprite/some-image.png?test=1#23';
         const dirs = {
             from: '/project/css',
@@ -134,7 +134,7 @@ describe('paths', () => {
         });
     });
 
-    it('should prepare custom assets', () => {
+    test('should prepare custom assets', () => {
         const dirs = {
             from: '/project/css',
             file: '/project/css/imported'

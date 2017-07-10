@@ -3,7 +3,7 @@ const path = require('path');
 const matchOptions = require('./match-options');
 
 describe('match options', () => {
-    it('should match options from array', () => {
+    test('should match options from array', () => {
         const options = [
             { url: 'copy', filter: '**/*.png' },
             { url: 'inline', filter: '**/*.gif' },
@@ -16,7 +16,7 @@ describe('match options', () => {
         assert.equal(matchOptions(asset, options).url, 'inline');
     });
 
-    it('should find first matched option by path', () => {
+    test('should find first matched option by path', () => {
         const options = [
             { url: 'copy', filter: '/some/another/path/**/*.png' },
             { url: 'inline', filter: 'some/path/**/*.gif' },
@@ -31,7 +31,7 @@ describe('match options', () => {
         assert.equal(option && option.url, 'inline');
     });
 
-    it('should match options with custom filter', () => {
+    test('should match options with custom filter', () => {
         const options = [
             { url: 'copy', filter: (asset) => asset.absolutePath.indexOf('asset') !== -1 },
             { url: 'inline', filter: '**/*.gif' },

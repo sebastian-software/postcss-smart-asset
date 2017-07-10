@@ -3,7 +3,7 @@ import { processedCss, compareFixtures } from "../../test/setup"
 describe('rebase', () => {
     const opts = {};
 
-    it('rebase with empty options', () => {
+    test('rebase with empty options', () => {
         processedCss(
             'fixtures/copy-hash',
             undefined,

@@ -7,7 +7,7 @@ describe('get-file', () => {
     const dir = { from: 'test/fixtures' };
     const warn = (message) => assert.fail(null, null, message);
 
-    it('should read file without basePath option', () => {
+    test('should read file without basePath option', () => {
         const asset = {
             pathname: '../pixel.gif',
             absolutePath: 'test/fixtures/pixel.gif'
@@ -21,7 +21,7 @@ describe('get-file', () => {
         });
     });
 
-    it('should show warn message when can\'t read file', () => {
+    test('should show warn message when can\'t read file', () => {
         const asset = {
             pathname: '../pixel.gif',
             absolutePath: 'test/fixtures/pixel-no-exists.gif'
@@ -36,7 +36,7 @@ describe('get-file', () => {
         );
     });
 
-    it('should read file with basePath option', () => {
+    test('should read file with basePath option', () => {
         const options = { basePath: path.resolve('test/fixtures/imported') };
         const asset = {
             pathname: '../pixel.gif',
@@ -51,7 +51,7 @@ describe('get-file', () => {
         });
     });
 
-    it('should read file with multiple basePath option', () => {
+    test('should read file with multiple basePath option', () => {
         const options = { basePath: [
             'not-exists-folder',
             path.resolve('test/fixtures/imported')

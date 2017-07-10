@@ -17,9 +17,6 @@
   "repository": "https://github.com/sebastian-software/postcss-smart-asset.git",
   "main": "lib/index.commonjs.js",
   "module": "lib/index.esmodules.js",
-  "files": [
-    "src"
-  ],
   "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": "eslint",

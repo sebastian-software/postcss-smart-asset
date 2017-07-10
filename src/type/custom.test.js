@@ -3,12 +3,12 @@ import { processedCss, compareFixtures } from "../../test/setup"
 describe('custom', () => {
     const opts = {
         url(asset, dir, options, decl, warn, result) {
-            assert.ok(asset.url);
-            assert.ok(dir.from);
-            assert.ok(options);
-            assert.ok(decl.value);
-            assert.ok(result.opts);
-            assert.equal(typeof warn, 'function');
+            expect(asset.url).toBeTruthy();
+            expect(dir.from).toBeTruthy();
+            expect(options).toBeTruthy();
+            expect(decl.value).toBeTruthy();
+            expect(result.opts).toBeTruthy();
+            expect(typeof warn).toBe('function');
 
             return asset.url.toUpperCase();
         }

@@ -1,4 +1,4 @@
-import { processedCss, compareFixtures } from "../../test/setup"
+import { compareFixtures } from "../../test/setup"
 
 describe("custom", () => {
   const opts = {

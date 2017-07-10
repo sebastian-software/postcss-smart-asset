@@ -79,27 +79,27 @@ function testCopy(opts, postcssOpts) {
 
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {
     test("rebase the url", () => {
-      const css = processedCss("fixtures/copy", opts, postcssOpts)
-
-      matchAll(css, [ "copyPixelPng", "copyPixelGif" ])
+      return processedCss("copy", opts, postcssOpts).then((css) => {
+        matchAll(css, [ "copyPixelPng", "copyPixelGif" ])
+      })
     })
 
     test("rebase the url keeping parameters", () => {
-      const css = processedCss("fixtures/copy-parameters", opts, postcssOpts)
-
-      matchAll(css, [ "copyParamsPixelPngHash", "copyParamsPixelPngParam", "copyParamsPixelGif" ])
+      return processedCss("copy-parameters", opts, postcssOpts).then((css) => {
+        matchAll(css, [ "copyParamsPixelPngHash", "copyParamsPixelPngParam", "copyParamsPixelGif" ])
+      })
     })
 
     test("rebase the url using a hash name", () => {
-      const css = processedCss("fixtures/copy-hash", optsWithHash, postcssOpts)
-
-      matchAll(css, [ "copyXXHashPixel8" ])
+      return processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
+        matchAll(css, [ "copyXXHashPixel8" ])
+      })
     })
 
     test("rebase the url using a hash name keeping parameters", () => {
-      const css = processedCss("fixtures/copy-hash-parameters", optsWithHash, postcssOpts)
-
-      matchAll(css, [ "copyXXHashParamsPixel8" ])
+      return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then((css) => {
+        matchAll(css, [ "copyXXHashParamsPixel8" ])
+      })
     })
   })
 }

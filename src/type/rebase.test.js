@@ -5,7 +5,7 @@ describe("rebase", () => {
   const opts = {}
 
   test("rebase with empty options", () => {
-    processedCss("fixtures/copy-hash", undefined, { from: "test/fixtures/here" }).css
+    processedCss("copy-hash", undefined, { from: "test/fixtures/here" })
   })
 
   compareFixtures("cant-rebase", "shouldn't rebase url if not info available")

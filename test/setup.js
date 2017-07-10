@@ -6,6 +6,18 @@ export function read(name) {
   return fs.readFileSync(`test/${name}.css`, "utf8").trim()
 }
 
+export function readAsync(name) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(`test/${name}.css`, "utf8", (error, data) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(data.trim())
+      }
+    })
+  })
+}
+
 export function compareFixtures(name, message, opts = {}, postcssOpts = {}, plugin = null) {
   test(message, () => {
     const pcss = postcss()
@@ -15,12 +27,13 @@ export function compareFixtures(name, message, opts = {}, postcssOpts = {}, plug
     }
 
     pcss.use(url(opts))
-    return pcss.process(read(`fixtures/${name}`), postcssOpts).then((result) => {
+    return readAsync(`fixtures/${name}`).then((value) => pcss.process(value, postcssOpts)).then((result) => {
       expect(result.css).toMatchSnapshot()
     })
   })
 }
 
-export function processedCss(fixtures, urlOpts, postcssOpts) {
-  return postcss().use(url(urlOpts)).process(read(fixtures), postcssOpts).css
+export function processedCss(name, urlOpts = {}, postcssOpts = {}) {
+  const pcss = postcss().use(url(urlOpts))
+  return readAsync(`fixtures/${name}`).then((value) => pcss.process(value, postcssOpts)).then((result) => result.css)
 }

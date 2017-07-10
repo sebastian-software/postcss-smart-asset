@@ -2,3 +2,4 @@ node_modules
 test/fixtures/*.actual.css
 test/fixtures/build
 lib
+coverage

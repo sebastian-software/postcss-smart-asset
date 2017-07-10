@@ -2,9 +2,8 @@ import postcss from "postcss"
 import fs from "fs"
 import url from "../src"
 
-export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
-  test(msg, () => {
-    opts = opts || {}
+export function compareFixtures(name, message, opts = {}, postcssOpts, plugin) {
+  test(message, () => {
     const pcss = postcss()
 
     if (plugin) {

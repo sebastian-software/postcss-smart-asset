@@ -30,14 +30,14 @@ $ npm install postcss-smart-asset
 // dependencies
 const fs = require("fs")
 const postcss = require("postcss")
-const url = require("postcss-url")
+const smartAsset = require("postcss-smart-asset")
 
 // css to be processed
 const css = fs.readFileSync("input.css", "utf8")
 
 // process css
 const output = postcss()
-  .use(url({
+  .use(smartAsset({
     url: "rebase"
   }))
   .process(css, {
@@ -63,13 +63,12 @@ after:
 ## Inline
 
 ```js
-// postcss-url options
 const options = {
     url: 'inline'
 };
 
 postcss()
-  .use(url(options))
+  .use(smartAsset(options))
   .process(css, {
     from: "src/stylesheet/index.css",
     to: "dist/index.css"
@@ -98,7 +97,6 @@ after:
 ## Copy
 
 ```js
-// postcss-url options
 const options = {
     url: 'copy',
     // base path to search assets from
@@ -110,7 +108,7 @@ const options = {
 };
 
 postcss()
-  .use(url(options))
+  .use(smartAsset(options))
   .process(css, {
     from: "src/stylesheet/index.css",
     to: "dist/index.css"
@@ -145,7 +143,7 @@ const options = [
     { filter: 'cdn/**/*', url: (asset) => `https://cdn.url/${asset.url}` }
 ];
 
-postcss().use(url(options))
+postcss().use(smartAsset(options))
 ```
 
 Checkout [tests](test) for examples.
@@ -195,13 +193,13 @@ Custom transform function. Takes following arguments:
   * `search` - _search_ from `url`, ex. `?query=1` from `./image.png?query=1`
   * `hash` - _hash_ from `url`, ex. `#spriteLink` from `../asset.svg#spriteLink`
 * `dir`
-  * `from` - postcss option from
-  * `to` - postcss option to
+  * `from` - PostCSS option from
+  * `to` - PostCSS option to
   * `file` - decl file path
-* `options` - postcss-url matched options
+* `options` - plugin options
 * `decl` - related postcss declaration object
 * `warn` - wrapped function `result.warn` for current `decl`
-* `result` – postcss result object
+* `result` – PostCSS result object
 
 And should return the transformed url.
 You can use this option to adjust urls for CDN.

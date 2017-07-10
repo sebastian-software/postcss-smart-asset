@@ -14,7 +14,7 @@
   ],
   "author": "Sebastian Werner",
   "license": "MIT",
-  "repository": "https://github.com/postcss/postcss-url.git",
+  "repository": "https://github.com/sebastian-software/postcss-smart-asset.git",
   "main": "lib/index.commonjs.js",
   "module": "lib/index.esmodules.js",
   "files": [

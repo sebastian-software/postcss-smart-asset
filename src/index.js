@@ -6,7 +6,7 @@ import { declProcessor } from "./lib/decl-processor"
  *
  * @type {Plugin}
  */
-export default postcss.plugin("postcss-url", (options) => {
+export default postcss.plugin("postcss-smart-asset", (options) => {
   options = options || {}
 
   return (styles, result) => {

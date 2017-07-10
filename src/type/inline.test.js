@@ -54,7 +54,7 @@ describe('inline', () => {
     });
 
     test('should inline url of imported files', () => {
-        postcss()
+        return postcss()
             .use(require('postcss-import')())
             .use(postcssUrl(opts))
             .process(read('fixtures/inline-imported'), { from: 'test/fixtures/here' })

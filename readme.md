@@ -1,16 +1,16 @@
-# Edge Builder<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
+# PostCSS Smart Asset<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
 
 [sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
 [sponsor]: https://www.sebastian-software.de
-[deps]: https://david-dm.org/sebastian-software/edge-builder
-[deps-img]: https://david-dm.org/sebastian-software/edge-builder.svg
-[npm]: https://www.npmjs.com/package/edge-builder
-[npm-downloads-img]: https://img.shields.io/npm/dm/edge-builder.svg
-[npm-version-img]: https://img.shields.io/npm/v/edge-builder.svg
-[travis-img]: https://img.shields.io/travis/sebastian-software/edge-builder/master.svg?branch=master&label=unix%20build
-[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/edge-builder/master.svg?label=windows%20build
-[travis]: https://travis-ci.org/sebastian-software/edge-builder
-[appveyor]: https://ci.appveyor.com/project/swernerx/edge-builder/branch/master
+[deps]: https://david-dm.org/sebastian-software/postcss-smart-asset
+[deps-img]: https://david-dm.org/sebastian-software/postcss-smart-asset.svg
+[npm]: https://www.npmjs.com/package/postcss-smart-asset
+[npm-downloads-img]: https://img.shields.io/npm/dm/postcss-smart-asset.svg
+[npm-version-img]: https://img.shields.io/npm/v/postcss-smart-asset.svg
+[travis-img]: https://img.shields.io/travis/sebastian-software/postcss-smart-asset/master.svg?branch=master&label=unix%20build
+[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/postcss-smart-asset/master.svg?label=windows%20build
+[travis]: https://travis-ci.org/sebastian-software/postcss-smart-asset
+[appveyor]: https://ci.appveyor.com/project/swernerx/postcss-smart-asset/branch/master
 
 [PostCSS](https://github.com/postcss/postcss) plugin to rebase, inline or copy on url().
 

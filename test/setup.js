@@ -3,7 +3,7 @@ import fs from 'fs'
 import url from "../src"
 
 export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
-    it(msg, () => {
+    test(msg, () => {
         opts = opts || {};
         const pcss = postcss();
 
@@ -12,13 +12,14 @@ export function compareFixtures(name, msg, opts, postcssOpts, plugin) {
         }
 
         pcss.use(url(opts));
-        const actual = pcss.process(read(`fixtures/${name}`), postcssOpts).css;
-        const expected = read(`fixtures/${name}.expected`);
+        return pcss.process(read(`fixtures/${name}`), postcssOpts).then((result) => {
+            const expected = read(`fixtures/${name}.expected`);
 
-        // handy thing: checkout actual in the *.actual.css file
-        fs.writeFile(`test/fixtures/${name}.actual.css`, actual);
+            // handy thing: checkout actual in the *.actual.css file
+            fs.writeFile(`test/fixtures/${name}.actual.css`, result.css);
 
-        expect(actual).toBe(expected);
+            expect(result.css).toBe(expected);
+        })
     });
 }
 

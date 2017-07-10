@@ -13,7 +13,7 @@ describe('match options', () => {
             absolutePath: path.resolve(process.cwd(), 'some/path/to/asset.gif')
         };
 
-        assert.equal(matchOptions(asset, options).url, 'inline');
+        expect(matchOptions(asset, options).url).toEqual('inline');
     });
 
     test('should find first matched option by path', () => {
@@ -28,7 +28,7 @@ describe('match options', () => {
         };
         const option = matchOptions(asset, options);
 
-        assert.equal(option && option.url, 'inline');
+        expect(option && option.url).toEqual('inline');
     });
 
     test('should match options with custom filter', () => {
@@ -41,6 +41,6 @@ describe('match options', () => {
             absolutePath: path.resolve(process.cwd(), 'some/path/to/asset.gif')
         };
 
-        assert.equal(matchOptions(asset, options).url, 'copy');
+        expect(matchOptions(asset, options).url).toEqual('copy');
     });
 });

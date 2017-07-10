@@ -14,7 +14,7 @@ describe('get-file', () => {
         };
         const file = getFile(asset, {}, dir, warn);
 
-        assert.deepEqual(file, {
+        expect(file).toEqual({
             path: 'test/fixtures/pixel.gif',
             contents: fileContent,
             mimeType: 'image/gif'
@@ -30,8 +30,7 @@ describe('get-file', () => {
 
         getFile(asset, {}, dir, (message) => warnMessage = message);
 
-        assert.equal(
-            warnMessage,
+        expect(warnMessage).toBe(
             'Can\'t read file \'test/fixtures/pixel-no-exists.gif\', ignoring'
         );
     });
@@ -44,7 +43,7 @@ describe('get-file', () => {
         };
         const file = getFile(asset, options, dir, warn);
 
-        assert.deepEqual(file, {
+        expect(file).toEqual({
             path: path.resolve('test/fixtures/pixel.gif'),
             contents: fileContent,
             mimeType: 'image/gif'
@@ -62,7 +61,7 @@ describe('get-file', () => {
         };
         const file = getFile(asset, options, dir, warn);
 
-        assert.deepEqual(file, {
+        expect(file).toEqual({
             path: path.resolve('test/fixtures/pixel.gif'),
             contents: fileContent,
             mimeType: 'image/gif'

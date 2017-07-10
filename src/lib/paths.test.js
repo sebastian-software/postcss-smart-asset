@@ -7,41 +7,44 @@ describe('paths', () => {
         const isUrlShouldBeIgnored = (url) =>
             paths.isUrlShouldBeIgnored(url, {});
 
-        assert.ok([
+        expect([
             '#hash',
             '%23encodedHash',
             '/absoluteUrl',
             'data:someDataInlined',
             'https://somecdnpath.com/asset.png'
-        ].every(isUrlShouldBeIgnored));
+        ].every(isUrlShouldBeIgnored)).toBeTruthy();
     });
 
     test('should\'t ignore absolute urls if have basePath', () => {
-        assert.notOk(paths.isUrlShouldBeIgnored('/absoluteUrl', {
+        expect(paths.isUrlShouldBeIgnored('/absoluteUrl', {
             basePath: ['/path']
-        }));
+        })).toBeFalsy();
     });
 
     describe('assets paths', () => {
         const baseDir = path.resolve('/user/project');
 
         test('should calc assets path', () => {
-            assert.equal(
-                paths.getAssetsPath(baseDir, 'images', 'imported'),
+            expect(
+                paths.getAssetsPath(baseDir, 'images', 'imported')
+            ).toBe(
                 path.resolve('/user/project/images/imported')
             );
         });
 
         test('should calc assets path with absolute assetsPath param', () => {
-            assert.equal(
-                paths.getAssetsPath(baseDir, '/user/assets/', 'imported'),
+            expect(
+                paths.getAssetsPath(baseDir, '/user/assets/', 'imported')
+            ).toBe(
                 path.resolve('/user/assets/imported')
             );
         });
 
         test('should calc assets path without assetsPath param', () => {
-            assert.equal(
-                paths.getAssetsPath(baseDir, null, 'imported'),
+            expect(
+                paths.getAssetsPath(baseDir, null, 'imported')
+            ).toBe(
                 path.resolve('/user/project/imported')
             );
         });
@@ -53,12 +56,14 @@ describe('paths', () => {
             to: '/user/project/build'
         };
 
-        assert.equal(
-            paths.getTargetDir(dir),
+        expect(
+            paths.getTargetDir(dir)
+        ).toBe(
             dir.to
         );
-        assert.equal(
-            paths.getTargetDir({ from: '/project', to: '/project' }),
+        expect(
+            paths.getTargetDir({ from: '/project', to: '/project' })
+        ).toBe(
             process.cwd()
         );
     });
@@ -68,8 +73,8 @@ describe('paths', () => {
             source: { input: { file: '/project/styles/style.css' } }
         };
 
-        assert.equal(paths.getDirDeclFile(decl), '/project/styles');
-        assert.equal(paths.getDirDeclFile({}), process.cwd());
+        expect(paths.getDirDeclFile(decl)).toBe('/project/styles');
+        expect(paths.getDirDeclFile({})).toBe(process.cwd());
     });
 
     describe('calc path by basePath', () => {
@@ -77,33 +82,37 @@ describe('paths', () => {
         const dirFrom = path.resolve('/project/styles');
 
         test('absolute basePath', () => {
-            assert.deepEqual(
-                paths.getPathByBasePath(basePath, dirFrom, './img/image.png'),
+            expect(
+                paths.getPathByBasePath(basePath, dirFrom, './img/image.png')
+            ).toEqual(
                 [path.resolve('/project/node_modules/img/image.png')]
             );
         });
 
         test('relative basePath', () => {
-            assert.deepEqual(
-                paths.getPathByBasePath('../base-path', dirFrom, './img/image.png'),
+            expect(
+                paths.getPathByBasePath('../base-path', dirFrom, './img/image.png')
+            ).toEqual(
                 [path.resolve('/project/base-path/img/image.png')]
             );
         });
 
         test('absolute assetUrl', () => {
-            assert.deepEqual(
-                paths.getPathByBasePath(basePath, dirFrom, '/img/image.png'),
+            expect(
+                paths.getPathByBasePath(basePath, dirFrom, '/img/image.png')
+            ).toEqual(
                 [path.resolve('/project/node_modules/img/image.png')]
             );
         });
 
         test('multiple basePath', () => {
-            assert.deepEqual(
+            expect(
                 paths.getPathByBasePath(
                     [basePath, '/some_base_path'],
                     dirFrom,
                     '/img/image.png'
-                ),
+                )
+            ).toEqual(
                 [
                     path.resolve('/project/node_modules/img/image.png'),
                     path.resolve('/some_base_path/img/image.png')
@@ -124,7 +133,7 @@ describe('paths', () => {
         // normalizing path for windows
         asset.relativePath = paths.normalize(asset.relativePath);
 
-        assert.deepEqual(asset, {
+        expect(asset).toEqual({
             url: './sprite/some-image.png?test=1#23',
             pathname: './sprite/some-image.png',
             absolutePath: path.resolve('/project/css/imported/sprite/some-image.png'),
@@ -146,8 +155,8 @@ describe('paths', () => {
         const checkCustomAsset = (assetUrl) => {
             const asset = paths.prepareAsset(assetUrl, dirs, decl);
 
-            assert.equal(asset.absolutePath, '/project/styles/style.css');
-            assert.equal(paths.normalize(asset.relativePath), '../styles/style.css');
+            expect(asset.absolutePath).toEqual('/project/styles/style.css');
+            expect(paths.normalize(asset.relativePath)).toEqual('../styles/style.css');
         };
 
         ['#hash', '%23ecodedhash', 'data:'].forEach(checkCustomAsset);

@@ -1,3 +1,4 @@
+import { resolve } from "path"
 import postcss from "postcss"
 import postcssUrl from "."
 import { readAsync } from "../test/setup"
@@ -19,7 +20,18 @@ describe("misc", () => {
       )
       .then((result) => {
         const dependencies = result.messages.filter((message) => message.type === "dependency")
-        expect(dependencies).toMatchSnapshot()
+        expect(dependencies).toEqual([
+          {
+            type: "dependency",
+            file: resolve("test/fixtures/imported/pixel.png"),
+            parent: resolve("test/fixtures/copy.css")
+          },
+          {
+            type: "dependency",
+            file: resolve("test/fixtures/pixel.gif"),
+            parent: resolve("test/fixtures/copy.css")
+          }
+        ])
       }))
 
   test("should add dependency messages with inline", () =>
@@ -36,7 +48,18 @@ describe("misc", () => {
         })
         .then((result) => {
           const dependencies = result.messages.filter((message) => message.type === "dependency")
-          expect(dependencies).toMatchSnapshot()
+          expect(dependencies).toEqual([
+            {
+              type: "dependency",
+              file: resolve("test/fixtures/imported/pixel.png"),
+              parent: resolve("test/fixtures/copy.css")
+            },
+            {
+              type: "dependency",
+              file: resolve("test/fixtures/pixel.gif"),
+              parent: resolve("test/fixtures/copy.css")
+            }
+          ])
         })
     ))
 })

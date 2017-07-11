@@ -2,7 +2,7 @@ import path from "path"
 import url from "url"
 
 /**
- * Normalazing result url, before replace decl value
+ * Normalizing result url, before replace decl value
  *
  * @param {String} assetUrl
  * @returns {String}

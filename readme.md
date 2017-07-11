@@ -24,6 +24,18 @@ $ npm install postcss-smart-asset
 
 
 
+## Changes over [PostCSS-URL](https://github.com/postcss/postcss-url)
+
+- Changed output of relative URLs so that the harmonize with Webpack. This mainly means that in Webpack world it is pretty common to use relative URLs even inside CSS e.g. use `url(./myfile.gif)` instead of `url(myfile.gif)`. The last syntax actually lead to some issue during Webpack processing as Webpack would assume that you are referencing an *npm* package called `myfile.gif` which is probably not what you thought to do.
+- Converted whole test suite from Mocha + Chai to Jest. Made whole test suite asynchronous.
+- Migrated source code to EcmaScript modules (ESM). Refactored internal structure.
+- Replaced custom eslint definitions with [readable-code](https://github.com/sebastian-software/readable-code).
+- Dropped Node v4 support. Added Node v6 and v8 to CI suite.
+- Restructured tests to be side-by-side with implementation code.
+- Use of [prepublish](https://github.com/sebastian-software/prepublish) instead of custom release logic. Offering a ESM bundle now as well.
+
+
+
 ## Basic example - rebase
 
 ```js

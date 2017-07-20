@@ -23,11 +23,11 @@
     "*.css": "stylelint"
   },
   "dependencies": {
-    "babel-preset-edge": "^0.9.6",
+    "babel-preset-edge": "^0.9.7",
     "mime": "^1.3.6",
     "minimatch": "^3.0.4",
     "mkdirp": "^0.5.1",
-    "postcss": "^6.0.6",
+    "postcss": "^6.0.8",
     "prepublish": "^1.0.6",
     "xxhashjs": "^0.2.1"
   },
@@ -36,7 +36,7 @@
     "eslint": "^4.2.0",
     "jest-cli": "^20.0.4",
     "postcss-import": "^10.0.0",
-    "readable-code": "^3.3.3"
+    "readable-code": "^3.3.7"
   },
   "scripts": {
     "release": "release-it --github.release --npm.publish --non-interactive",

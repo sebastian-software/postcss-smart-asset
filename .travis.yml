@@ -7,20 +7,6 @@ node_js:
 matrix:
   fast_finish: true
 
-env:
-- CXX=g++-4.8
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-
-before_install:
-  - npm install -g npm@latest
-  - npm --version
-
 notifications:
   email: false
   slack:

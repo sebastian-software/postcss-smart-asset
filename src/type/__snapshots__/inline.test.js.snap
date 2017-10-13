@@ -12,6 +12,12 @@ exports[`inline should inline url and not include hash, if it has a hash in it 1
 }"
 `;
 
+exports[`inline should respect the fallback function 1`] = `
+"body {
+  background: url(one);
+}"
+`;
+
 exports[`inline shouldn't inline url if not info available 1`] = `
 "body {
   background: url(\\"./one\\");

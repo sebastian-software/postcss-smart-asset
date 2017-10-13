@@ -82,18 +82,16 @@ describe("inline", () => {
     })
   })
 
-  test("function when inline fallback", () => {
-    const optsWithFallback = {
-      url: "inline",
-      maxSize: 0.0001,
-      fallback() {
-        return "one"
-      }
+  const optsWithFallback = {
+    url: "inline",
+    maxSize: 0.0001,
+    fallback() {
+      return "one"
     }
+  }
 
-    compareFixtures("inline-fallback-function", "should respect the fallback function", optsWithFallback, {
-      from: "test/fixtures/index.css"
-    })
+  compareFixtures("inline-fallback-function", "should respect the fallback function", optsWithFallback, {
+    from: "test/fixtures/index.css"
   })
 
   test("should find files in basePaths", () => {

@@ -71,8 +71,8 @@ function testCopy(opts, postcssOpts) {
     copyParamsPixelPngHash: new RegExp(`"${assetsPath}imported\/pixel\\.png\\?\#iefix"`),
     copyParamsPixelPngParam: new RegExp(`"${assetsPath}imported\/pixel\\.png\\?foo=bar"`),
     copyParamsPixelGif: new RegExp(`"${assetsPath}pixel\\.gif\\#el"`),
-    copyXXHashPixel8: new RegExp(`"${assetsPath}[a-z0-9]{8}\\.png"`),
-    copyXXHashParamsPixel8: new RegExp(`"${assetsPath}[a-z0-9]{8}\\.png\\?v=1\\.1\\#iefix"`)
+    copyHashPixel8: new RegExp(`"${assetsPath}dDcMwK\\.png"`),
+    copyHashParamsPixel8: new RegExp(`"${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`)
   }
   const matchAll = (css, patternsKeys) =>
     expect(patternsKeys.every((pat) => css.match(patterns[pat]))).toBeTruthy()
@@ -92,13 +92,13 @@ function testCopy(opts, postcssOpts) {
 
     test("rebase the url using a hash name", () => {
       return processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
-        matchAll(css, [ "copyXXHashPixel8" ])
+        matchAll(css, [ "copyHashPixel8" ])
       })
     })
 
     test("rebase the url using a hash name keeping parameters", () => {
       return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then((css) => {
-        matchAll(css, [ "copyXXHashParamsPixel8" ])
+        matchAll(css, [ "copyHashParamsPixel8" ])
       })
     })
   })

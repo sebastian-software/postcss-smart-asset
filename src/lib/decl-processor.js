@@ -1,3 +1,4 @@
+/* eslint-disable */
 import matchOptions from "./match-options"
 import { getPathDeclFile, getDirDeclFile, prepareAsset } from "./paths"
 
@@ -118,13 +119,110 @@ export const declProcessor = (from, to, options, result, decl) => {
   const dir = { from, to, file: getDirDeclFile(decl) }
   const pattern = getPattern(decl)
 
-  if (!pattern) return
+  if (!pattern) {
+    return
+  }
 
+  const matches = decl.value.match(pattern)
+  if (!matches) {
+    return
+  }
+
+  return Promise.all(matches.map((singleMatch, index) => {
+    const [ matched, before, url, after ] = /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/.exec(singleMatch)
+
+    const replacement = replaceUrl(url, dir, options, result, decl)
+
+    if (replacement) {
+      if (replacement.then) {
+        return replacement.then((resolved) => {
+          const fullReplacement = resolved == null ? null : `${before}${resolved}${after}`
+          return fullReplacement
+        })
+      } else {
+        const fullReplacement = `${before}${replacement}${after}`
+
+        return fullReplacement
+      }
+    } else {
+      return null
+    }
+  })).then((values) => {
+    decl.value = decl.value.replace(pattern, (match) => {
+      const replacement = values.shift()
+      return replacement == null ? match : replacement
+    })
+  })
+
+  /*
+  console.log("MATCHES:",matches)
+  if (matches) {
+
+    const promises = []
+
+    matches.forEach((singleMatch) => {
+      const [ matched, before, url, after ] = singleMatch.exec(pattern)
+
+      console.log("BEFORE/URL/AFTER:", before, url, after)
+
+      const newUrl = replaceUrl(url, dir, options, result, decl)
+      if (newUrl) {
+        if (newUrl.then) {
+
+        } else {
+          decl.value.replace(singleMatch, `${before}${newUrl}${after}`)
+
+
+        }
+
+      }
+
+
+
+    })
+
+
+*/
+
+    /*
+  if (matches) {
+    const [ matched, before, url, after ] = matches
+
+    const newUrl = replaceUrl(url, dir, options, result, decl)
+    console.log("URL:",url,"=>",newUrl)
+
+    if (newUrl) {
+
+      if (newUrl.then) {
+
+        return newUrl.then((resolved) => {
+          decl.value.replace(matched, `${before}${resolved}${after}`)
+        })
+
+      } else {
+        decl.value = decl.value.replace(matched, `${before}${newUrl}${after}`)
+      }
+    }
+
+    return Promise.all(promises)
+  }
+  */
+
+
+/*
   decl.value = decl.value.replace(pattern, (matched, before, url, after) => {
     const newUrl = replaceUrl(url, dir, options, result, decl)
+    if (newUrl && newUrl.then) {
+      // If it's a promise
+
+      return newUrl.then((result) => {
+        return `${before}${result}${after}`
+      })
+    }
 
     return newUrl ? `${before}${newUrl}${after}` : matched
   })
+  */
 }
 
 /**

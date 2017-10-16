@@ -6,9 +6,25 @@ import { declProcessor } from "./lib/decl-processor"
  *
  * @type {Plugin}
  */
-export default postcss.plugin("postcss-smart-asset", (options) => {
-  options = options || {}
+export default postcss.plugin("postcss-smart-asset", (options = {}) => {
+  return (root, result) => {
+    const opts = result.opts
+    const from = opts.from ? path.dirname(opts.from) : "."
+    const to = opts.to ? path.dirname(opts.to) : from
 
+    const promises = []
+
+    root.walkDecls((decl) => {
+      const waiter = declProcessor(from, to, options, result, decl)
+      if (waiter && waiter.then) {
+        promises.push(waiter)
+      }
+    })
+
+    return Promise.all(promises)
+  }
+
+  /*
   return (styles, result) => {
     const opts = result.opts
     const from = opts.from ? path.dirname(opts.from) : "."
@@ -16,6 +32,7 @@ export default postcss.plugin("postcss-smart-asset", (options) => {
 
     styles.walkDecls((decl) => declProcessor(from, to, options, result, decl))
   }
+  */
 })
 
 /**

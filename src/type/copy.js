@@ -1,11 +1,11 @@
 import path from "path"
 import fs from "fs"
 import mkdirp from "mkdirp"
-import calcHash from "../lib/hash"
 import { getTargetDir, getAssetsPath, normalize } from "../lib/paths"
 import getFile from "../lib/get-file"
+import { getHashedName } from "asset-hash"
 
-const getHashName = (file, options) => calcHash(file.contents, options) + path.extname(file.path)
+const getHashName = (file, options) => getHashedName(file.path, options)
 
 /**
  * Copy images from readed from url() to an specific assets destination
@@ -25,7 +25,7 @@ const getHashName = (file, options) => calcHash(file.contents, options) + path.e
  *
  * @returns {String|Undefined}
  */
-export default function processCopy(asset, dir, options, decl, warn, result, addDependency) {
+export default async function processCopy(asset, dir, options, decl, warn, result, addDependency) {
   if (!options.assetsPath && dir.from === dir.to) {
     warn("Option `to` of postcss is required, ignoring")
 
@@ -36,7 +36,7 @@ export default function processCopy(asset, dir, options, decl, warn, result, add
 
   if (!file) return
 
-  const assetRelativePath = options.useHash ? getHashName(file, options.hashOptions) : asset.relativePath
+  const assetRelativePath = options.useHash ? await getHashName(file, options.hashOptions) : asset.relativePath
 
   const targetDir = getTargetDir(dir)
   const newAssetBaseDir = getAssetsPath(targetDir, options.assetsPath)

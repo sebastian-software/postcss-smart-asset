@@ -34,8 +34,4 @@ describe("rebase", () => {
     { from: "test/fixtures/transform.css" },
     importPlugin
   )
-  compareFixtures("alpha-image-loader", "should rebase in filter", opts, {
-    from: "test/fixtures/here",
-    to: "there"
-  })
 })

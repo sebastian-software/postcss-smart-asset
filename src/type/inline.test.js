@@ -45,15 +45,31 @@ describe("inline", () => {
     })
   })
 
+  compareFixtures(
+    "inline-svg-optimized",
+    "should inline svg optmized",
+    { url: "inline", optimizeSvgEncode: true },
+    postcssOpts
+  )
+
+  compareFixtures(
+    "inline-svg-with-parens",
+    "should inline svg wrapped by quotes",
+    { url: "inline" },
+    postcssOpts
+  )
+
   test("should inline url of imported files", () => {
-    return readAsync("inline-imported").then((value) =>
-      postcss()
-        .use(require("postcss-import")())
-        .use(postcssUrl(opts))
-        .process(value, { from: "test/fixtures/here" })
-    ).then((result) => {
-      expect(result.css.match(/;base64/)).toBeTruthy()
-    })
+    return readAsync("inline-imported")
+      .then((value) =>
+        postcss()
+          .use(require("postcss-import")())
+          .use(postcssUrl(opts))
+          .process(value, { from: "test/fixtures/here" })
+      )
+      .then((result) => {
+        expect(result.css.match(/;base64/)).toBeTruthy()
+      })
   })
 
   test("should inline files matching the minimatch pattern", () => {
@@ -82,17 +98,29 @@ describe("inline", () => {
     })
   })
 
-  const optsWithFallback = {
-    url: "inline",
-    maxSize: 0.0001,
-    fallback() {
-      return "one"
-    }
-  }
+  compareFixtures(
+    "inline-fallback-function",
+    "should respect the fallback function",
+    {
+      url: "inline",
+      maxSize: 0.0001,
+      fallback() {
+        return "one"
+      }
+    },
+    { from: "test/fixtures/index.css" }
+  )
 
-  compareFixtures("inline-fallback-function", "should respect the fallback function", optsWithFallback, {
-    from: "test/fixtures/index.css"
-  })
+  compareFixtures(
+    "inline-fallback-rebase",
+    "should respect the fallback rebase",
+    {
+      url: "inline",
+      maxSize: 0.0001,
+      fallback: "rebase"
+    },
+    { from: "test/fixtures/index.css", to: "test/fixtures/build/index.css" }
+  )
 
   test("should find files in basePaths", () => {
     return processedCss(

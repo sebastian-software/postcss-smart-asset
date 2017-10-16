@@ -1,5 +1,6 @@
 import fs from "fs"
 import processCopy from "./copy"
+import processRebase from "./rebase"
 import encodeFile from "../lib/encode"
 import getFile from "../lib/get-file"
 
@@ -14,9 +15,12 @@ function processFallback(originUrl, dir, options) {
   if (typeof options.fallback === "function") {
     return options.fallback.apply(null, arguments)
   }
+
   switch (options.fallback) {
     case "copy":
       return processCopy(...arguments)
+    case "rebase":
+      return processRebase(...arguments)
     default:
       return
   }
@@ -58,7 +62,7 @@ export default function(asset, dir, options, decl, warn, result, addDependency) 
   }
 
   const isSvg = file.mimeType === "image/svg+xml"
-  const defaultEncodeType = isSvg ? "encodeUriComponent" : "base64"
+  const defaultEncodeType = isSvg ? "encodeURIComponent" : "base64"
   const encodeType = options.encodeType || defaultEncodeType
 
   // Warn for svg with hashes/fragments
@@ -71,7 +75,10 @@ export default function(asset, dir, options, decl, warn, result, addDependency) 
 
   addDependency(file.path)
 
-  const encodedStr = encodeFile(file, encodeType)
+  const optimizeSvgEncode = isSvg && options.optimizeSvgEncode
+  const encodedStr = encodeFile(file, encodeType, optimizeSvgEncode)
+  const resultValue = options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
 
-  return options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
+  // wrap url by quotes if percent-encoded svg
+  return isSvg && encodeType !== "base64" ? `"${resultValue}"` : resultValue
 }

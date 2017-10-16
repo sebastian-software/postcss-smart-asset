@@ -15,22 +15,6 @@ const typeMap = {
 }
 
 /**
- * @typedef UrlRegExp
- * @name UrlRegExp
- * @desc A regex for match url with parentheses:
- *   (before url)(the url)(after url).
- *    (the url) will be replace with new url, and before and after will remain
- * @type RegExp
- */
-/**
- * @type {UrlRegExp[]}
- */
-const URL_PATTERNS = [
-  /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/g,
-  /(AlphaImageLoader\(\s*src=['"]?)([^"')]+)(["'])/g
-]
-
-/**
  * Restricted modes
  *
  * @type {String[]}
@@ -72,12 +56,6 @@ const wrapUrlProcessor = (urlProcessor, result, decl) => {
 }
 
 /**
- * @param {Decl} decl
- * @returns {RegExp}
- */
-const getPattern = (decl) => URL_PATTERNS.find((pattern) => pattern.test(decl.value))
-
-/**
  * @param {String} url
  * @param {Dir} dir
  * @param {Options} options
@@ -117,7 +95,7 @@ export const replaceUrl = (url, dir, options, result, decl) => {
  */
 export const declProcessor = (from, to, options, result, decl) => {
   const dir = { from, to, file: getDirDeclFile(decl) }
-  const pattern = getPattern(decl)
+  const pattern = /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/g
 
   if (!pattern) {
     return

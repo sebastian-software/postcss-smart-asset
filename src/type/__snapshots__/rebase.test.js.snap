@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rebase should rebase url even if there is differentes types of quotes 1`] = `
+exports[`rebase should rebase url even if there is different types of quotes 1`] = `
 "body {
   background: url(\\"./test/fixtures/one\\"), url('./test/fixtures/two'), url(./test/fixtures/three), url(./test/fixtures/four);
 }"

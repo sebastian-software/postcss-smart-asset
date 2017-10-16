@@ -17,7 +17,7 @@ describe("rebase", () => {
   })
   compareFixtures(
     "rebase-all-url-syntax",
-    "should rebase url even if there is differentes types of quotes",
+    "should rebase url even if there is different types of quotes",
     opts,
     { from: "test/fixtures/here", to: "there" }
   )

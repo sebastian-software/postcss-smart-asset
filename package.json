@@ -1,6 +1,6 @@
 {
   "name": "postcss-smart-asset",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "PostCSS plugin to rebase or inline on url().",
   "keywords": [
     "css",

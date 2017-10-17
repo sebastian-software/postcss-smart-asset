@@ -3,7 +3,6 @@ import path from "path"
 import getFile from "./get-file"
 
 describe("get-file", () => {
-  const fileContent = fs.readFileSync("test/fixtures/pixel.gif")
   const dir = { from: "test/fixtures" }
   const warn = (message) => assert.fail(null, null, message)
 

@@ -24,7 +24,6 @@ const getFile = (asset, options, dir, warn) => {
 
   return {
     path: filePath,
-    contents: fs.readFileSync(filePath),
     mimeType: mime.getType(filePath)
   }
 }

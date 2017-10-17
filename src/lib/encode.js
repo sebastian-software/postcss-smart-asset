@@ -1,3 +1,8 @@
+import { readFile } from "fs"
+import pify from "pify"
+
+const readFileAsync = pify(readFile)
+
 /**
  * Optimize encoding SVG files (IE9+, Android 3+)
  * @see https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
@@ -28,16 +33,18 @@ const optimizedSvgEncode = svgContent => {
  * @param {Boolean} [shouldOptimizeURIEncode]
  * @returns {string}
  */
-export default (file, encodeType, shouldOptimizeSvgEncode) => {
+export default async (file, encodeType, shouldOptimizeSvgEncode) => {
   const dataMime = `data:${file.mimeType}`
 
+  const contents = await readFileAsync(file.path)
+
   if (encodeType === "base64") {
-    return `${dataMime};base64,${file.contents.toString("base64")}`
+    return `${dataMime};base64,${contents.toString("base64")}`
   }
 
   const encodeFunc = encodeType === "encodeURI" ? encodeURI : encodeURIComponent
 
-  const content = file.contents
+  const content = contents
     .toString("utf8")
 
     // removing new lines

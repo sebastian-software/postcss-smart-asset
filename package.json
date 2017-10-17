@@ -28,6 +28,7 @@
     "mime": "^2.0.3",
     "minimatch": "^3.0.4",
     "mkdirp": "^0.5.1",
+    "pify": "^3.0.0",
     "postcss": "^6.0.13"
   },
   "devDependencies": {

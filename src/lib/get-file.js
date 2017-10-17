@@ -1,5 +1,5 @@
 import fs from "fs"
-import mime from "mime"
+import mime from "mime/lite"
 import { getPathByBasePath } from "./paths"
 
 /**

@@ -1,5 +1,6 @@
 import path from "path"
 import fs from "fs"
+import cpFile from "cp-file"
 import mkdirp from "mkdirp"
 import { getTargetDir, getAssetsPath, normalize } from "../lib/paths"
 import getFile from "../lib/get-file"
@@ -36,6 +37,8 @@ export default async function processCopy(asset, dir, options, decl, warn, resul
 
   if (!file) return
 
+  addDependency(file.path)
+
   const assetRelativePath = options.useHash ? await getHashName(file, options.hashOptions) : asset.relativePath
 
   const targetDir = getTargetDir(dir)
@@ -43,13 +46,7 @@ export default async function processCopy(asset, dir, options, decl, warn, resul
   const newAssetPath = path.join(newAssetBaseDir, assetRelativePath)
   const newRelativeAssetPath = normalize(path.relative(targetDir, newAssetPath))
 
-  mkdirp.sync(path.dirname(newAssetPath))
-
-  if (!fs.existsSync(newAssetPath)) {
-    fs.writeFileSync(newAssetPath, file.contents)
-  }
-
-  addDependency(file.path)
+  await cpFile(file.path, newAssetPath, { overwrite: false })
 
   return `${newRelativeAssetPath}${asset.search}${asset.hash}`
 }

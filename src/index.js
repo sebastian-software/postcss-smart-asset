@@ -23,16 +23,6 @@ export default postcss.plugin("postcss-smart-asset", (options = {}) => {
 
     return Promise.all(promises)
   }
-
-  /*
-  return (styles, result) => {
-    const opts = result.opts
-    const from = opts.from ? path.dirname(opts.from) : "."
-    const to = opts.to ? path.dirname(opts.to) : from
-
-    styles.walkDecls((decl) => declProcessor(from, to, options, result, decl))
-  }
-  */
 })
 
 /**

@@ -66,13 +66,13 @@ function testCopy(opts, postcssOpts) {
   const optsWithHash = Object.assign({}, opts, { useHash: true })
   const assetsPath = opts.assetsPath ? `${opts.assetsPath}\/` : ""
   const patterns = {
-    copyPixelPng: new RegExp(`"${assetsPath}imported\/pixel\.png"`),
-    copyPixelGif: new RegExp(`"${assetsPath}pixel\\.gif"`),
-    copyParamsPixelPngHash: new RegExp(`"${assetsPath}imported\/pixel\\.png\\?\#iefix"`),
-    copyParamsPixelPngParam: new RegExp(`"${assetsPath}imported\/pixel\\.png\\?foo=bar"`),
-    copyParamsPixelGif: new RegExp(`"${assetsPath}pixel\\.gif\\#el"`),
-    copyHashPixel8: new RegExp(`"${assetsPath}dDcMwK\\.png"`),
-    copyHashParamsPixel8: new RegExp(`"${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`)
+    copyPixelPng: new RegExp(`"./${assetsPath}imported\/pixel\.png"`),
+    copyPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif"`),
+    copyParamsPixelPngHash: new RegExp(`"./${assetsPath}imported\/pixel\\.png\\?\#iefix"`),
+    copyParamsPixelPngParam: new RegExp(`"./${assetsPath}imported\/pixel\\.png\\?foo=bar"`),
+    copyParamsPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif\\#el"`),
+    copyHashPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png"`),
+    copyHashParamsPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`)
   }
   const matchAll = (css, patternsKeys) =>
     expect(patternsKeys.every((pat) => css.match(patterns[pat]))).toBeTruthy()

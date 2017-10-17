@@ -8,7 +8,7 @@ exports[`rebase should rebase url even if there is different types of quotes 1`]
 
 exports[`rebase should rebase url of imported files 1`] = `
 ".imported {
-    background: url(\\"imported/pixel.png\\"), url( \\"./pixel.gif\\"  )
+    background: url(\\"./imported/pixel.png\\"), url( \\"./pixel.gif\\"  )
 }"
 `;
 

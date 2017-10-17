@@ -114,7 +114,7 @@ describe("paths", () => {
       originUrl: "./sprite/some-image.png?test=1#23",
       pathname: "./sprite/some-image.png",
       absolutePath: path.resolve("/project/css/imported/sprite/some-image.png"),
-      relativePath: "imported/sprite/some-image.png",
+      relativePath: "./imported/sprite/some-image.png",
       search: "?test=1",
       hash: "#23"
     })

@@ -10,7 +10,15 @@ import url from "url"
 export const normalize = (assetUrl) => {
   assetUrl = path.normalize(assetUrl)
 
-  return path.sep === "\\" ? assetUrl.replace(/\\/g, "/") : assetUrl
+  if (path.sep === "\\") {
+    assetUrl = assetUrl.replace(/\\/g, "/")
+  }
+
+  if (assetUrl.charAt(0) !== "." && assetUrl.charAt(0) !== "/") {
+    assetUrl = "./" + assetUrl
+  }
+
+  return assetUrl
 }
 
 /**

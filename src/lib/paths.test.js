@@ -109,15 +109,7 @@ describe("paths", () => {
     // normalizing path for windows
     asset.relativePath = normalize(asset.relativePath)
 
-    expect(asset).toEqual({
-      url: "./sprite/some-image.png?test=1#23",
-      originUrl: "./sprite/some-image.png?test=1#23",
-      pathname: "./sprite/some-image.png",
-      absolutePath: path.resolve("/project/css/imported/sprite/some-image.png"),
-      relativePath: "./imported/sprite/some-image.png",
-      search: "?test=1",
-      hash: "#23"
-    })
+    expect(asset).toMatchSnapshot()
   })
 
   test("should prepare custom assets", () => {

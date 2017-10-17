@@ -1,7 +1,6 @@
 import path from "path"
 import fs from "fs"
 import cpFile from "cp-file"
-import mkdirp from "mkdirp"
 import { getTargetDir, getAssetsPath, normalize } from "../lib/paths"
 import getFile from "../lib/get-file"
 import { getHashedName } from "asset-hash"

@@ -27,6 +27,7 @@
     "cp-file": "^5.0.0",
     "mime": "^2.0.3",
     "minimatch": "^3.0.4",
+    "nodent-runtime": "^3.0.4",
     "pify": "^3.0.0",
     "postcss": "^6.0.13"
   },

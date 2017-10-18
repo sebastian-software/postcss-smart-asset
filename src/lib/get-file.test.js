@@ -13,7 +13,11 @@ describe("get-file", () => {
     }
     const file = getFile(asset, {}, dir, warn)
 
-    expect(file).toMatchSnapshot()
+    expect(file).toEqual({
+      path: "test/fixtures/pixel.gif",
+      contents: fileContent,
+      mimeType: "image/gif"
+    })
   })
 
   test("should show warn message when can't read file", () => {
@@ -36,7 +40,11 @@ describe("get-file", () => {
     }
     const file = getFile(asset, options, dir, warn)
 
-    expect(file).toMatchSnapshot()
+    expect(file).toEqual({
+      path: path.resolve("test/fixtures/pixel.gif"),
+      contents: fileContent,
+      mimeType: "image/gif"
+    })
   })
 
   test("should read file with multiple basePath option", () => {
@@ -49,6 +57,10 @@ describe("get-file", () => {
     }
     const file = getFile(asset, options, dir, warn)
 
-    expect(file).toMatchSnapshot()
+    expect(file).toEqual({
+      path: path.resolve("test/fixtures/pixel.gif"),
+      contents: fileContent,
+      mimeType: "image/gif"
+    })
   })
 })

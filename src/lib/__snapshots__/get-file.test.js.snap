@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get-file should read file with basePath option 1`] = `
+Object {
+  "mimeType": "image/gif",
+  "path": "/Users/sebastian/Workspace/sebastian-software/postcss-smart-asset/test/fixtures/pixel.gif",
+}
+`;
+
+exports[`get-file should read file with multiple basePath option 1`] = `
+Object {
+  "mimeType": "image/gif",
+  "path": "/Users/sebastian/Workspace/sebastian-software/postcss-smart-asset/test/fixtures/pixel.gif",
+}
+`;
+
+exports[`get-file should read file without basePath option 1`] = `
+Object {
+  "mimeType": "image/gif",
+  "path": "test/fixtures/pixel.gif",
+}
+`;

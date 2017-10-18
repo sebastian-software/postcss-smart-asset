@@ -15,7 +15,6 @@ describe("get-file", () => {
 
     expect(file).toEqual({
       path: "test/fixtures/pixel.gif",
-      contents: fileContent,
       mimeType: "image/gif"
     })
   })
@@ -42,7 +41,6 @@ describe("get-file", () => {
 
     expect(file).toEqual({
       path: path.resolve("test/fixtures/pixel.gif"),
-      contents: fileContent,
       mimeType: "image/gif"
     })
   })
@@ -59,7 +57,6 @@ describe("get-file", () => {
 
     expect(file).toEqual({
       path: path.resolve("test/fixtures/pixel.gif"),
-      contents: fileContent,
       mimeType: "image/gif"
     })
   })

@@ -226,5 +226,6 @@ export const declProcessor = (from, to, options, result, decl) => {
  * @property {Number} [maxSize] - max file size in kbytes for inline mode
  * @property {String} [fallback] - fallback mode if file exceeds maxSize
  * @property {Boolean} [useHash] - use file hash instead filename
+ * @property {Boolean} [prependName] - if useHash is true, appends the hash to the filename instead of replacing it
  * @property {HashOptions} [hashOptions] - params for generating hash name
  */

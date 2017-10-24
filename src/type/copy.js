@@ -38,7 +38,13 @@ export default async function processCopy(asset, dir, options, decl, warn, resul
 
   addDependency(file.path)
 
-  const assetRelativePath = options.useHash ? await getHashName(file, options.hashOptions) : asset.relativePath
+  let assetRelativePath = options.useHash ? await getHashName(file, options.hashOptions) : asset.relativePath
+  if(options.useHash && options.prependName){
+    let pathObj = path.parse(assetRelativePath), fileName = path.parse(asset.relativePath).name;
+    pathObj.name = fileName + '_' + pathObj.name;
+    delete pathObj.base; //otherwise it would override name
+    assetRelativePath = path.format(pathObj);
+  }
 
   const targetDir = getTargetDir(dir)
   const newAssetBaseDir = getAssetsPath(targetDir, options.assetsPath)

@@ -64,6 +64,7 @@ describe("copy when inline fallback", () => {
 
 function testCopy(opts, postcssOpts) {
   const optsWithHash = Object.assign({}, opts, { useHash: true })
+  const optsWithHashAppend = Object.assign({}, opts, { useHash: true, prependName: true })
   const assetsPath = opts.assetsPath ? `${opts.assetsPath}\/` : ""
   const patterns = {
     copyPixelPng: new RegExp(`"./${assetsPath}imported\/pixel\.png"`),
@@ -72,7 +73,9 @@ function testCopy(opts, postcssOpts) {
     copyParamsPixelPngParam: new RegExp(`"./${assetsPath}imported\/pixel\\.png\\?foo=bar"`),
     copyParamsPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif\\#el"`),
     copyHashPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png"`),
-    copyHashParamsPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`)
+    copyHashParamsPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`),
+    copyHashAppendPixel8: new RegExp(`"./${assetsPath}pixel_dDcMwK\\.png"`),
+    copyHashAppendParamsPixel8: new RegExp(`"./${assetsPath}pixel_dDcMwK\\.png\\?v=1\\.1\\#iefix"`)
   }
   const matchAll = (css, patternsKeys) =>
     expect(patternsKeys.every((pat) => css.match(patterns[pat]))).toBeTruthy()
@@ -99,6 +102,18 @@ function testCopy(opts, postcssOpts) {
     test("rebase the url using a hash name keeping parameters", () => {
       return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then((css) => {
         matchAll(css, [ "copyHashParamsPixel8" ])
+      })
+    })
+
+    test("rebase the url appending a hash to the name", () => {
+      return processedCss("copy-hash", optsWithHashAppend, postcssOpts).then((css) => {
+        matchAll(css, [ "copyHashAppendPixel8" ])
+      })
+    })
+
+    test("rebase the url using appending a hash to the name name keeping parameters", () => {
+      return processedCss("copy-hash-parameters", optsWithHashAppend, postcssOpts).then((css) => {
+        matchAll(css, [ "copyHashAppendParamsPixel8" ])
       })
     })
   })

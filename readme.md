@@ -175,6 +175,7 @@ Checkout [tests](test) for examples.
     * `basePath` - path or array of paths to search assets (relative to `from`, or absolute)
     * `assetsPath` - directory to copy assets (relative to `to` or absolute)
     * `useHash` - use filehash(xxhash) for naming
+    * `prependName` - use filename__hash as filename (assuming useHash is also true)
     * `hashOptions` - options for hash function
 * `custom {Function}`
     * `multi` - processing with other options
@@ -264,6 +265,12 @@ destination
 _(default: `false`)_
 
 If set to `true` the copy method is going to rename the path of the files by a hash name
+
+#### `prependName`
+
+_(default: `false`)_
+
+If set to `true` and `useHash` is also true, the copy method appends the hash to the original file name instead of replacing it
 
 #### `hashOptions`
 

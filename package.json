@@ -37,7 +37,8 @@
     "jest-cli": "^22.1.4",
     "postcss-import": "^11.0.0",
     "prepublish": "^1.6.0",
-    "readable-code": "^3.4.15"
+    "readable-code": "^3.4.15",
+    "release-it": "^6.1.1"
   },
   "scripts": {
     "release": "release-it --github.release --npm.publish --non-interactive",

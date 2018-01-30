@@ -15,6 +15,10 @@ export function readAsync(name) {
 }
 
 export function compareFixtures(name, message, urlOpts = {}, postcssOpts = {}, plugin = null) {
+  if (postcssOpts.from == null) {
+    postcssOpts.from = undefined;
+  }
+
   test(message, () => {
     const pcss = postcss()
 

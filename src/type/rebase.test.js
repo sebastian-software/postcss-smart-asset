@@ -9,18 +9,12 @@ describe("rebase", () => {
   })
 
   compareFixtures("cant-rebase", "shouldn't rebase url if not info available")
-  compareFixtures(
-    "rebase-to-from",
-    "should rebase url to dirname(from)",
-    opts,
-    { from: "test/fixtures/here" }
-  )
-  compareFixtures(
-    "rebase-to-to-without-from",
-    "should rebase url to dirname(to)",
-    opts,
-    { to: "there" }
-  )
+  compareFixtures("rebase-to-from", "should rebase url to dirname(from)", opts, {
+    from: "test/fixtures/here"
+  })
+  compareFixtures("rebase-to-to-without-from", "should rebase url to dirname(to)", opts, {
+    to: "there"
+  })
   compareFixtures(
     "rebase-to-to",
     "should rebase url to dirname(to) even if from given",

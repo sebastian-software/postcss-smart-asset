@@ -14,11 +14,7 @@ describe("custom", () => {
     }
   }
 
-  compareFixtures(
-    "custom",
-    "should transform url through custom callback",
-    opts
-  )
+  compareFixtures("custom", "should transform url through custom callback", opts)
   compareFixtures(
     "custom",
     "should transform url through custom callback with array options",

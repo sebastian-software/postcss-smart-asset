@@ -5,11 +5,7 @@ describe("copy without assetsPath", () => {
     url: "copy"
   }
 
-  compareFixtures(
-    "cant-copy",
-    "shouldn't copy assets if not info available",
-    opts
-  )
+  compareFixtures("cant-copy", "shouldn't copy assets if not info available", opts)
 
   const postcssOpts = {
     from: "test/fixtures/index.css",
@@ -25,11 +21,7 @@ describe("copy with assetsPath", () => {
     assetsPath: "assets"
   }
 
-  compareFixtures(
-    "cant-copy",
-    "shouldn't copy assets if not info available",
-    opts
-  )
+  compareFixtures("cant-copy", "shouldn't copy assets if not info available", opts)
 
   const postcssOpts = {
     from: "test/fixtures/index.css",
@@ -60,11 +52,7 @@ describe("copy when inline fallback", () => {
     assetsPath: "assets"
   }
 
-  compareFixtures(
-    "cant-copy",
-    "shouldn't copy assets if not info available",
-    opts
-  )
+  compareFixtures("cant-copy", "shouldn't copy assets if not info available", opts)
 
   const postcssOpts = {
     from: "test/fixtures/index.css",
@@ -92,9 +80,7 @@ function testCopy(opts, postcssOpts) {
     ),
     copyParamsPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif\\#el"`),
     copyHashPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png"`),
-    copyHashParamsPixel8: new RegExp(
-      `"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`
-    ),
+    copyHashParamsPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`),
     copyHashAppendPixel8: new RegExp(`"./${assetsPath}pixel_dDcMwK\\.png"`),
     copyHashAppendParamsPixel8: new RegExp(
       `"./${assetsPath}pixel_dDcMwK\\.png\\?v=1\\.1\\#iefix"`
@@ -121,39 +107,31 @@ function testCopy(opts, postcssOpts) {
     })
 
     test("rebase the url using a hash name", () => {
-      return processedCss("copy-hash", optsWithHash, postcssOpts).then(
-        (css) => {
-          matchAll(css, [ "copyHashPixel8" ])
-        }
-      )
+      return processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
+        matchAll(css, [ "copyHashPixel8" ])
+      })
     })
 
     test("rebase the url using a hash name keeping parameters", () => {
-      return processedCss(
-        "copy-hash-parameters",
-        optsWithHash,
-        postcssOpts
-      ).then((css) => {
-        matchAll(css, [ "copyHashParamsPixel8" ])
-      })
-    })
-
-    test("rebase the url appending a hash to the name", () => {
-      return processedCss("copy-hash", optsWithHashAppend, postcssOpts).then(
+      return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then(
         (css) => {
-          matchAll(css, [ "copyHashAppendPixel8" ])
+          matchAll(css, [ "copyHashParamsPixel8" ])
         }
       )
     })
 
-    test("rebase the url using appending a hash to the name name keeping parameters", () => {
-      return processedCss(
-        "copy-hash-parameters",
-        optsWithHashAppend,
-        postcssOpts
-      ).then((css) => {
-        matchAll(css, [ "copyHashAppendParamsPixel8" ])
+    test("rebase the url appending a hash to the name", () => {
+      return processedCss("copy-hash", optsWithHashAppend, postcssOpts).then((css) => {
+        matchAll(css, [ "copyHashAppendPixel8" ])
       })
+    })
+
+    test("rebase the url using appending a hash to the name name keeping parameters", () => {
+      return processedCss("copy-hash-parameters", optsWithHashAppend, postcssOpts).then(
+        (css) => {
+          matchAll(css, [ "copyHashAppendParamsPixel8" ])
+        }
+      )
     })
   })
 }

@@ -52,7 +52,7 @@ export default async function processCopy(
   if (options.useHash && options.prependName) {
     let pathObj = path.parse(assetRelativePath),
       fileName = path.parse(asset.relativePath).name
-    pathObj.name = `${fileName  }_${  pathObj.name}`
+    pathObj.name = `${fileName}_${pathObj.name}`
     delete pathObj.base // otherwise it would override name
     assetRelativePath = path.format(pathObj)
   }

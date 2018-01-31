@@ -40,15 +40,7 @@ function processFallback(originUrl, dir, options) {
  *
  * @returns {String|Undefined}
  */
-export default async function(
-  asset,
-  dir,
-  options,
-  decl,
-  warn,
-  result,
-  addDependency
-) {
+export default async function(asset, dir, options, decl, warn, result, addDependency) {
   const file = getFile(asset, options, dir, warn)
 
   if (!file) return
@@ -88,9 +80,7 @@ export default async function(
   const optimizeSvgEncode = isSvg && options.optimizeSvgEncode
   const encodedStr = await encodeFile(file, encodeType, optimizeSvgEncode)
   const resultValue =
-    options.includeUriFragment && asset.hash ?
-      encodedStr + asset.hash :
-      encodedStr
+    options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
 
   // wrap url by quotes if percent-encoded svg
   return isSvg && encodeType !== "base64" ? `"${resultValue}"` : resultValue

@@ -7,11 +7,7 @@ describe("inline", () => {
   const opts = { url: "inline" }
   const postcssOpts = { from: "test/fixtures/here" }
 
-  compareFixtures(
-    "cant-inline",
-    "shouldn't inline url if not info available",
-    opts
-  )
+  compareFixtures("cant-inline", "shouldn't inline url if not info available", opts)
 
   compareFixtures(
     "can-inline-hash-include",
@@ -48,11 +44,9 @@ describe("inline", () => {
   })
 
   test("SVGs shouldn't be encoded in base64", () => {
-    return processedCss("inline-svg", { url: "inline" }, postcssOpts).then(
-      (css) => {
-        expect(css.match(/;base64/)).toBeFalsy()
-      }
-    )
+    return processedCss("inline-svg", { url: "inline" }, postcssOpts).then((css) => {
+      expect(css.match(/;base64/)).toBeFalsy()
+    })
   })
 
   compareFixtures(

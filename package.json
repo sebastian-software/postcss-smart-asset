@@ -34,7 +34,7 @@
   "devDependencies": {
     "babel-jest": "^22.1.0",
     "babel-preset-edge": "^1.5.1",
-    "eslint-config-readable": "^1.5.1",
+    "eslint-config-readable": "^1.8.0",
     "jest-cli": "^22.1.4",
     "postcss-import": "^11.0.0",
     "prepublish": "^1.6.0",

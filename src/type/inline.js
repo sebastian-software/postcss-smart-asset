@@ -5,7 +5,7 @@ import encodeFile from "../lib/encode"
 import getFile from "../lib/get-file"
 
 /**
- * @param {String} originUrl
+ * @param {string} originUrl
  * @param {PostcssUrl~Dir} dir
  * @param {PostcssUrl~Option} options
  *
@@ -40,7 +40,15 @@ function processFallback(originUrl, dir, options) {
  *
  * @returns {String|Undefined}
  */
-export default async function(asset, dir, options, decl, warn, result, addDependency) {
+export default async function(
+  asset,
+  dir,
+  options,
+  decl,
+  warn,
+  result,
+  addDependency
+) {
   const file = getFile(asset, options, dir, warn)
 
   if (!file) return
@@ -69,7 +77,9 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   if (isSvg && asset.hash && !options.ignoreFragmentWarning) {
     // eslint-disable-next-line max-len
     warn(
-      `Image type is svg and link contains #. PostCSS Smart Asset can't handle SVG fragments. SVG file fully inlined. ${file.path}`
+      `Image type is svg and link contains #. PostCSS Smart Asset can't handle SVG fragments. SVG file fully inlined. ${
+        file.path
+      }`
     )
   }
 
@@ -77,7 +87,10 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
 
   const optimizeSvgEncode = isSvg && options.optimizeSvgEncode
   const encodedStr = await encodeFile(file, encodeType, optimizeSvgEncode)
-  const resultValue = options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
+  const resultValue =
+    options.includeUriFragment && asset.hash ?
+      encodedStr + asset.hash :
+      encodedStr
 
   // wrap url by quotes if percent-encoded svg
   return isSvg && encodeType !== "base64" ? `"${resultValue}"` : resultValue

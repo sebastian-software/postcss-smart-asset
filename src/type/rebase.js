@@ -11,6 +11,6 @@ import { normalize } from "../lib/paths"
  * @returns {String|Undefined}
  */
 export default function(asset, dir) {
-  let rebasedUrl = normalize(path.relative(dir.to, asset.absolutePath))
+  const rebasedUrl = normalize(path.relative(dir.to, asset.absolutePath))
   return `${rebasedUrl}${asset.search}${asset.hash}`
 }

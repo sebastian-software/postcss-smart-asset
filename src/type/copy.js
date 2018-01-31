@@ -25,7 +25,15 @@ const getHashName = (file, options) => getHashedName(file.path, options)
  *
  * @returns {String|Undefined}
  */
-export default async function processCopy(asset, dir, options, decl, warn, result, addDependency) {
+export default async function processCopy(
+  asset,
+  dir,
+  options,
+  decl,
+  warn,
+  result,
+  addDependency
+) {
   if (!options.assetsPath && dir.from === dir.to) {
     warn("Option `to` of postcss is required, ignoring")
 
@@ -38,12 +46,15 @@ export default async function processCopy(asset, dir, options, decl, warn, resul
 
   addDependency(file.path)
 
-  let assetRelativePath = options.useHash ? await getHashName(file, options.hashOptions) : asset.relativePath
-  if(options.useHash && options.prependName){
-    let pathObj = path.parse(assetRelativePath), fileName = path.parse(asset.relativePath).name;
-    pathObj.name = fileName + '_' + pathObj.name;
-    delete pathObj.base; //otherwise it would override name
-    assetRelativePath = path.format(pathObj);
+  let assetRelativePath = options.useHash ?
+    await getHashName(file, options.hashOptions) :
+    asset.relativePath
+  if (options.useHash && options.prependName) {
+    let pathObj = path.parse(assetRelativePath),
+      fileName = path.parse(asset.relativePath).name
+    pathObj.name = `${fileName  }_${  pathObj.name}`
+    delete pathObj.base // otherwise it would override name
+    assetRelativePath = path.format(pathObj)
   }
 
   const targetDir = getTargetDir(dir)

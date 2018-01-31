@@ -19,7 +19,9 @@ describe("misc", () => {
           })
       )
       .then((result) => {
-        const dependencies = result.messages.filter((message) => message.type === "dependency")
+        const dependencies = result.messages.filter(
+          (message) => message.type === "dependency"
+        )
         expect(dependencies).toEqual([
           {
             type: "dependency",
@@ -47,7 +49,9 @@ describe("misc", () => {
           from: "test/fixtures/copy.css"
         })
         .then((result) => {
-          const dependencies = result.messages.filter((message) => message.type === "dependency")
+          const dependencies = result.messages.filter(
+            (message) => message.type === "dependency"
+          )
           expect(dependencies).toEqual([
             {
               type: "dependency",

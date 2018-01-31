@@ -7,12 +7,20 @@ describe("inline", () => {
   const opts = { url: "inline" }
   const postcssOpts = { from: "test/fixtures/here" }
 
-  compareFixtures("cant-inline", "shouldn't inline url if not info available", opts)
+  compareFixtures(
+    "cant-inline",
+    "shouldn't inline url if not info available",
+    opts
+  )
 
   compareFixtures(
     "can-inline-hash-include",
     "should inline url and include hash, if it has a hash in it and option is enabled",
-    { url: "inline", encodeType: "encodeURIComponent", includeUriFragment: true },
+    {
+      url: "inline",
+      encodeType: "encodeURIComponent",
+      includeUriFragment: true
+    },
     postcssOpts
   )
 
@@ -40,9 +48,11 @@ describe("inline", () => {
   })
 
   test("SVGs shouldn't be encoded in base64", () => {
-    return processedCss("inline-svg", { url: "inline" }, postcssOpts).then((css) => {
-      expect(css.match(/;base64/)).toBeFalsy()
-    })
+    return processedCss("inline-svg", { url: "inline" }, postcssOpts).then(
+      (css) => {
+        expect(css.match(/;base64/)).toBeFalsy()
+      }
+    )
   })
 
   compareFixtures(
@@ -73,15 +83,23 @@ describe("inline", () => {
   })
 
   test("should inline files matching the minimatch pattern", () => {
-    return processedCss("inline-by-type", { url: "inline", filter: "**/*.svg" }, postcssOpts).then((css) => {
-      expect(css.match(/data\:image\/svg\+xml/)).toBeTruthy()
+    return processedCss(
+      "inline-by-type",
+      { url: "inline", filter: "**/*.svg" },
+      postcssOpts
+    ).then((css) => {
+      expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
       expect(css.match(/data:image\/gif/)).toBeFalsy()
     })
   })
 
   test("should inline files matching the regular expression", () => {
-    return processedCss("inline-by-type", { url: "inline", filter: /\.svg$/ }, postcssOpts).then((css) => {
-      expect(css.match(/data\:image\/svg\+xml/)).toBeTruthy()
+    return processedCss(
+      "inline-by-type",
+      { url: "inline", filter: /\.svg$/ },
+      postcssOpts
+    ).then((css) => {
+      expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
       expect(css.match(/data:image\/gif/)).toBeFalsy()
     })
   })
@@ -93,7 +111,7 @@ describe("inline", () => {
       { url: "inline", filter: customFilterFunction },
       postcssOpts
     ).then((css) => {
-      expect(css.match(/data\:image\/svg\+xml/)).toBeTruthy()
+      expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
       expect(css.match(/data:image\/gif/)).toBeFalsy()
     })
   })
@@ -132,7 +150,7 @@ describe("inline", () => {
       },
       postcssOpts
     ).then((css) => {
-      expect(css.match(/data:image\/png/g).length).toBe(2)
+      expect(css.match(/data:image\/png/g)).toHaveLength(2)
     })
   })
 })

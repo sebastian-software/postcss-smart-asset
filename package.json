@@ -32,33 +32,35 @@
     "*.css": "stylelint"
   },
   "dependencies": {
-    "asset-hash": "^1.2.0",
-    "cp-file": "^5.0.0",
-    "mime": "^2.2.0",
+    "asset-hash": "^1.2.1",
+    "cp-file": "^6.0.0",
+    "mime": "^2.3.1",
     "minimatch": "^3.0.4",
-    "lean-nodent-runtime": "^1.0.1",
     "pify": "^3.0.0",
-    "postcss": "^6.0.17"
+    "postcss": "^6.0.23"
   },
   "devDependencies": {
-    "babel-jest": "^22.1.0",
-    "babel-preset-edge": "^1.7.0",
-    "eslint-config-readable": "^1.10.2",
-    "jest-cli": "^22.1.4",
-    "postcss-import": "^11.0.0",
-    "prepublish": "^1.6.1",
-    "release-it": "^6.1.1"
+    "@babel/core": "^7.0.0-beta.51",
+    "babel-jest": "^23.0.1",
+    "babel-preset-edge": "^4.5.1",
+    "eslint": "^5.0.0",
+    "eslint-config-readable": "^2.0.0",
+    "jest-cli": "^23.1.0",
+    "lint-staged": "^7.2.0",
+    "postcss-import": "^11.1.0",
+    "preppy": "^4.2.3",
+    "rimraf": "^2.6.2"
   },
   "scripts": {
     "lint": "npm run lint:js",
     "lint:js": "eslint --ignore-path .gitignore .",
     "fix:js": "eslint --ignore-path .gitignore --fix .",
-    "format:js": "prettier --ignore-path .gitignore --write '**/*.{js,mjs}' && npm run fix:js",
+    "format:js": "prettier --ignore-path .gitignore --write '**/*.js' && npm run fix:js",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "prepare": "prepublish"
+    "prepare": "preppy"
   }
 }

@@ -54,7 +54,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   const maxSize = (options.maxSize || 0) * 1024
 
   if (maxSize) {
-    const stats = fs.statSync(file.path)
+    let stats = fs.statSync(file.path)
 
     if (stats.size >= maxSize) {
       return processFallback.apply(this, arguments)

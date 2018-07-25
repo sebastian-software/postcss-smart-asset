@@ -61,7 +61,7 @@ describe("match options", () => {
     const matched = matchOptions(asset, options)
 
     expect(matched[1].url()).toBe("custom")
-    expect(matched.length).toBe(2)
+    expect(matched).toHaveLength(2)
   })
 
   test("should match single option", () => {

@@ -1,12 +1,12 @@
 import path from "path"
 import {
-  isUrlShouldBeIgnored,
   getAssetsPath,
-  getTargetDir,
   getDirDeclFile,
   getPathByBasePath,
-  prepareAsset,
-  normalize
+  getTargetDir,
+  isUrlShouldBeIgnored,
+  normalize,
+  prepareAsset
 } from "./paths"
 
 describe("paths", () => {
@@ -36,15 +36,21 @@ describe("paths", () => {
     const baseDir = path.resolve("/user/project")
 
     test("should calc assets path", () => {
-      expect(getAssetsPath(baseDir, "images", "imported")).toBe(path.resolve("/user/project/images/imported"))
+      expect(getAssetsPath(baseDir, "images", "imported")).toBe(
+        path.resolve("/user/project/images/imported")
+      )
     })
 
     test("should calc assets path with absolute assetsPath param", () => {
-      expect(getAssetsPath(baseDir, "/user/assets/", "imported")).toBe(path.resolve("/user/assets/imported"))
+      expect(getAssetsPath(baseDir, "/user/assets/", "imported")).toBe(
+        path.resolve("/user/assets/imported")
+      )
     })
 
     test("should calc assets path without assetsPath param", () => {
-      expect(getAssetsPath(baseDir, null, "imported")).toBe(path.resolve("/user/project/imported"))
+      expect(getAssetsPath(baseDir, null, "imported")).toBe(
+        path.resolve("/user/project/imported")
+      )
     })
   })
 
@@ -90,7 +96,9 @@ describe("paths", () => {
     })
 
     test("multiple basePath", () => {
-      expect(getPathByBasePath([ basePath, "/some_base_path" ], dirFrom, "/img/image.png")).toEqual([
+      expect(
+        getPathByBasePath([ basePath, "/some_base_path" ], dirFrom, "/img/image.png")
+      ).toEqual([
         path.resolve("/project/node_modules/img/image.png"),
         path.resolve("/some_base_path/img/image.png")
       ])
@@ -135,7 +143,6 @@ describe("paths", () => {
       expect(asset.absolutePath).toEqual("/project/styles/style.css")
       expect(normalize(asset.relativePath)).toEqual("../styles/style.css")
     }
-
     ;[ "#hash", "%23ecodedhash", "data:" ].forEach(checkCustomAsset)
   })
 })

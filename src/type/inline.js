@@ -1,15 +1,15 @@
 import fs from "fs"
-import processCopy from "./copy"
-import processRebase from "./rebase"
 import encodeFile from "../lib/encode"
 import getFile from "../lib/get-file"
+import processCopy from "./copy"
+import processRebase from "./rebase"
 
 /**
  * @param {string} originUrl
  * @param {PostcssUrl~Dir} dir
  * @param {PostcssUrl~Option} options
  *
- * @returns {String|Undefined}
+ * @returns {string|Undefined}
  */
 function processFallback(originUrl, dir, options) {
   if (typeof options.fallback === "function") {
@@ -38,7 +38,7 @@ function processFallback(originUrl, dir, options) {
  * @param {Result} result
  * @param {Function} addDependency
  *
- * @returns {String|Undefined}
+ * @returns {string|Undefined}
  */
 export default async function(asset, dir, options, decl, warn, result, addDependency) {
   const file = getFile(asset, options, dir, warn)
@@ -57,7 +57,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   // Babel v7 on Node v6. Re-evaluate in some month if fixed.
   // Log: https://travis-ci.org/sebastian-software/postcss-smart-asset/builds/408069998
   if (maxSize) {
-    let stats = fs.statSync(file.path)
+    const stats = fs.statSync(file.path)
 
     if (stats.size >= maxSize) {
       return processFallback.apply(this, arguments)

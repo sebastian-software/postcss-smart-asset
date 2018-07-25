@@ -1,7 +1,7 @@
 import { resolve } from "path"
 import postcss from "postcss"
-import postcssUrl from "."
 import { readAsync } from "../test/setup"
+import postcssUrl from "."
 
 describe("misc", () => {
   test("should add dependency messages with copy", () =>

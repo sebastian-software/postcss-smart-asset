@@ -1,5 +1,5 @@
-import minimatch from "minimatch"
 import path from "path"
+import minimatch from "minimatch"
 import { isUrlShouldBeIgnored } from "./paths"
 
 /**
@@ -7,10 +7,10 @@ import { isUrlShouldBeIgnored } from "./paths"
  * Allways returns true if the given pattern is empty
  *
  * @param {PostcssUrl~Asset} asset the processed asset
- * @param {String|RegExp|Function} pattern A minimatch string,
+ * @param {string|RegExp|Function} pattern A minimatch string,
  *   regular expression or function to test the asset
  *
- * @returns {Boolean}
+ * @returns {boolean}
  */
 const matchesFilter = (asset, pattern) => {
   const relativeToRoot = path.relative(process.cwd(), asset.absolutePath)
@@ -37,7 +37,7 @@ const matchesFilter = (asset, pattern) => {
  *
  * @param {PostcssUrl~Asset} asset
  * @param {PostcssUrl~Options} option
- * @returns {Boolean}
+ * @returns {boolean}
  */
 const matchOption = (asset, option) => {
   const matched = matchesFilter(asset, option.filter)
@@ -71,7 +71,11 @@ const matchOptions = (asset, options) => {
 
     const extendOptions = options
       .slice(optionIndex + 1)
-      .filter((option) => (isMultiOption(matchedOption) || isMultiOption(option)) && matchOption(asset, option))
+      .filter(
+        (option) =>
+          (isMultiOption(matchedOption) || isMultiOption(option)) &&
+          matchOption(asset, option)
+      )
 
     return extendOptions.length ? [ matchedOption ].concat(extendOptions) : matchedOption
   }

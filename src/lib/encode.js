@@ -5,12 +5,13 @@ const readFileAsync = pify(readFile)
 
 /**
  * Optimize encoding SVG files (IE9+, Android 3+)
+ *
  * @see https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
  *
- * @param {String} svgContent
- * @returns {String}
+ * @param {string} svgContent
+ * @returns {string}
  */
-const optimizedSvgEncode = svgContent => {
+const optimizedSvgEncode = (svgContent) => {
   const result = encodeURIComponent(svgContent)
     .replace(/%3D/g, "=")
     .replace(/%3A/g, ":")
@@ -29,8 +30,8 @@ const optimizedSvgEncode = svgContent => {
  * Encoding file contents to string
  *
  * @param {PostcssUrl~File} file
- * @param {String} [encodeType=base64|encodeURI|encodeURIComponent]
- * @param {Boolean} [shouldOptimizeURIEncode]
+ * @param {string} [encodeType=base64|encodeURI|encodeURIComponent]
+ * @param {boolean} [shouldOptimizeURIEncode]
  * @returns {string}
  */
 export default async (file, encodeType, shouldOptimizeSvgEncode) => {
@@ -52,7 +53,8 @@ export default async (file, encodeType, shouldOptimizeSvgEncode) => {
 
   let encodedStr =
     shouldOptimizeSvgEncode && encodeType === "encodeURIComponent" ?
-      optimizedSvgEncode(content) : encodeFunc(content)
+      optimizedSvgEncode(content) :
+      encodeFunc(content)
 
   encodedStr = encodedStr.replace(/%20/g, " ").replace(/#/g, "%23")
 

@@ -28,7 +28,9 @@ describe("get-file", () => {
 
     getFile(asset, {}, dir, (message) => (warnMessage = message))
 
-    expect(warnMessage).toBe("Can't read file 'test/fixtures/pixel-no-exists.gif', ignoring")
+    expect(warnMessage).toBe(
+      "Can't read file 'test/fixtures/pixel-no-exists.gif', ignoring"
+    )
   })
 
   test("should read file with basePath option", () => {

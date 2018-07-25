@@ -1,5 +1,5 @@
-import postcss from "postcss"
 import fs from "fs"
+import postcss from "postcss"
 import url from "../src"
 
 export function readAsync(name) {

@@ -1,5 +1,5 @@
-import { processedCss, compareFixtures } from "../../test/setup"
 import importPlugin from "postcss-import"
+import { compareFixtures, processedCss } from "../../test/setup"
 
 describe("rebase", () => {
   const opts = {}

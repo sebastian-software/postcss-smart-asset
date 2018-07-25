@@ -21,7 +21,8 @@ const typeMap = {
  */
 const PROCESS_TYPES = ["rebase", "inline", "copy", "custom"]
 
-const getUrlProcessorType = optionUrl => (typeof optionUrl === "function" ? "custom" : optionUrl || "rebase")
+const getUrlProcessorType = (optionUrl) =>
+  typeof optionUrl === "function" ? "custom" : optionUrl || "rebase"
 
 /**
  * @param {String} optionUrl
@@ -44,15 +45,16 @@ function getUrlProcessor(optionUrl) {
  * @returns {Function}
  */
 const wrapUrlProcessor = (urlProcessor, result, decl) => {
-  const warn = message => decl.warn(result, message)
-  const addDependency = file =>
+  const warn = (message) => decl.warn(result, message)
+  const addDependency = (file) =>
     result.messages.push({
       type: "dependency",
       file,
       parent: getPathDeclFile(decl)
     })
 
-  return (asset, dir, option) => urlProcessor(asset, dir, option, decl, warn, result, addDependency)
+  return (asset, dir, option) =>
+    urlProcessor(asset, dir, option, decl, warn, result, addDependency)
 }
 
 /**
@@ -70,14 +72,18 @@ export const replaceUrl = (url, dir, options, result, decl) => {
 
   if (!matchedOptions) return
 
-  const process = option => {
-    const wrappedUrlProcessor = wrapUrlProcessor(getUrlProcessor(option.url), result, decl)
+  const process = (option) => {
+    const wrappedUrlProcessor = wrapUrlProcessor(
+      getUrlProcessor(option.url),
+      result,
+      decl
+    )
 
     return wrappedUrlProcessor(asset, dir, option)
   }
 
   if (Array.isArray(matchedOptions)) {
-    matchedOptions.forEach(option => (asset.url = process(option)))
+    matchedOptions.forEach((option) => (asset.url = process(option)))
   } else {
     asset.url = process(matchedOptions)
   }
@@ -121,13 +127,15 @@ export const declProcessor = (from, to, options, result, decl) => {
 
   return Promise.all(
     matches.map((singleMatch, index) => {
-      const [matched, before, url, after] = /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/.exec(singleMatch)
+      const [matched, before, url, after] = /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/.exec(
+        singleMatch
+      )
 
       const replacement = replaceUrl(url, dir, options, result, decl)
 
       if (replacement) {
         if (replacement.then) {
-          return replacement.then(resolved => {
+          return replacement.then((resolved) => {
             //const fullReplacement = resolved == null ? null : `${before}${resolved}${after}`
             //return fullReplacement
             return buildResult(resolved, singleMatch, before, after)
@@ -140,8 +148,8 @@ export const declProcessor = (from, to, options, result, decl) => {
         return null
       }
     })
-  ).then(values => {
-    decl.value = decl.value.replace(pattern, match => {
+  ).then((values) => {
+    decl.value = decl.value.replace(pattern, (match) => {
       const replacement = values.shift()
       return replacement == null ? match : replacement
     })

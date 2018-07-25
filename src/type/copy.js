@@ -1,9 +1,9 @@
-import path from "path"
 import fs from "fs"
+import path from "path"
 import cpFile from "cp-file"
-import { getTargetDir, getAssetsPath, normalize } from "../lib/paths"
-import getFile from "../lib/get-file"
 import { getHashedName } from "asset-hash"
+import getFile from "../lib/get-file"
+import { getAssetsPath, getTargetDir, normalize } from "../lib/paths"
 
 const getHashName = (file, options) => getHashedName(file.path, options)
 
@@ -23,7 +23,7 @@ const getHashName = (file, options) => getHashedName(file.path, options)
  * @param {Result} result
  * @param {Function} addDependency
  *
- * @returns {String|Undefined}
+ * @returns {string|Undefined}
  */
 export default async function processCopy(
   asset,
@@ -50,8 +50,10 @@ export default async function processCopy(
     await getHashName(file, options.hashOptions) :
     asset.relativePath
   if (options.useHash && options.prependName) {
-    let pathObj = path.parse(assetRelativePath),
-      fileName = path.parse(asset.relativePath).name
+    const pathObj = path.parse(assetRelativePath)
+
+
+    const fileName = path.parse(asset.relativePath).name
     pathObj.name = `${fileName}_${pathObj.name}`
     delete pathObj.base // otherwise it would override name
     assetRelativePath = path.format(pathObj)

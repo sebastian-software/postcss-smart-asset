@@ -1,7 +1,7 @@
 import path from "path"
 import postcss from "postcss"
 import postcssUrl from "../"
-import { processedCss, compareFixtures, readAsync } from "../../test/setup"
+import { compareFixtures, processedCss, readAsync } from "../../test/setup"
 
 describe("inline", () => {
   const opts = { url: "inline" }

@@ -8,7 +8,7 @@ import { normalize } from "../lib/paths"
  * @param {PostcssUrl~Asset} asset
  * @param {PostcssUrl~Dir} dir
  *
- * @returns {String|Undefined}
+ * @returns {string|Undefined}
  */
 export default function(asset, dir) {
   const rebasedUrl = normalize(path.relative(dir.to, asset.absolutePath))

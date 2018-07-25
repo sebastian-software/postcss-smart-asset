@@ -54,9 +54,9 @@
   },
   "scripts": {
     "lint": "npm run lint:js",
-    "lint:js": "eslint --ignore-path .gitignore .",
-    "fix:js": "eslint --ignore-path .gitignore --fix .",
-    "format:js": "prettier --ignore-path .gitignore --write '**/*.js' && npm run fix:js",
+    "lint:js": "eslint .",
+    "fix:js": "eslint --fix .",
+    "format:js": "prettier --write '**/*.js' && npm run fix:js",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",

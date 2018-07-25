@@ -1,17 +1,16 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
 clone_depth: 10
 
 environment:
   matrix:
     - nodejs_version: 6
     - nodejs_version: 8
-
-platform:
-  - x64
+    - nodejs_version: 10
 
 matrix:
   fast_finish: true
+
+platform:
+  - x64
 
 version: "{build}"
 build: off
@@ -24,11 +23,11 @@ install:
 test_script:
   - npm test
 
+cache:
+  # global npm cache
+  - '%APPDATA%\npm-cache'
+
 notifications:
   - provider: Slack
     incoming_webhook:
       secure: 42qYgf76P/QjYb5QJ18gFFJ67iTlXc1QzEva9BFofwh5KzpF/QJ/pvRark1i3aux6uwL53zdDKTjXfy8Ozpqqk9DhnU5M1oA96bQYWOnmZU=
-
-cache:
-  # global npm cache
-  - "%APPDATA%\\npm-cache"

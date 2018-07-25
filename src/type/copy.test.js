@@ -68,24 +68,6 @@ function testCopy(opts, postcssOpts) {
     useHash: true,
     prependName: true
   })
-  const assetsPath = opts.assetsPath ? `${opts.assetsPath}\/` : ""
-  const patterns = {
-    copyPixelPng: new RegExp(`"./${assetsPath}imported\/pixel\.png"`),
-    copyPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif"`),
-    copyParamsPixelPngHash: new RegExp(
-      `"./${assetsPath}imported\/pixel\\.png\\?\#iefix"`
-    ),
-    copyParamsPixelPngParam: new RegExp(
-      `"./${assetsPath}imported\/pixel\\.png\\?foo=bar"`
-    ),
-    copyParamsPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif\\#el"`),
-    copyHashPixel8: new RegExp(`"./${assetsPath}fbDRJoaV\\.png"`),
-    copyHashParamsPixel8: new RegExp(`"./${assetsPath}fbDRJoaV\\.png\\?v=1\\.1\\#iefix"`),
-    copyHashAppendPixel8: new RegExp(`"./${assetsPath}pixel_fbDRJoaV\\.png"`),
-    copyHashAppendParamsPixel8: new RegExp(
-      `"./${assetsPath}pixel_fbDRJoaV\\.png\\?v=1\\.1\\#iefix"`
-    )
-  }
 
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {
     test("rebase the url", () => {

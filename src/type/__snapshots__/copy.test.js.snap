@@ -1,14 +1,222 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url 1`] = `
+"body {
+  clip-path: url(\\"./assets/imported/pixel.png\\")
+}
+
+div {
+  clip-path: url(\\"./assets/pixel.gif\\")
+}"
+`;
+
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
+"body {
+  clip-path: url(\\"./assets/pixel_fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/imported/pixel.png?#iefix\\")
+}
+
+header {
+  clip-path: url(\\"./assets/imported/pixel.png?foo=bar\\")
+}
+
+div {
+  clip-path: url(\\"./assets/pixel.gif#el\\")
+}
+
+span {
+  clip-path: url(\\"./assets/pixel.svg#el\\")
+}"
+`;
+
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
+"body {
+  clip-path: url(\\"./assets/fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
+exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
 exports[`copy when inline fallback shouldn't copy assets if not info available 1`] = `
 "body {
   background: url(\\"./one\\");
 }"
 `;
 
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/imported/pixel.png\\")
+}
+
+div {
+  clip-path: url(\\"./test/fixtures/build/assets/pixel.gif\\")
+}"
+`;
+
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/pixel_fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/imported/pixel.png?#iefix\\")
+}
+
+header {
+  clip-path: url(\\"./test/fixtures/build/assets/imported/pixel.png?foo=bar\\")
+}
+
+div {
+  clip-path: url(\\"./test/fixtures/build/assets/pixel.gif#el\\")
+}
+
+span {
+  clip-path: url(\\"./test/fixtures/build/assets/pixel.svg#el\\")
+}"
+`;
+
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
+exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./test/fixtures/build/assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url 1`] = `
+"body {
+  clip-path: url(\\"./assets/imported/pixel.png\\")
+}
+
+div {
+  clip-path: url(\\"./assets/pixel.gif\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
+"body {
+  clip-path: url(\\"./assets/pixel_fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/imported/pixel.png?#iefix\\")
+}
+
+header {
+  clip-path: url(\\"./assets/imported/pixel.png?foo=bar\\")
+}
+
+div {
+  clip-path: url(\\"./assets/pixel.gif#el\\")
+}
+
+span {
+  clip-path: url(\\"./assets/pixel.svg#el\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
+"body {
+  clip-path: url(\\"./assets/fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
+exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
 exports[`copy with assetsPath shouldn't copy assets if not info available 1`] = `
 "body {
   background: url(\\"./one\\");
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url 1`] = `
+"body {
+  clip-path: url(\\"./imported/pixel.png\\")
+}
+
+div {
+  clip-path: url(\\"./pixel.gif\\")
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
+"body {
+  clip-path: url(\\"./pixel_fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./imported/pixel.png?#iefix\\")
+}
+
+header {
+  clip-path: url(\\"./imported/pixel.png?foo=bar\\")
+}
+
+div {
+  clip-path: url(\\"./pixel.gif#el\\")
+}
+
+span {
+  clip-path: url(\\"./pixel.svg#el\\")
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
+"body {
+  clip-path: url(\\"./fbDRJoaV.png\\")
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./fbDRJoaV.png?v=1.1#iefix\\")
+}"
+`;
+
+exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
+"body {
+  clip-path: url(\\"./pixel_fbDRJoaV.png?v=1.1#iefix\\")
 }"
 `;
 

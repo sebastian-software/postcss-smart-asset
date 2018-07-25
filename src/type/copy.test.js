@@ -87,50 +87,43 @@ function testCopy(opts, postcssOpts) {
     )
   }
 
-  const matchAll = (css, patternsKeys) =>
-    patternsKeys.every((pat) => expect(css).toMatch(patterns[pat]))
-
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {
     test("rebase the url", () => {
       return processedCss("copy", opts, postcssOpts).then((css) => {
-        matchAll(css, [ "copyPixelPng", "copyPixelGif" ])
+        expect(css).toMatchSnapshot()
       })
     })
 
     test("rebase the url keeping parameters", () => {
       return processedCss("copy-parameters", opts, postcssOpts).then((css) => {
-        matchAll(css, [
-          "copyParamsPixelPngHash",
-          "copyParamsPixelPngParam",
-          "copyParamsPixelGif"
-        ])
+        expect(css).toMatchSnapshot()
       })
     })
 
     test("rebase the url using a hash name", () => {
       return processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
-        matchAll(css, [ "copyHashPixel8" ])
+        expect(css).toMatchSnapshot()
       })
     })
 
     test("rebase the url using a hash name keeping parameters", () => {
       return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then(
         (css) => {
-          matchAll(css, [ "copyHashParamsPixel8" ])
+          expect(css).toMatchSnapshot()
         }
       )
     })
 
     test("rebase the url appending a hash to the name", () => {
       return processedCss("copy-hash", optsWithHashAppend, postcssOpts).then((css) => {
-        matchAll(css, [ "copyHashAppendPixel8" ])
+        expect(css).toMatchSnapshot()
       })
     })
 
     test("rebase the url using appending a hash to the name name keeping parameters", () => {
       return processedCss("copy-hash-parameters", optsWithHashAppend, postcssOpts).then(
         (css) => {
-          matchAll(css, [ "copyHashAppendParamsPixel8" ])
+          expect(css).toMatchSnapshot()
         }
       )
     })

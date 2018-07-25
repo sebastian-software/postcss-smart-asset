@@ -276,9 +276,9 @@ If set to `true` and `useHash` is also true, the copy method appends the hash to
 
 ##### `method`
 
-_(default: `xxhash32`)_
+_(default: `null`)_
 
-Hash method `xxhash32|xxhash64` or custom function (accept file buffer)
+Uses default method of [asset-hash](https://www.npmjs.com/package/asset-hash) library.
 
 ##### `shrink`
 

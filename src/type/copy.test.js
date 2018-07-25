@@ -79,15 +79,16 @@ function testCopy(opts, postcssOpts) {
       `"./${assetsPath}imported\/pixel\\.png\\?foo=bar"`
     ),
     copyParamsPixelGif: new RegExp(`"./${assetsPath}pixel\\.gif\\#el"`),
-    copyHashPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png"`),
-    copyHashParamsPixel8: new RegExp(`"./${assetsPath}dDcMwK\\.png\\?v=1\\.1\\#iefix"`),
-    copyHashAppendPixel8: new RegExp(`"./${assetsPath}pixel_dDcMwK\\.png"`),
+    copyHashPixel8: new RegExp(`"./${assetsPath}fbDRJoaV\\.png"`),
+    copyHashParamsPixel8: new RegExp(`"./${assetsPath}fbDRJoaV\\.png\\?v=1\\.1\\#iefix"`),
+    copyHashAppendPixel8: new RegExp(`"./${assetsPath}pixel_fbDRJoaV\\.png"`),
     copyHashAppendParamsPixel8: new RegExp(
-      `"./${assetsPath}pixel_dDcMwK\\.png\\?v=1\\.1\\#iefix"`
+      `"./${assetsPath}pixel_fbDRJoaV\\.png\\?v=1\\.1\\#iefix"`
     )
   }
+
   const matchAll = (css, patternsKeys) =>
-    expect(patternsKeys.every((pat) => css.match(patterns[pat]))).toBeTruthy()
+    patternsKeys.every((pat) => expect(css).toMatch(patterns[pat]))
 
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {
     test("rebase the url", () => {

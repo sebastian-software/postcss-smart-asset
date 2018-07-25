@@ -57,7 +57,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   // Babel v7 on Node v6. Re-evaluate in some month if fixed.
   // Log: https://travis-ci.org/sebastian-software/postcss-smart-asset/builds/408069998
   if (maxSize) {
-    const stats = fs.statSync(file.path)
+    let stats = fs.statSync(file.path)
 
     if (stats.size >= maxSize) {
       return processFallback.apply(this, arguments)

@@ -53,6 +53,9 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
 
   const maxSize = (options.maxSize || 0) * 1024
 
+  // For some reason we can't use `const` for `stats` as this breaks
+  // Babel v7 on Node v6. Re-evaluate in some month if fixed.
+  // Log: https://travis-ci.org/sebastian-software/postcss-smart-asset/builds/408069998
   if (maxSize) {
     let stats = fs.statSync(file.path)
 

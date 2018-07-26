@@ -32,7 +32,7 @@
     "*.css": "stylelint"
   },
   "dependencies": {
-    "asset-hash": "^2.1.5",
+    "asset-hash": "^2.2.0",
     "cp-file": "^6.0.0",
     "mime": "^2.3.1",
     "minimatch": "^3.0.4",

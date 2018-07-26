@@ -49,7 +49,7 @@ export default async function processCopy(
   let assetRelativePath = options.useHash ?
     await getHashName(file, options.hashOptions) :
     asset.relativePath
-  if (options.useHash && options.prependName) {
+  if (options.useHash && options.keepName) {
     const pathObj = path.parse(assetRelativePath)
 
 

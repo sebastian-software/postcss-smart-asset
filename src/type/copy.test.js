@@ -66,7 +66,7 @@ function testCopy(opts, postcssOpts) {
   const optsWithHash = Object.assign({}, opts, { useHash: true })
   const optsWithHashAppend = Object.assign({}, opts, {
     useHash: true,
-    prependName: true
+    keepName: true
   })
 
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {

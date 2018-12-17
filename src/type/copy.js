@@ -54,7 +54,7 @@ export default async function processCopy(
 
 
     const fileName = path.parse(asset.relativePath).name
-    pathObj.name = `${fileName}_${pathObj.name}`
+    pathObj.name = `${fileName}~${pathObj.name}`
     delete pathObj.base // otherwise it would override name
     assetRelativePath = path.format(pathObj)
   }

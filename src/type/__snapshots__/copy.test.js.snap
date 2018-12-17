@@ -12,7 +12,7 @@ div {
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel_fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/pixel~fbDRJoaV.png\\")
 }"
 `;
 
@@ -48,7 +48,7 @@ exports[`copy when inline fallback should copy asset from the source (\`from\`) 
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -70,7 +70,7 @@ div {
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/pixel_fbDRJoaV.png\\")
+  clip-path: url(\\"./test/fixtures/build/assets/pixel~fbDRJoaV.png\\")
 }"
 `;
 
@@ -106,7 +106,7 @@ exports[`copy with assetsPath and without "to" should copy asset from the source
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./test/fixtures/build/assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -122,7 +122,7 @@ div {
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel_fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/pixel~fbDRJoaV.png\\")
 }"
 `;
 
@@ -158,7 +158,7 @@ exports[`copy with assetsPath should copy asset from the source (\`from\`) to th
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel_fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -180,7 +180,7 @@ div {
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./pixel_fbDRJoaV.png\\")
+  clip-path: url(\\"./pixel~fbDRJoaV.png\\")
 }"
 `;
 
@@ -216,7 +216,7 @@ exports[`copy without assetsPath should copy asset from the source (\`from\`) to
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./pixel_fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./pixel~fbDRJoaV.png?v=1.1#iefix\\")
 }"
 `;
 

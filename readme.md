@@ -177,7 +177,7 @@ Checkout [tests](test) for examples.
     * `basePath` - path or array of paths to search assets (relative to `from`, or absolute)
     * `assetsPath` - directory to copy assets (relative to `to` or absolute)
     * `useHash` - use content hash of file for naming
-    * `keepName` - use `filename-hash` as filename (assuming useHash is also true)
+    * `keepName` - use `filename~hash` as filename (assuming useHash is also true)
     * `hashOptions` - options for hash function
 * `custom {Function}`
     * `multi` - processing with other options

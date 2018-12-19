@@ -67,7 +67,11 @@
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "test": "jest --coverage",
-    "precommit": "lint-staged",
     "prepare": "rimraf lib && preppy"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

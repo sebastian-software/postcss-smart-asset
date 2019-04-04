@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "asset-hash": "^2.4.0",
+    "asset-hash": "^2.4.1",
     "core-js": "^3.0.0",
     "cp-file": "^6.2.0",
     "mime": "^2.4.1",

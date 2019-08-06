@@ -1,2 +1,5 @@
 extends:
   - "@effective"
+rules:
+  id-length: off
+  max-params: off

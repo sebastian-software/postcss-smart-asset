@@ -3,19 +3,19 @@ import fs from "fs"
 import encodeFile from "../lib/encode"
 import getFile from "../lib/get-file"
 
-import processCopy from "./copy"
-import processRebase from "./rebase"
+import { copyAsset } from "./copy"
+import { rebaseAsset } from "./rebase"
 
-function processFallback(originUrl, dir, options) {
+function inlineFallback(originUrl, dir, options) {
   if (typeof options.fallback === "function") {
     return options.fallback.apply(null, arguments)
   }
 
   switch (options.fallback) {
     case "copy":
-      return processCopy(...arguments)
+      return copyAsset(...arguments)
     case "rebase":
-      return processRebase(...arguments)
+      return rebaseAsset(...arguments)
     default:
   }
 }
@@ -23,7 +23,7 @@ function processFallback(originUrl, dir, options) {
 /**
  * Inline image in url()
  */
-export default async function(asset, dir, options, decl, warn, result, addDependency) {
+export async function inlineAsset(asset, dir, options, decl, warn, result, addDependency) {
   const file = getFile(asset, options, dir, warn)
 
   if (!file) return
@@ -43,7 +43,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
     const stats = fs.statSync(file.path)
 
     if (stats.size >= maxSize) {
-      return processFallback.apply(this, arguments)
+      return inlineFallback.apply(this, arguments)
     }
   }
 

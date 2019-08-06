@@ -16,7 +16,7 @@ const getHashName = (file, options) => getHashedName(file.path, options)
  *
  * Option assetsPath is require and is relative to the css destination (`to`)
  */
-export default async function processCopy(
+export async function copyAsset(
   asset,
   dir,
   options,

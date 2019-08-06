@@ -1,17 +1,13 @@
-/* eslint-disable */
 import matchOptions from "./match-options"
 import { getPathDeclFile, getDirDeclFile, prepareAsset } from "./paths"
 
-import copyType from "../type/copy"
-import customType from "../type/custom"
-import inlineType from "../type/inline"
-import rebaseType from "../type/rebase"
+import { copyAsset, customAsset, inlineAsset, rebaseAsset } from "../type"
 
-const typeMap = {
-  copy: copyType,
-  custom: customType,
-  inline: inlineType,
-  rebase: rebaseType
+const modeMap = {
+  copy: copyAsset,
+  custom: customAsset,
+  inline: inlineAsset,
+  rebase: rebaseAsset
 }
 
 /**
@@ -35,7 +31,7 @@ function getUrlProcessor(optionUrl) {
     throw new Error(`Unknown mode for postcss-url: ${mode}`)
   }
 
-  return typeMap[mode]
+  return modeMap[mode]
 }
 
 /**

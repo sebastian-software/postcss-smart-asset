@@ -28,8 +28,7 @@
   "module": "lib/index.esm.js",
   "pre-commit": "lint-staged",
   "lint-staged": {
-    "*.js": "eslint",
-    "*.css": "stylelint"
+    "*.js": "eslint --quiet"
   },
   "jest": {
     "testEnvironment": "node"

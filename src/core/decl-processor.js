@@ -1,4 +1,4 @@
-import matchOptions from "./match-options"
+import matchOptions from "./matchOptions"
 import { getPathDeclFile, getDirDeclFile, prepareAsset } from "./paths"
 
 import { copyAsset, customAsset, inlineAsset, rebaseAsset } from "../mode"

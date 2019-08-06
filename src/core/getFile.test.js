@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import getFile from "./get-file"
+import getFile from "./getFile"
 
 describe("get-file", () => {
   const dir = { from: "test/fixtures" }

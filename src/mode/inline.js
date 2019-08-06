@@ -1,7 +1,7 @@
 import fs from "fs"
 
 import encodeFile from "../core/encode"
-import getFile from "../core/get-file"
+import getFile from "../core/getFile"
 
 import { copyAsset } from "./copy"
 import { rebaseAsset } from "./rebase"
@@ -36,9 +36,6 @@ export async function inlineAsset(asset, dir, options, decl, warn, result, addDe
 
   const maxSize = (options.maxSize || 0) * 1024
 
-  // For some reason we can't use `const` for `stats` as this breaks
-  // Babel v7 on Node v6. Re-evaluate in some month if fixed.
-  // Log: https://travis-ci.org/sebastian-software/postcss-smart-asset/builds/408069998
   if (maxSize) {
     const stats = fs.statSync(file.path)
 

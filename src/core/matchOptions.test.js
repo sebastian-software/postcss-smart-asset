@@ -1,5 +1,5 @@
 import path from "path"
-import matchOptions from "./match-options"
+import matchOptions from "./matchOptions"
 
 describe("match options", () => {
   test("should match options from array", () => {

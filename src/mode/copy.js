@@ -4,7 +4,7 @@ import path from "path"
 import cpFile from "cp-file"
 import { getHashedName } from "asset-hash"
 
-import getFile from "../core/get-file"
+import getFile from "../core/getFile"
 import { getAssetsPath, getTargetDir, normalize } from "../core/paths"
 
 const getHashName = (file, options) => getHashedName(file.path, options)

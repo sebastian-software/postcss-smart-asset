@@ -41,7 +41,7 @@ const wrapUrlProcessor = (urlProcessor, result, decl) => {
     urlProcessor(asset, dir, option, decl, warn, result, addDependency)
 }
 
-export const replaceUrl = (url, dir, options, result, decl) => {
+const replaceUrl = (url, dir, options, result, decl) => {
   const asset = prepareAsset(url, dir, decl)
 
   const matchedOptions = matchOptions(asset, options)
@@ -59,7 +59,9 @@ export const replaceUrl = (url, dir, options, result, decl) => {
   }
 
   if (Array.isArray(matchedOptions)) {
-    matchedOptions.forEach((option) => (asset.url = process(option)))
+    matchedOptions.forEach((option) => {
+      asset.url = process(option)
+    })
   } else {
     asset.url = process(matchedOptions)
   }
@@ -95,7 +97,7 @@ export const declProcessor = (from, to, options, result, decl) => {
 
   return Promise.all(
     matches.map((singleMatch, index) => {
-      const [ matched, before, url, after ] = (/(url\(\s*['"]?)([^"')]+)(["']?\s*\))/).exec(
+      const [ _matched, before, url, after ] = (/(url\(\s*['"]?)([^"')]+)(["']?\s*\))/).exec(
         singleMatch
       )
 

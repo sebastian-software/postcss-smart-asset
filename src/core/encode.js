@@ -24,10 +24,6 @@ const optimizedSvgEncode = (svgContent) => {
 
 /**
  * Encoding file contents to string
- *
- * @param file
- * @param [encodeType=base64|encodeURI|encodeURIComponent]
- * @param [shouldOptimizeURIEncode]
  */
 export default async (file, encodeType, shouldOptimizeSvgEncode) => {
   const dataMime = `data:${file.mimeType}`

@@ -1,4 +1,3 @@
-import fs from "fs"
 import path from "path"
 
 import getFile from "./getFile"
@@ -27,7 +26,9 @@ describe("get-file", () => {
     }
     let warnMessage = false
 
-    getFile(asset, {}, dir, (message) => (warnMessage = message))
+    getFile(asset, {}, dir, (message) => {
+      warnMessage = message
+    })
 
     expect(warnMessage).toBe(
       "Can't read file 'test/fixtures/pixel-no-exists.gif', ignoring"

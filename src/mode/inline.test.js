@@ -1,6 +1,7 @@
 import path from "path"
 
 import postcss from "postcss"
+import postcssImport from "postcss-import"
 
 import postcssUrl from ".."
 
@@ -67,7 +68,7 @@ describe("inline", () => {
     readAsync("inline-imported")
       .then((value) =>
         postcss()
-          .use(require("postcss-import")())
+          .use(postcssImport())
           .use(postcssUrl(opts))
           .process(value, { from: "test/fixtures/here" })
       )

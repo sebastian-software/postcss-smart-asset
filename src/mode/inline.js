@@ -1,7 +1,7 @@
 import fs from "fs"
 
-import encodeFile from "../lib/encode"
-import getFile from "../lib/get-file"
+import encodeFile from "../core/encode"
+import getFile from "../core/get-file"
 
 import { copyAsset } from "./copy"
 import { rebaseAsset } from "./rebase"

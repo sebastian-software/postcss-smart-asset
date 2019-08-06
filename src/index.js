@@ -2,7 +2,7 @@ import path from "path"
 
 import postcss from "postcss"
 
-import { declProcessor } from "./lib/decl-processor"
+import { declProcessor } from "./core/decl-processor"
 
 export default postcss.plugin("postcss-smart-asset", (options = {}) => (root, result) => {
   const opts = result.opts

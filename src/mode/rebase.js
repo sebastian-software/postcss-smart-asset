@@ -1,6 +1,6 @@
 import path from "path"
 
-import { normalize } from "../lib/paths"
+import { normalize } from "../core/paths"
 
 /**
  * Fix url() according to source (`from`) or destination (`to`)

@@ -1,7 +1,7 @@
 import matchOptions from "./match-options"
 import { getPathDeclFile, getDirDeclFile, prepareAsset } from "./paths"
 
-import { copyAsset, customAsset, inlineAsset, rebaseAsset } from "../type"
+import { copyAsset, customAsset, inlineAsset, rebaseAsset } from "../mode"
 
 const modeMap = {
   copy: copyAsset,

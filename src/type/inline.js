@@ -1,16 +1,11 @@
 import fs from "fs"
+
 import encodeFile from "../lib/encode"
 import getFile from "../lib/get-file"
+
 import processCopy from "./copy"
 import processRebase from "./rebase"
 
-/**
- * @param {string} originUrl
- * @param {PostcssUrl~Dir} dir
- * @param {PostcssUrl~Option} options
- *
- * @returns {string|Undefined}
- */
 function processFallback(originUrl, dir, options) {
   if (typeof options.fallback === "function") {
     return options.fallback.apply(null, arguments)
@@ -22,23 +17,11 @@ function processFallback(originUrl, dir, options) {
     case "rebase":
       return processRebase(...arguments)
     default:
-      return
   }
 }
 
 /**
  * Inline image in url()
- *
- * @type {PostcssUrl~UrlProcessor}
- * @param {PostcssUrl~Asset} asset
- * @param {PostcssUrl~Dir} dir
- * @param {PostcssUrl~Options} options
- * @param {PostcssUrl~Decl} decl
- * @param {Function} warn
- * @param {Result} result
- * @param {Function} addDependency
- *
- * @returns {string|Undefined}
  */
 export default async function(asset, dir, options, decl, warn, result, addDependency) {
   const file = getFile(asset, options, dir, warn)
@@ -57,7 +40,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   // Babel v7 on Node v6. Re-evaluate in some month if fixed.
   // Log: https://travis-ci.org/sebastian-software/postcss-smart-asset/builds/408069998
   if (maxSize) {
-    let stats = fs.statSync(file.path)
+    const stats = fs.statSync(file.path)
 
     if (stats.size >= maxSize) {
       return processFallback.apply(this, arguments)
@@ -72,9 +55,7 @@ export default async function(asset, dir, options, decl, warn, result, addDepend
   if (isSvg && asset.hash && !options.ignoreFragmentWarning) {
     // eslint-disable-next-line max-len
     warn(
-      `Image type is svg and link contains #. PostCSS Smart Asset can't handle SVG fragments. SVG file fully inlined. ${
-        file.path
-      }`
+      `Image type is svg and link contains #. PostCSS Smart Asset can't handle SVG fragments. SVG file fully inlined. ${file.path}`
     )
   }
 

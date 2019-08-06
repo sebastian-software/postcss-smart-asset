@@ -70,44 +70,36 @@ function testCopy(opts, postcssOpts) {
   })
 
   describe("should copy asset from the source (`from`) to the assets destination (`to` + `assetsPath`)", () => {
-    test("rebase the url", () => {
-      return processedCss("copy", opts, postcssOpts).then((css) => {
+    test("rebase the url", () =>
+      processedCss("copy", opts, postcssOpts).then((css) => {
         expect(css).toMatchSnapshot()
-      })
-    })
+      }))
 
-    test("rebase the url keeping parameters", () => {
-      return processedCss("copy-parameters", opts, postcssOpts).then((css) => {
+    test("rebase the url keeping parameters", () =>
+      processedCss("copy-parameters", opts, postcssOpts).then((css) => {
         expect(css).toMatchSnapshot()
-      })
-    })
+      }))
 
-    test("rebase the url using a hash name", () => {
-      return processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
+    test("rebase the url using a hash name", () =>
+      processedCss("copy-hash", optsWithHash, postcssOpts).then((css) => {
         expect(css).toMatchSnapshot()
-      })
-    })
+      }))
 
-    test("rebase the url using a hash name keeping parameters", () => {
-      return processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then(
+    test("rebase the url using a hash name keeping parameters", () =>
+      processedCss("copy-hash-parameters", optsWithHash, postcssOpts).then((css) => {
+        expect(css).toMatchSnapshot()
+      }))
+
+    test("rebase the url appending a hash to the name", () =>
+      processedCss("copy-hash", optsWithHashAppend, postcssOpts).then((css) => {
+        expect(css).toMatchSnapshot()
+      }))
+
+    test("rebase the url using appending a hash to the name name keeping parameters", () =>
+      processedCss("copy-hash-parameters", optsWithHashAppend, postcssOpts).then(
         (css) => {
           expect(css).toMatchSnapshot()
         }
-      )
-    })
-
-    test("rebase the url appending a hash to the name", () => {
-      return processedCss("copy-hash", optsWithHashAppend, postcssOpts).then((css) => {
-        expect(css).toMatchSnapshot()
-      })
-    })
-
-    test("rebase the url using appending a hash to the name name keeping parameters", () => {
-      return processedCss("copy-hash-parameters", optsWithHashAppend, postcssOpts).then(
-        (css) => {
-          expect(css).toMatchSnapshot()
-        }
-      )
-    })
+      ))
   })
 }

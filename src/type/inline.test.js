@@ -1,6 +1,9 @@
 import path from "path"
+
 import postcss from "postcss"
-import postcssUrl from "../"
+
+import postcssUrl from ".."
+
 import { compareFixtures, processedCss, readAsync } from "../../test/setup"
 
 describe("inline", () => {
@@ -27,27 +30,24 @@ describe("inline", () => {
     postcssOpts
   )
 
-  test("should inline url from dirname(from)", () => {
-    return processedCss("inline-from", opts, postcssOpts).then((css) => {
+  test("should inline url from dirname(from)", () =>
+    processedCss("inline-from", opts, postcssOpts).then((css) => {
       expect(css.match(/;base64/)).toBeTruthy()
-    })
-  })
+    }))
 
-  test("should not inline big files from dirname(from)", () => {
-    return processedCss(
+  test("should not inline big files from dirname(from)", () =>
+    processedCss(
       "inline-from",
       { url: "inline", maxSize: 0.0001 },
       { from: "test/fixtures/here" }
     ).then((css) => {
       expect(css.match(/;base64/)).toBeFalsy()
-    })
-  })
+    }))
 
-  test("SVGs shouldn't be encoded in base64", () => {
-    return processedCss("inline-svg", { url: "inline" }, postcssOpts).then((css) => {
+  test("SVGs shouldn't be encoded in base64", () =>
+    processedCss("inline-svg", { url: "inline" }, postcssOpts).then((css) => {
       expect(css.match(/;base64/)).toBeFalsy()
-    })
-  })
+    }))
 
   compareFixtures(
     "inline-svg-optimized",
@@ -63,8 +63,8 @@ describe("inline", () => {
     postcssOpts
   )
 
-  test("should inline url of imported files", () => {
-    return readAsync("inline-imported")
+  test("should inline url of imported files", () =>
+    readAsync("inline-imported")
       .then((value) =>
         postcss()
           .use(require("postcss-import")())
@@ -73,30 +73,25 @@ describe("inline", () => {
       )
       .then((result) => {
         expect(result.css.match(/;base64/)).toBeTruthy()
-      })
-  })
+      }))
 
-  test("should inline files matching the minimatch pattern", () => {
-    return processedCss(
+  test("should inline files matching the minimatch pattern", () =>
+    processedCss(
       "inline-by-type",
       { url: "inline", filter: "**/*.svg" },
       postcssOpts
     ).then((css) => {
       expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
       expect(css.match(/data:image\/gif/)).toBeFalsy()
-    })
-  })
+    }))
 
-  test("should inline files matching the regular expression", () => {
-    return processedCss(
-      "inline-by-type",
-      { url: "inline", filter: /\.svg$/ },
-      postcssOpts
-    ).then((css) => {
-      expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
-      expect(css.match(/data:image\/gif/)).toBeFalsy()
-    })
-  })
+  test("should inline files matching the regular expression", () =>
+    processedCss("inline-by-type", { url: "inline", filter: /\.svg$/ }, postcssOpts).then(
+      (css) => {
+        expect(css.match(/data:image\/svg\+xml/)).toBeTruthy()
+        expect(css.match(/data:image\/gif/)).toBeFalsy()
+      }
+    ))
 
   test("should inline files matching by custom function", () => {
     const customFilterFunction = (asset) => (/\.svg$/).test(asset.absolutePath)
@@ -134,8 +129,8 @@ describe("inline", () => {
     { from: "test/fixtures/index.css", to: "test/fixtures/build/index.css" }
   )
 
-  test("should find files in basePaths", () => {
-    return processedCss(
+  test("should find files in basePaths", () =>
+    processedCss(
       "inline-by-base-paths",
       {
         url: "inline",
@@ -145,6 +140,5 @@ describe("inline", () => {
       postcssOpts
     ).then((css) => {
       expect(css.match(/data:image\/png/g)).toHaveLength(2)
-    })
-  })
+    }))
 })

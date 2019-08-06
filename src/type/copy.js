@@ -1,7 +1,9 @@
 import fs from "fs"
 import path from "path"
+
 import cpFile from "cp-file"
 import { getHashedName } from "asset-hash"
+
 import getFile from "../lib/get-file"
 import { getAssetsPath, getTargetDir, normalize } from "../lib/paths"
 
@@ -13,17 +15,6 @@ const getHashName = (file, options) => getHashedName(file.path, options)
  * You can rename the assets by a hash or keep the real filename.
  *
  * Option assetsPath is require and is relative to the css destination (`to`)
- *
- * @type {PostcssUrl~UrlProcessor}
- * @param {PostcssUrl~Asset} asset
- * @param {PostcssUrl~Dir} dir
- * @param {PostcssUrl~Option} options
- * @param {PostcssUrl~Decl} decl
- * @param {Function} warn
- * @param {Result} result
- * @param {Function} addDependency
- *
- * @returns {string|Undefined}
  */
 export default async function processCopy(
   asset,
@@ -51,7 +42,6 @@ export default async function processCopy(
     asset.relativePath
   if (options.useHash && options.keepName) {
     const pathObj = path.parse(assetRelativePath)
-
 
     const fileName = path.parse(asset.relativePath).name
     pathObj.name = `${fileName}~${pathObj.name}`

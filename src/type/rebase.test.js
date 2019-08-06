@@ -1,4 +1,5 @@
 import importPlugin from "postcss-import"
+
 import { compareFixtures, processedCss } from "../../test/setup"
 
 describe("rebase", () => {

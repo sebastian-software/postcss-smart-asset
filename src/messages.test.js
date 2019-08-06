@@ -1,6 +1,9 @@
 import { resolve } from "path"
+
 import postcss from "postcss"
+
 import { readAsync } from "../test/setup"
+
 import postcssUrl from "."
 
 describe("misc", () => {

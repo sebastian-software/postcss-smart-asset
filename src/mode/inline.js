@@ -23,7 +23,15 @@ function inlineFallback(originUrl, dir, options) {
 /**
  * Inline image in url()
  */
-export async function inlineAsset(asset, dir, options, decl, warn, result, addDependency) {
+export async function inlineAsset(
+  asset,
+  dir,
+  options,
+  decl,
+  warn,
+  result,
+  addDependency
+) {
   const file = getFile(asset, options, dir, warn)
 
   if (!file) return

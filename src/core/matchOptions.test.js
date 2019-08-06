@@ -1,4 +1,5 @@
 import path from "path"
+
 import matchOptions from "./matchOptions"
 
 describe("match options", () => {
@@ -34,7 +35,7 @@ describe("match options", () => {
 
   test("should match options with custom filter", () => {
     const options = [
-      { url: "copy", filter: (asset) => asset.absolutePath.indexOf("asset") !== -1 },
+      { url: "copy", filter: (asset) => asset.absolutePath.includes("asset") },
       { url: "inline", filter: "**/*.gif" },
       { url: "rebase", filter: "**/*.svg" }
     ]
@@ -48,7 +49,7 @@ describe("match options", () => {
 
   test("should match multiple options", () => {
     const options = [
-      { url: "copy", filter: (asset) => asset.absolutePath.indexOf("asset") !== -1 },
+      { url: "copy", filter: (asset) => asset.absolutePath.includes("asset") },
       { url: "inline", filter: "**/*.gif" },
       { url: "rebase", filter: "**/*.svg" },
       { url: () => "custom", filter: "**/*.gif", multi: true }
@@ -66,7 +67,7 @@ describe("match options", () => {
 
   test("should match single option", () => {
     const options = [
-      { url: "copy", filter: (asset) => asset.absolutePath.indexOf("asset") !== -1 },
+      { url: "copy", filter: (asset) => asset.absolutePath.includes("asset") },
       { url: "inline", filter: "**/*.gif" },
       { url: "rebase", filter: "**/*.svg" },
       { url: () => "custom", filter: "**/*.svg", multi: true }

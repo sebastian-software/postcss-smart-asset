@@ -16,15 +16,7 @@ const getHashName = (file, options) => getHashedName(file.path, options)
  *
  * Option assetsPath is require and is relative to the css destination (`to`)
  */
-export async function copyAsset(
-  asset,
-  dir,
-  options,
-  decl,
-  warn,
-  result,
-  addDependency
-) {
+export async function copyAsset(asset, dir, options, decl, warn, result, addDependency) {
   if (!options.assetsPath && dir.from === dir.to) {
     warn("Option `to` of postcss is required, ignoring")
 

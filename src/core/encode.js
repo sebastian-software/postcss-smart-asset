@@ -1,4 +1,5 @@
 import { readFile } from "fs"
+
 import pify from "pify"
 
 const readFileAsync = pify(readFile)
@@ -7,9 +8,6 @@ const readFileAsync = pify(readFile)
  * Optimize encoding SVG files (IE9+, Android 3+)
  *
  * @see https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
- *
- * @param {string} svgContent
- * @returns {string}
  */
 const optimizedSvgEncode = (svgContent) => {
   const result = encodeURIComponent(svgContent)
@@ -21,18 +19,15 @@ const optimizedSvgEncode = (svgContent) => {
     .replace(/%3B/g, ";")
 
   // Lowercase the hex-escapes for better gzipping
-  return result.replace(/(%[0-9A-Z]{2})/g, (matched, AZ) => {
-    return AZ.toLowerCase()
-  })
+  return result.replace(/(%[0-9A-Z]{2})/g, (matched, AZ) => AZ.toLowerCase())
 }
 
 /**
  * Encoding file contents to string
  *
- * @param {PostcssUrl~File} file
- * @param {string} [encodeType=base64|encodeURI|encodeURIComponent]
- * @param {boolean} [shouldOptimizeURIEncode]
- * @returns {string}
+ * @param file
+ * @param [encodeType=base64|encodeURI|encodeURIComponent]
+ * @param [shouldOptimizeURIEncode]
  */
 export default async (file, encodeType, shouldOptimizeSvgEncode) => {
   const dataMime = `data:${file.mimeType}`

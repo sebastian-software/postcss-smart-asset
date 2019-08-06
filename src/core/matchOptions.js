@@ -1,16 +1,16 @@
 import path from "path"
+
 import minimatch from "minimatch"
+
 import { isUrlShouldBeIgnored } from "./paths"
 
 /**
  * Returns whether the given asset matches the given pattern
- * Allways returns true if the given pattern is empty
+Allways returns true if the given pattern is empty
  *
- * @param {PostcssUrl~Asset} asset the processed asset
- * @param {string|RegExp|Function} pattern A minimatch string,
- *   regular expression or function to test the asset
- *
- * @returns {boolean}
+ * @param asset the processed asset
+ * @param pattern A minimatch string,
+ * regular expression or function to test the asset
  */
 const matchesFilter = (asset, pattern) => {
   const relativeToRoot = path.relative(process.cwd(), asset.absolutePath)
@@ -34,10 +34,6 @@ const matchesFilter = (asset, pattern) => {
 
 /**
  * Matching single option
- *
- * @param {PostcssUrl~Asset} asset
- * @param {PostcssUrl~Options} option
- * @returns {boolean}
  */
 const matchOption = (asset, option) => {
   const matched = matchesFilter(asset, option.filter)
@@ -51,10 +47,6 @@ const isMultiOption = (option) => option.multi && typeof option.url === "functio
 
 /**
  * Matching options by asset
- *
- * @param {PostcssUrl~Asset} asset
- * @param {PostcssUrl~Options|PostcssUrl~Options[]} options
- * @returns {PostcssUrl~Options|undefined}
  */
 const matchOptions = (asset, options) => {
   if (!options) return

@@ -1,15 +1,9 @@
 import fs from "fs"
+
 import mime from "mime/lite"
+
 import { getPathByBasePath } from "./paths"
 
-/**
- *
- * @param {PostcssUrl~Asset} asset
- * @param {PostcssUrl~Options} options
- * @param {PostcssUrl~Dir} dir
- * @param {Function} warn
- * @returns {PostcssUrl~File}
- */
 const getFile = (asset, options, dir, warn) => {
   const paths = options.basePath ?
     getPathByBasePath(options.basePath, dir.from, asset.pathname) :
@@ -29,10 +23,3 @@ const getFile = (asset, options, dir, warn) => {
 }
 
 export default getFile
-
-/**
- * @typedef {Object} PostcssUrl~File
- * @property {String} path
- * @property {Buffer} contents
- * @property {String} mimeType
- */

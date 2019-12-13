@@ -34,29 +34,29 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "asset-hash": "^3.0.1",
-    "core-js": "^3.2.1",
+    "asset-hash": "^3.0.3",
+    "core-js": "^3.5.0",
     "cp-file": "^7.0.0",
     "mime": "^2.4.4",
     "minimatch": "^3.0.4",
     "pify": "^4.0.1",
-    "postcss": "^7.0.18"
+    "postcss": "^7.0.24"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@effective/eslint-config": "^1.1.1",
+    "@babel/core": "^7.7.5",
+    "@effective/eslint-config": "^1.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
     "babel-preset-edge": "^5.5.0",
-    "eslint": "^6.5.1",
-    "husky": "^3.0.7",
+    "eslint": "^6.7.2",
+    "husky": "^3.1.0",
     "jest-cli": "^24.9.0",
-    "lint-staged": "^9.4.1",
+    "lint-staged": "^9.5.0",
     "postcss-import": "^12.0.1",
-    "preppy": "^8.3.1",
-    "prettier": "^1.18.2",
+    "preppy": "^9.3.0",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "lint": "eslint '**/*.js'",

@@ -45,7 +45,7 @@ export async function copyAsset(asset, dir, options, decl, warn, result, addDepe
   const newAssetPath = path.join(newAssetBaseDir, assetRelativePath)
   const newRelativeAssetPath = normalize(path.relative(targetDir, newAssetPath))
 
-  await cpFile(file.path, newAssetPath, { overwrite: false })
+  await cpFile(file.path, newAssetPath, { overwrite: true })
 
   return `${newRelativeAssetPath}${asset.search}${asset.hash}`
 }

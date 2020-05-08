@@ -62,9 +62,9 @@
     "lint": "eslint '**/*.js'",
     "fix": "eslint --fix '**/*.js'",
     "format": "prettier --write '**/*.js' && npm run fix",
-    "release": "release-it --github.release --npm.publish --non-interactive",
-    "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
-    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
+    "release": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major",
     "test": "jest --coverage",
     "prepare": "rimraf lib && preppy"
   },

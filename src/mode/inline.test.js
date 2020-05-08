@@ -4,7 +4,6 @@ import postcss from "postcss"
 import postcssImport from "postcss-import"
 
 import postcssUrl from ".."
-
 import { compareFixtures, processedCss, readAsync } from "../../test/setup"
 
 describe("inline", () => {

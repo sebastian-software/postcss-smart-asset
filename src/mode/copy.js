@@ -28,9 +28,9 @@ export async function copyAsset(asset, dir, options, decl, warn, result, addDepe
 
   addDependency(file.path)
 
-  let assetRelativePath = options.useHash ?
-    await getHashName(file, options.hashOptions) :
-    asset.relativePath
+  let assetRelativePath = options.useHash
+    ? await getHashName(file, options.hashOptions)
+    : asset.relativePath
   if (options.useHash && options.keepName) {
     const pathObj = path.parse(assetRelativePath)
 

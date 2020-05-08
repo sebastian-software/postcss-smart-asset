@@ -2,7 +2,6 @@ import fs from "fs"
 
 import encodeFile from "../core/encode"
 import getFile from "../core/getFile"
-
 import { copyAsset } from "./copy"
 import { rebaseAsset } from "./rebase"
 
@@ -14,8 +13,10 @@ function inlineFallback(originUrl, dir, options) {
   switch (options.fallback) {
     case "copy":
       return copyAsset(...arguments)
+
     case "rebase":
       return rebaseAsset(...arguments)
+
     default:
   }
 }

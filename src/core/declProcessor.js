@@ -1,5 +1,4 @@
 import { copyAsset, customAsset, inlineAsset, rebaseAsset } from "../mode"
-
 import matchOptions from "./matchOptions"
 import { getDirDeclFile, getPathDeclFile, prepareAsset } from "./paths"
 
@@ -13,7 +12,7 @@ const modeMap = {
 /**
  * Restricted modes
  */
-const PROCESS_TYPES = [ "rebase", "inline", "copy", "custom" ]
+const PROCESS_TYPES = new Set([ "rebase", "inline", "copy", "custom" ])
 
 const getUrlProcessorType = (optionUrl) =>
   (typeof optionUrl === "function" ? "custom" : optionUrl || "rebase")
@@ -21,7 +20,7 @@ const getUrlProcessorType = (optionUrl) =>
 function getUrlProcessor(optionUrl) {
   const mode = getUrlProcessorType(optionUrl)
 
-  if (!PROCESS_TYPES.includes(mode)) {
+  if (!PROCESS_TYPES.has(mode)) {
     throw new Error(`Unknown mode for postcss-url: ${mode}`)
   }
 
@@ -69,7 +68,7 @@ const replaceUrl = (url, dir, options, result, decl) => {
   return asset.url
 }
 
-const WITH_QUOTES = /^['"]/
+const WITH_QUOTES = /^["']/
 
 function buildResult(newUrl, matched, before, after) {
   if (!newUrl) return matched
@@ -84,7 +83,7 @@ function buildResult(newUrl, matched, before, after) {
 
 export const declProcessor = (from, to, options, result, decl) => {
   const dir = { from, to, file: getDirDeclFile(decl) }
-  const pattern = /(url\(\s*['"]?)([^"')]+)(["']?\s*\))/g
+  const pattern = /(url\(\s*["']?)([^"')]+)(["']?\s*\))/g
 
   if (!pattern) {
     return
@@ -97,7 +96,7 @@ export const declProcessor = (from, to, options, result, decl) => {
 
   return Promise.all(
     matches.map((singleMatch, index) => {
-      const [ _matched, before, url, after ] = (/(url\(\s*['"]?)([^"')]+)(["']?\s*\))/).exec(
+      const [ _matched, before, url, after ] = (/(url\(\s*["']?)([^"')]+)(["']?\s*\))/).exec(
         singleMatch
       )
 

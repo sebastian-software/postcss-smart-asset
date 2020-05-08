@@ -5,9 +5,9 @@ import mime from "mime/lite"
 import { getPathByBasePath } from "./paths"
 
 const getFile = (asset, options, dir, warn) => {
-  const paths = options.basePath ?
-    getPathByBasePath(options.basePath, dir.from, asset.pathname) :
-    [ asset.absolutePath ]
+  const paths = options.basePath
+    ? getPathByBasePath(options.basePath, dir.from, asset.pathname)
+    : [ asset.absolutePath ]
   const filePath = paths.find(fs.existsSync)
 
   if (!filePath) {

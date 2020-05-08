@@ -19,7 +19,7 @@ const optimizedSvgEncode = (svgContent) => {
     .replace(/%3B/g, ";")
 
   // Lowercase the hex-escapes for better gzipping
-  return result.replace(/(%[0-9A-Z]{2})/g, (matched, AZ) => AZ.toLowerCase())
+  return result.replace(/(%[\dA-Z]{2})/g, (matched, AZ) => AZ.toLowerCase())
 }
 
 /**
@@ -43,9 +43,9 @@ export default async (file, encodeType, shouldOptimizeSvgEncode) => {
     .replace(/\n+/g, "")
 
   let encodedStr =
-    shouldOptimizeSvgEncode && encodeType === "encodeURIComponent" ?
-      optimizedSvgEncode(content) :
-      encodeFunc(content)
+    shouldOptimizeSvgEncode && encodeType === "encodeURIComponent"
+      ? optimizedSvgEncode(content)
+      : encodeFunc(content)
 
   encodedStr = encodedStr.replace(/%20/g, " ").replace(/#/g, "%23")
 

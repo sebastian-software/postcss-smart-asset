@@ -76,9 +76,9 @@ export const getPathByBasePath = (basePath, dirFrom, relPath) => {
 export const prepareAsset = (assetUrl, dir, decl) => {
   const parsedUrl = url.parse(assetUrl)
   const pathname = !isUrlWithoutPathname(assetUrl) ? parsedUrl.pathname : null
-  const absolutePath = pathname ?
-    path.resolve(path.join(dir.file, pathname)) :
-    getPathDeclFile(decl)
+  const absolutePath = pathname
+    ? path.resolve(path.join(dir.file, pathname))
+    : getPathDeclFile(decl)
 
   return {
     url: assetUrl,

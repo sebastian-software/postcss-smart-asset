@@ -1,9 +1,9 @@
 extends:
   - "@effective"
-rules:
-  id-length: off
-  max-params: off
-  no-param-reassign: off
-  prefer-rest-params: off
-  jsdoc/require-param: off
-  jsdoc/require-returns: off
+# rules:
+#   id-length: off
+#   max-params: off
+#   no-param-reassign: off
+#   prefer-rest-params: off
+#   jsdoc/require-param: off
+#   jsdoc/require-returns: off

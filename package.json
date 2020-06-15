@@ -45,6 +45,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@effective/eslint-config": "^3.7.1",
+    "@effective/prettier": "^4.0.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.0.1",
     "babel-preset-edge": "^5.5.1",
@@ -61,8 +62,7 @@
   },
   "scripts": {
     "lint": "eslint '**/*.js'",
-    "fix": "eslint --fix '**/*.js'",
-    "format": "prettier --write '**/*.js' && npm run fix",
+    "format": "effective-prettier '**/*.{js,ts,json,md}'",
     "release": "release-it --ci patch",
     "release:minor": "release-it --ci minor",
     "release:major": "release-it --ci major",

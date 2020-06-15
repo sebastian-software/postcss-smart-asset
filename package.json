@@ -34,37 +34,38 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "asset-hash": "^3.0.4",
+    "asset-hash": "^3.0.7",
     "core-js": "^3.6.5",
     "cp-file": "^9.0.0",
-    "mime": "^2.4.5",
+    "mime": "^2.4.6",
     "minimatch": "^3.0.4",
     "pify": "^5.0.0",
-    "postcss": "^7.0.29"
+    "postcss": "^7.0.32"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@effective/eslint-config": "^2.6.2",
+    "@babel/core": "^7.10.2",
+    "@effective/eslint-config": "^3.7.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.0.1",
     "babel-preset-edge": "^5.5.1",
-    "eslint": "^6.8.0",
+    "eslint": "^7.2.0",
     "husky": "^4.2.5",
     "jest-cli": "^26.0.1",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.2.10",
     "postcss-import": "^12.0.1",
-    "preppy": "^10.4.0",
+    "preppy": "^10.5.0",
     "prettier": "^2.0.5",
+    "release-it": "^13.6.3",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   },
   "scripts": {
     "lint": "eslint '**/*.js'",
     "fix": "eslint --fix '**/*.js'",
     "format": "prettier --write '**/*.js' && npm run fix",
-    "release": "release-it patch",
-    "release:minor": "release-it minor",
-    "release:major": "release-it major",
+    "release": "release-it --ci patch",
+    "release:minor": "release-it --ci minor",
+    "release:major": "release-it --ci major",
     "test": "jest --coverage",
     "prepare": "rimraf lib && preppy"
   },

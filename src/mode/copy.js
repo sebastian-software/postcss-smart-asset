@@ -24,7 +24,9 @@ export async function copyAsset(asset, dir, options, decl, warn, result, addDepe
 
   const file = getFile(asset, options, dir, warn)
 
-  if (!file) return
+  if (!file) {
+    return
+  }
 
   addDependency(file.path)
 

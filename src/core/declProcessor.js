@@ -15,7 +15,7 @@ const modeMap = {
 const PROCESS_TYPES = new Set([ "rebase", "inline", "copy", "custom" ])
 
 const getUrlProcessorType = (optionUrl) =>
-  (typeof optionUrl === "function" ? "custom" : optionUrl || "rebase")
+  typeof optionUrl === "function" ? "custom" : optionUrl || "rebase"
 
 function getUrlProcessor(optionUrl) {
   const mode = getUrlProcessorType(optionUrl)
@@ -45,7 +45,9 @@ const replaceUrl = (url, dir, options, result, decl) => {
 
   const matchedOptions = matchOptions(asset, options)
 
-  if (!matchedOptions) return
+  if (!matchedOptions) {
+    return
+  }
 
   const process = (option) => {
     const wrappedUrlProcessor = wrapUrlProcessor(
@@ -71,7 +73,9 @@ const replaceUrl = (url, dir, options, result, decl) => {
 const WITH_QUOTES = /^["']/
 
 function buildResult(newUrl, matched, before, after) {
-  if (!newUrl) return matched
+  if (!newUrl) {
+    return matched
+  }
 
   if (WITH_QUOTES.test(newUrl) && WITH_QUOTES.test(after)) {
     before = before.slice(0, -1)
@@ -96,7 +100,7 @@ export const declProcessor = (from, to, options, result, decl) => {
 
   return Promise.all(
     matches.map((singleMatch, index) => {
-      const [ _matched, before, url, after ] = (/(url\(\s*["']?)([^"')]+)(["']?\s*\))/).exec(
+      const [ matched, before, url, after ] = (/(url\(\s*["']?)([^"')]+)(["']?\s*\))/).exec(
         singleMatch
       )
 
@@ -109,13 +113,11 @@ export const declProcessor = (from, to, options, result, decl) => {
             // return fullReplacement
             buildResult(resolved, singleMatch, before, after)
           )
-        } else {
-          // const fullReplacement = `${before}${replacement}${after}`
-          return buildResult(replacement, singleMatch, before, after)
         }
-      } else {
-        return null
+        // const fullReplacement = `${before}${replacement}${after}`
+        return buildResult(replacement, singleMatch, before, after)
       }
+      return null
     })
   ).then((values) => {
     decl.value = decl.value.replace(pattern, (match) => {

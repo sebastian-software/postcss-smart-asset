@@ -24,6 +24,7 @@ function inlineFallback(originUrl, dir, options) {
 /**
  * Inline image in url()
  */
+/* eslint-disable complexity */
 export async function inlineAsset(
   asset,
   dir,
@@ -35,11 +36,12 @@ export async function inlineAsset(
 ) {
   const file = getFile(asset, options, dir, warn)
 
-  if (!file) return
+  if (!file) {
+    return
+  }
 
   if (!file.mimeType) {
     warn(`Unable to find asset mime-type for ${file.path}`)
-
     return
   }
 
@@ -72,7 +74,7 @@ export async function inlineAsset(
   const optimizeSvgEncode = isSvg && options.optimizeSvgEncode
   const encodedStr = await encodeFile(file, encodeType, optimizeSvgEncode)
   const resultValue =
-    options.includeUriFragment && asset.hash ? encodedStr + asset.hash : encodedStr
+    options.includeUriFragment && asset.hash ? `${encodedStr}${asset.hash}` : encodedStr
 
   // wrap url by quotes if percent-encoded svg
   return isSvg && encodeType !== "base64" ? `"${resultValue}"` : resultValue

@@ -38,7 +38,9 @@ const matchesFilter = (asset, pattern) => {
 const matchOption = (asset, option) => {
   const matched = matchesFilter(asset, option.filter)
 
-  if (!matched) return false
+  if (!matched) {
+    return false
+  }
 
   return typeof option.url === "function" || !isUrlShouldBeIgnored(asset.url, option)
 }
@@ -49,17 +51,23 @@ const isMultiOption = (option) => option.multi && typeof option.url === "functio
  * Matching options by asset
  */
 const matchOptions = (asset, options) => {
-  if (!options) return
+  if (!options) {
+    return
+  }
 
   if (Array.isArray(options)) {
     const optionIndex = options.findIndex((option) => matchOption(asset, option))
 
-    if (optionIndex < 0) return
+    if (optionIndex < 0) {
+      return
+    }
 
     const matchedOption = options[optionIndex]
 
     // if founded option is last
-    if (optionIndex === options.length - 1) return matchedOption
+    if (optionIndex === options.length - 1) {
+      return matchedOption
+    }
 
     const extendOptions = options
       .slice(optionIndex + 1)
@@ -72,7 +80,9 @@ const matchOptions = (asset, options) => {
     return extendOptions.length ? [ matchedOption ].concat(extendOptions) : matchedOption
   }
 
-  if (matchOption(asset, options)) return options
+  if (matchOption(asset, options)) {
+    return options
+  }
 }
 
 export default matchOptions

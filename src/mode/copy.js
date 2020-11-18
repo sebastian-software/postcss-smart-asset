@@ -1,5 +1,5 @@
 import path from "path"
-import { copyFile, mkdir } from "fs/promises"
+import { promises as fs } from "fs"
 
 import { getHashedName } from "asset-hash"
 
@@ -47,8 +47,8 @@ export async function copyAsset(asset, dir, options, decl, warn, result, addDepe
   const newAssetPath = path.join(newAssetBaseDir, assetRelativePath)
   const newRelativeAssetPath = normalize(path.relative(targetDir, newAssetPath))
 
-  await mkdir(path.dirname(newAssetPath), { recursive: true })
-  await copyFile(file.path, newAssetPath)
+  await fs.mkdir(path.dirname(newAssetPath), { recursive: true })
+  await fs.copyFile(file.path, newAssetPath)
 
   return `${newRelativeAssetPath}${asset.search}${asset.hash}`
 }

@@ -1,4 +1,4 @@
-import { readFile } from "fs/promises"
+import { promises as fs } from "fs"
 
 /**
  * Optimize encoding SVG files (IE9+, Android 3+)
@@ -24,7 +24,7 @@ const optimizedSvgEncode = (svgContent) => {
 export default async (file, encodeType, shouldOptimizeSvgEncode) => {
   const dataMime = `data:${file.mimeType}`
 
-  const contents = await readFile(file.path)
+  const contents = await fs.readFile(file.path)
 
   if (encodeType === "base64") {
     return `${dataMime};base64,${contents.toString("base64")}`

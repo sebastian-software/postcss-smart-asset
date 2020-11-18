@@ -51,6 +51,7 @@
     "husky": "^4.3.0",
     "jest-cli": "^26.6.3",
     "lint-staged": "^10.5.1",
+    "postcss": "^8.1.7",
     "postcss-import": "^13.0.0",
     "preppy": "^10.8.0",
     "prettier": "^2.1.2",

@@ -34,7 +34,6 @@
   "dependencies": {
     "asset-hash": "^3.0.8",
     "core-js": "^3.7.0",
-    "cp-file": "^9.0.0",
     "mime": "^2.4.6",
     "minimatch": "^3.0.4"
   },

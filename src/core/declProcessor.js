@@ -85,7 +85,14 @@ function buildResult(newUrl, matched, before, after) {
   return `${before}${newUrl}${after}`
 }
 
+// Tracks visited declarations
+const processTracker = new Set()
+
 export const declProcessor = (from, to, options, result, decl) => {
+  if (processTracker.has(decl)) {
+    return
+  }
+
   const dir = { from, to, file: getDirDeclFile(decl) }
   const pattern = /(url\(\s*["']?)([^"')]+)(["']?\s*\))/g
 
@@ -120,6 +127,7 @@ export const declProcessor = (from, to, options, result, decl) => {
       return null
     })
   ).then((values) => {
+    processTracker.add(decl)
     decl.value = decl.value.replace(pattern, (match) => {
       const replacement = values.shift()
       return replacement == null ? match : replacement

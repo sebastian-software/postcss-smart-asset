@@ -5,9 +5,8 @@ import { compareFixtures, processedCss } from "../../test/setup"
 describe("rebase", () => {
   const opts = {}
 
-  test("rebase with empty options", () => {
-    processedCss("copy-hash", undefined, { from: "test/fixtures/here" })
-  })
+  test("rebase with empty options", () =>
+    processedCss("copy-hash", undefined, { from: "test/fixtures/here" }))
 
   compareFixtures("cant-rebase", "shouldn't rebase url if not info available")
   compareFixtures("rebase-to-from", "should rebase url to dirname(from)", opts, {

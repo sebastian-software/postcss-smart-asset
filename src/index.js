@@ -1,22 +1,26 @@
 import path from "path"
-
-import postcss from "postcss"
+import { Once } from "postcss"
 
 import { declProcessor } from "./core/declProcessor"
 
-export default postcss.plugin("postcss-smart-asset", (options = {}) => (root, result) => {
-  const opts = result.opts
-  const from = opts.from ? path.dirname(opts.from) : "."
-  const to = opts.to ? path.dirname(opts.to) : from
+export default (options = {}) => {
+  return {
+    postcssPlugin: 'postcss-dark-theme-class',
+    Once (root, { result }) {
+      const opts = result.opts
+      const from = opts.from ? path.dirname(opts.from) : "."
+      const to = opts.to ? path.dirname(opts.to) : from
 
-  const promises = []
+      const promises = []
 
-  root.walkDecls((decl) => {
-    const waiter = declProcessor(from, to, options, result, decl)
-    if (waiter && waiter.then) {
-      promises.push(waiter)
+      root.walkDecls((decl) => {
+        promises.push(declProcessor(from, to, options, result, decl))
+      })
+
+      return Promise.all(promises)
     }
-  })
+  }
+}
 
-  return Promise.all(promises)
-})
+// PostCSS v8
+export const postcss = true

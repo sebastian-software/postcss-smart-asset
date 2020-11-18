@@ -17,7 +17,7 @@
 ## Installation
 
 ```console
-$ npm install postcss-smart-asset
+$ npm install postcss postcss-smart-asset
 ```
 
 ## Changes over [PostCSS-URL](https://github.com/postcss/postcss-url)

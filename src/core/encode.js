@@ -1,8 +1,4 @@
-import { readFile } from "fs"
-
-import pify from "pify"
-
-const readFileAsync = pify(readFile)
+import { readFile } from "fs/promises"
 
 /**
  * Optimize encoding SVG files (IE9+, Android 3+)
@@ -28,7 +24,7 @@ const optimizedSvgEncode = (svgContent) => {
 export default async (file, encodeType, shouldOptimizeSvgEncode) => {
   const dataMime = `data:${file.mimeType}`
 
-  const contents = await readFileAsync(file.path)
+  const contents = await readFile(file.path)
 
   if (encodeType === "base64") {
     return `${dataMime};base64,${contents.toString("base64")}`

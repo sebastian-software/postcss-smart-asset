@@ -12,7 +12,7 @@ div {
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel~fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/pixel~SLrLywdm.png\\")
 }"
 `;
 
@@ -36,19 +36,19 @@ span {
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
 "body {
-  clip-path: url(\\"./assets/fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/SLrLywdm.png\\")
 }"
 `;
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
 exports[`copy when inline fallback should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/pixel~SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -70,7 +70,7 @@ div {
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/pixel~fbDRJoaV.png\\")
+  clip-path: url(\\"./test/fixtures/build/assets/pixel~SLrLywdm.png\\")
 }"
 `;
 
@@ -94,19 +94,19 @@ span {
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/fbDRJoaV.png\\")
+  clip-path: url(\\"./test/fixtures/build/assets/SLrLywdm.png\\")
 }"
 `;
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./test/fixtures/build/assets/SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
 exports[`copy with assetsPath and without "to" should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./test/fixtures/build/assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./test/fixtures/build/assets/pixel~SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -122,7 +122,7 @@ div {
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel~fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/pixel~SLrLywdm.png\\")
 }"
 `;
 
@@ -146,19 +146,19 @@ span {
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
 "body {
-  clip-path: url(\\"./assets/fbDRJoaV.png\\")
+  clip-path: url(\\"./assets/SLrLywdm.png\\")
 }"
 `;
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
 exports[`copy with assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./assets/pixel~fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./assets/pixel~SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
@@ -180,7 +180,7 @@ div {
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url appending a hash to the name 1`] = `
 "body {
-  clip-path: url(\\"./pixel~fbDRJoaV.png\\")
+  clip-path: url(\\"./pixel~SLrLywdm.png\\")
 }"
 `;
 
@@ -204,19 +204,19 @@ span {
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name 1`] = `
 "body {
-  clip-path: url(\\"./fbDRJoaV.png\\")
+  clip-path: url(\\"./SLrLywdm.png\\")
 }"
 `;
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using a hash name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 
 exports[`copy without assetsPath should copy asset from the source (\`from\`) to the assets destination (\`to\` + \`assetsPath\`) rebase the url using appending a hash to the name name keeping parameters 1`] = `
 "body {
-  clip-path: url(\\"./pixel~fbDRJoaV.png?v=1.1#iefix\\")
+  clip-path: url(\\"./pixel~SLrLywdm.png?v=1.1#iefix\\")
 }"
 `;
 

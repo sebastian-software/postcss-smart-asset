@@ -32,7 +32,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "asset-hash": "^4.0.0",
+    "asset-hash": "^4.0.2",
     "core-js": "^3.20.3",
     "mime": "^3.0.0",
     "minimatch": "^3.0.4"

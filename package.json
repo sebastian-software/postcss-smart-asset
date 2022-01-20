@@ -32,7 +32,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "asset-hash": "^4.0.2",
+    "asset-hash": "^4.0.4",
     "core-js": "^3.20.3",
     "mime": "^3.0.0",
     "minimatch": "^3.0.4"
@@ -42,18 +42,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.10",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.10",
     "@effective/eslint-config": "^4.0.1",
     "@effective/prettier": "^4.3.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.4.6",
-    "babel-preset-edge": "^5.5.1",
     "eslint": "^8.7.0",
     "husky": "^7.0.4",
-    "jest-cli": "^27.4.7",
+    "jest": "^27.4.7",
     "lint-staged": "^12.2.1",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
-    "preppy": "^10.10.2",
+    "preppy": "^11.0.1",
     "prettier": "^2.5.1",
     "release-it": "^14.12.3",
     "rimraf": "^3.0.2",

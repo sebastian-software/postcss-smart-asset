@@ -77,7 +77,7 @@ const matchOptions = (asset, options) => {
           matchOption(asset, option)
       )
 
-    return extendOptions.length ? [ matchedOption ].concat(extendOptions) : matchedOption
+    return extendOptions.length > 0 ? [ matchedOption ].concat(extendOptions) : matchedOption
   }
 
   if (matchOption(asset, options)) {

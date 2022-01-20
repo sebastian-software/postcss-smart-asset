@@ -1,14 +1,12 @@
-# PostCSS Smart Asset<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor]
+# PostCSS Smart Asset<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status][github-img]][github]
 
 [sponsor]: https://www.sebastian-software.de
 [npm]: https://www.npmjs.com/package/postcss-smart-asset
-[travis]: https://travis-ci.org/sebastian-software/postcss-smart-asset
-[appveyor]: https://ci.appveyor.com/project/swernerx/postcss-smart-asset/branch/master
 [sponsor-img]: https://badgen.net/badge/Sponsored%20by/Sebastian%20Software/692446
 [npm-downloads-img]: https://badgen.net/npm/dm/postcss-smart-asset
 [npm-version-img]: https://badgen.net/npm/v/postcss-smart-asset
-[travis-img]: https://badgen.net/travis/sebastian-software/postcss-smart-asset?label=unix%20build
-[appveyor-img]: https://badgen.net/appveyor/ci/swernerx/postcss-smart-asset?label=windows%20build
+[github]: https://github.com/sebastian-software/postcss-smart-asset/actions
+[github-img]: https://badgen.net/github/status/sebastian-software/postcss-smart-asset?label=tests&icon=github
 
 [PostCSS](https://github.com/postcss/postcss) plugin to rebase, inline or copy on url().
 
